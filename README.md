@@ -19,7 +19,9 @@ sorgente della pagina vede le domande, non le soluzioni.
 ## Vuoi un quiz o del materiale di preparazione su un argomento?
 
 Apri una *issue* → [Richiedi un quiz](../../issues/new?template=richiesta-quiz.yml).
-Non serve saper programmare: basta un account GitHub.
+Non serve saper programmare: basta un account GitHub. Per evitare lo spam le
+issue sono aperte solo a chi è stato invitato come collaboratore: se vuoi
+partecipare, chiedi l'invito a chi gestisce il repo.
 
 Questo progetto è portato avanti su base volontaria, al momento per ragazzi di
 **seconda media**: le richieste vengono guardate in quel contesto e con i

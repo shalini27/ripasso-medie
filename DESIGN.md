@@ -1,8 +1,13 @@
 # Design system — Ripasso Medie
 
 Reference feel: Quizlet / Khan Academy. Clean, roomy, big tap targets, nothing
-decorative. Everything lives in `docs/assets/style.css`; pages use its classes
-and never add their own CSS.
+decorative. `docs/assets/style.css` is the shared base: tokens, fonts, buttons,
+panels, the quiz engine. Quiz and guide pages build on it but are **not
+required to look identical**: a page may add its own small `<style>` block and
+its own layout when the topic benefits (a timeline for history, a formula
+table for maths, flashcards, a labelled diagram drawn in SVG, fill-in or
+matching exercises). Keep the tokens, the fonts and the subject colour; vary
+the rest freely.
 
 ## Tokens (`:root` in style.css)
 
@@ -59,3 +64,5 @@ subject colour on a 12% tint. These are the only icons on the site.
 5. Headings and copy in plain Italian, addressed to the kid ("Cosa ripassiamo
    oggi?"), never to the parent.
 6. No emoji as UI, no images from textbooks, no decorative icons.
+7. Variation is welcome where it helps learning. Consistency is about tokens,
+   type and tone, not about every page having the same shape.

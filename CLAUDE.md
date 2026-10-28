@@ -38,13 +38,16 @@ written in Italian, published as a static site on GitHub Pages.
     can't read the key in the page source.
   - Study guide only: start from `_modello-guida.html`.
 - `docs/assets/` the design system (`style.css`, documented in `DESIGN.md`),
-  `quiz.js`, `elenco.js`, self-hosted fonts. Pages never add their own CSS.
+  `quiz.js`, `elenco.js`, `icone.js`, self-hosted fonts. Pages may add their
+  own `<style>` and layout when the topic benefits (see DESIGN.md); they keep
+  the tokens, fonts and subject colour.
 - `tools/sigilla.py` seals answers: replaces `"risposta"` with `"hash"`.
 
 ## Workflow A — Shalini asks for a quiz or guide
 
 1. Ask which folder in `sources/` to use if not stated; read the images/notes.
-2. Decide the format she asked for (quiz, guide, or both on one page).
+2. Decide the format she asked for (quiz, guide, or both on one page) and
+   pick a layout that suits the topic; pages need not look identical.
 3. Write the page in `docs/quiz/`. Quiz guidelines: 8–15 questions, mostly
    4-option multiple choice plus a few Vero/Falso, each with a one-line
    `spiegazione`; reading level appropriate to the class; "Ripasso" section of

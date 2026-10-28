@@ -13,3 +13,4 @@ window.RIPASSO = [
   {file:"musica-medioevo-in-musica.html", titolo:"Il Medioevo in musica", materia:"musica", classe:"2ª", tipo:"quiz+guida", domande:109},
   {file:"storia-comuni-papi-imperatori-peste.html", titolo:"Comuni, papi, imperatori e la peste", materia:"storia", classe:"2ª", argomento:"capitoli 12–13", tipo:"quiz+guida", domande:100}
 ];
+

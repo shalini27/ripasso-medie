@@ -6,3 +6,11 @@ if [ -n "$bad" ]; then
   echo "$bad" | sed 's/^/  /' >&2
   exit 1
 fi
+
+# Se cambia l'elenco, aggiorna il numero di versione in index.html così i
+# browser non usano una copia vecchia dell'elenco.
+if git diff --cached --name-only | grep -q '^docs/assets/elenco.js$'; then
+  v=$(date +%Y%m%d%H%M)
+  sed -i "s|assets/elenco.js?v=[0-9a-z]*|assets/elenco.js?v=$v|" docs/index.html
+  git add docs/index.html
+fi

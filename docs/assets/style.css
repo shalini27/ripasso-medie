@@ -110,16 +110,13 @@ button{font:inherit;color:inherit}
 .subhead h1{color:var(--mc)}
 .subhead p{color:var(--ink-2);font-size:17px}
 .rows{display:grid;gap:10px}
-.row{display:grid;grid-template-columns:74px 1fr auto;align-items:center;gap:16px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:14px 18px;text-decoration:none;transition:transform .15s,box-shadow .15s,border-color .15s}
+.row{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:16px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:14px 18px;text-decoration:none;transition:transform .15s,box-shadow .15s,border-color .15s}
 .row:hover{transform:translateX(3px);box-shadow:var(--shadow);border-color:var(--mc)}
-.row .date{display:grid;line-height:1.05;font-variant-numeric:tabular-nums}
-.row .date b{font-family:var(--display);font-size:26px;font-weight:700;letter-spacing:-.02em}
-.row .date span{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2)}
+.row .num{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-family:var(--display);font-size:18px;font-weight:700;color:var(--mc);background:color-mix(in srgb,var(--mc) 12%,transparent);font-variant-numeric:tabular-nums}
 .row h3{font-size:19px;line-height:1.2}
 .row .sub{color:var(--ink-2);font-size:14px;font-weight:500;margin-top:3px}
 .row .kind{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mc);border:1.5px solid currentColor;border-radius:999px;padding:4px 10px;white-space:nowrap}
-.year{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);margin:12px 0 2px}
-@media (max-width:480px){.row{grid-template-columns:58px 1fr;gap:12px}.row .kind{display:none}.row .date b{font-size:22px}}
+@media (max-width:480px){.row{grid-template-columns:40px 1fr;gap:12px}.row .kind{display:none}}
 
 /* ---- quiz cards grid (index) ---- */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:22px}

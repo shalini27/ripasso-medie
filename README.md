@@ -17,9 +17,12 @@ errori: se ne trovi uno, segnalalo.
 
 ## Richieste, errori, proposte
 
-Le *issue* sono aperte solo ai collaboratori invitati. Se sei un genitore o
-un insegnante di ragazzi delle medie e vuoi partecipare, chiedere un
-argomento o proporre un quiz tuo, sei il benvenuto.
+Se sei un genitore o un insegnante di ragazzi delle medie, sei il benvenuto:
+apri una *issue* per chiedere un argomento, segnalare un errore o proporre un
+quiz tuo. Basta un account GitHub.
+
+- [Richiedi un quiz](../../issues/new?template=richiesta-quiz.yml)
+- [Segnala un errore](../../issues/new?template=errore.yml)
 
 ## Licenza
 
@@ -32,5 +35,5 @@ argomento o proporre un quiz tuo, sei il benvenuto.
 
 *English:* home-made interactive study materials for Italian middle school,
 organised by subject, at https://shalini27.github.io/ripasso-medie/.
-A personal, volunteer project. Issues are open to invited collaborators.
+A personal, volunteer project. Requests and feedback are welcome via issues.
 Content is CC BY-NC-SA 4.0, code is MIT.

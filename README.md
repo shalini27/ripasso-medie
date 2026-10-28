@@ -12,7 +12,8 @@ tablet e computer, e si può rifare quante volte si vuole. Le domande cambiano
 ordine a ogni tentativo.
 
 Il sito è un progetto personale, al momento pensato per la seconda media.
-Non è un servizio e può contenere errori: se ne trovi uno, segnalalo.
+Non raccoglie né contiene dati personali. Non è un servizio e può contenere
+errori: se ne trovi uno, segnalalo.
 
 ## Richieste, errori, proposte
 

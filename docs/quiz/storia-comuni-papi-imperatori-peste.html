@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Storia · Comuni, papi, imperatori e la peste</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --paper:#f3f5f9; --card:#ffffff; --ink:#1e2235; --ink2:#5b6478;
+  --accent:#2f57b5; --accentSoft:#e4ebfa;
+  --gold:#c99a2e; --goldSoft:#fbf1d8;
+  --good:#2e8b57; --goodSoft:#e1f3e8;
+  --warm:#b9770e; --warmSoft:#fff4dc;
+  --line:#d7dce8; --shadow:0 3px 0 #ccd3e2;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#131826; --card:#1b2233; --ink:#eef1f8; --ink2:#a6afc4;
+    --accent:#86a6ee; --accentSoft:#22304f;
+    --gold:#e0b65a; --goldSoft:#3a2f14;
+    --good:#6fcf97; --goodSoft:#1c3a2a;
+    --warm:#f0b657; --warmSoft:#3e2e12;
+    --line:#2c3650; --shadow:0 3px 0 #0c1020;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#131826; --card:#1b2233; --ink:#eef1f8; --ink2:#a6afc4;
+  --accent:#86a6ee; --accentSoft:#22304f;
+  --gold:#e0b65a; --goldSoft:#3a2f14;
+  --good:#6fcf97; --goodSoft:#1c3a2a;
+  --warm:#f0b657; --warmSoft:#3e2e12;
+  --line:#2c3650; --shadow:0 3px 0 #0c1020;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);
+  font-family:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.disp{font-family:"Baloo 2","Atkinson Hyperlegible",system-ui,sans-serif;font-weight:700;line-height:1.15;margin:0}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit;-webkit-tap-highlight-color:transparent}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.app{max-width:600px;margin:0 auto;padding:14px 16px 56px}
+.screen{display:none}.screen.on{display:block}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* HOME */
+.hero{padding:18px 4px 6px}
+.hero .eyebrow{font-family:"Baloo 2",sans-serif;font-weight:600;color:var(--gold);font-size:1rem}
+.hero h1{font-size:2rem;color:var(--accent);letter-spacing:-.3px}
+.hero p{color:var(--ink2);margin:8px 0 0;font-size:1rem}
+.summary{display:flex;align-items:center;gap:14px;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:12px 14px;margin:16px 0 6px;box-shadow:var(--shadow)}
+.summary .big{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.9rem;color:var(--accent);line-height:1}
+.summary .big small{font-size:1rem;color:var(--ink2);font-weight:600}
+.summary .t{font-size:.95rem;color:var(--ink2)}
+.summary .t b{display:block;color:var(--ink);font-family:"Baloo 2",sans-serif;font-weight:700;font-size:1.05rem}
+.chap{margin-top:22px}
+.chap h2{font-size:1.15rem;color:var(--ink2);font-weight:600;padding-left:4px}
+.chap h2 span{color:var(--accent);font-weight:800}
+.road{position:relative;list-style:none;padding:0 0 0 30px;margin:10px 0 0}
+.road::before{content:"";position:absolute;left:12px;top:10px;bottom:10px;width:4px;border-radius:4px;background:var(--line)}
+.stop{position:relative;margin:10px 0}
+.stop::before{content:"";position:absolute;left:-25px;top:22px;width:14px;height:14px;border-radius:50%;background:var(--card);border:4px solid var(--line)}
+.stop.done::before{background:var(--gold);border-color:var(--gold)}
+.blk{display:grid;grid-template-columns:46px 1fr auto;gap:12px;align-items:center;width:100%;text-align:left;
+  background:var(--card);border:2px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow)}
+.blk:active{transform:translateY(2px);box-shadow:none}
+.blk .ico{width:46px;height:46px;border-radius:12px;background:var(--accentSoft);display:grid;place-items:center;font-size:1.5rem}
+.blk.done .ico{background:var(--goldSoft)}
+.blk .name{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:1.08rem;line-height:1.2}
+.blk .meta{font-size:.84rem;color:var(--ink2);margin-top:2px}
+.stars{color:var(--gold);letter-spacing:1px;font-size:1rem;white-space:nowrap}
+.stars .off{color:var(--line)}
+.bigbtn{display:block;width:100%;margin:22px 0 8px;padding:16px;border-radius:18px;text-align:left;color:#fff;
+  background:linear-gradient(135deg,var(--accent),#4a74d0);box-shadow:0 4px 0 #1d3b80}
+.bigbtn .t{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:1.3rem}
+.bigbtn .d{opacity:.92;font-size:.93rem;margin-top:2px}
+.bigbtn.gold{background:linear-gradient(135deg,var(--gold),#e1b549);color:#2b1f05;box-shadow:0 4px 0 #9b7220}
+.bigbtn.gold .d{opacity:.85}
+.small{font-size:.88rem;color:var(--ink2);text-align:center;margin-top:18px}
+.link{color:var(--accent);text-decoration:underline;font-weight:700;padding:0}
+
+/* QUIZ */
+.top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.back{width:40px;height:40px;border-radius:12px;background:var(--card);border:2px solid var(--line);font-size:1.2rem;display:grid;place-items:center;flex:0 0 auto}
+.top .title{flex:1;font-family:"Baloo 2",sans-serif;font-weight:700;font-size:1.02rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill{background:var(--goldSoft);border-radius:999px;padding:4px 11px;font-size:.86rem;font-weight:700;white-space:nowrap}
+.bar{height:10px;background:var(--accentSoft);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:999px;transition:width .4s}
+.qcount{font-size:.84rem;color:var(--ink2);margin:6px 2px 12px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:18px 16px 16px;box-shadow:var(--shadow);animation:pop .22s ease-out}
+@keyframes pop{from{transform:translateY(6px);opacity:0}to{transform:none;opacity:1}}
+.kind{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;color:var(--accent);background:var(--accentSoft);border-radius:999px;padding:3px 10px;margin-bottom:10px}
+.kind.again{color:var(--warm);background:var(--warmSoft)}
+.qtext{font-family:"Baloo 2",sans-serif;font-weight:600;font-size:1.25rem;line-height:1.3;margin-bottom:14px}
+.opts{display:grid;gap:9px}
+.opt{display:flex;align-items:flex-start;gap:11px;width:100%;text-align:left;background:var(--paper);border:2px solid var(--line);border-radius:14px;padding:11px 13px;font-size:1rem;line-height:1.35;transition:opacity .2s}
+.opt .l{flex:0 0 28px;height:28px;border-radius:9px;background:var(--accentSoft);color:var(--accent);display:grid;place-items:center;font-family:"Baloo 2",sans-serif;font-weight:700;font-size:.95rem}
+.opt:not(:disabled):active{transform:translateY(1px)}
+.opt.ok{border-color:var(--good);background:var(--goodSoft)}
+.opt.ok .l{background:var(--good);color:#fff}
+.opt.dim{opacity:.4}
+.opt.pick{border-color:var(--warm);background:var(--warmSoft)}
+.opt:disabled{cursor:default}
+.tf{grid-template-columns:1fr 1fr}.tf .opt{justify-content:center;font-size:1.1rem;font-weight:700}
+/* ordina */
+.slots{display:grid;gap:8px;margin-bottom:12px}
+.slot{display:flex;align-items:center;gap:10px;min-height:46px;border:2px dashed var(--line);border-radius:12px;padding:6px 10px;font-size:.97rem}
+.slot .n{flex:0 0 26px;height:26px;border-radius:8px;background:var(--accentSoft);color:var(--accent);display:grid;place-items:center;font-family:"Baloo 2",sans-serif;font-weight:700;font-size:.9rem}
+.slot.filled{border-style:solid;background:var(--paper)}
+.slot.okpos{border-color:var(--good);background:var(--goodSoft)}
+.slot.okpos .n{background:var(--good);color:#fff}
+.slot button{flex:1;text-align:left;padding:4px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--accentSoft);border:2px solid transparent;border-radius:999px;padding:7px 13px;font-size:.95rem;font-weight:700;color:var(--accent)}
+.chip:active{transform:scale(.97)}
+/* collega */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mitem{min-height:58px;border:2px solid var(--line);border-radius:12px;padding:8px 10px;font-size:.9rem;line-height:1.3;text-align:left;background:var(--paper);width:100%}
+.mitem.sel{border-color:var(--accent);background:var(--accentSoft)}
+.mitem.lock{border-color:var(--good);background:var(--goodSoft);opacity:.85}
+.mitem.lock:disabled{cursor:default}
+.mitem.shake{animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.hintline{margin-top:8px;font-size:.9rem;color:var(--ink2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:14px;font-weight:700;font-size:1.02rem;background:var(--accent);color:#fff;box-shadow:0 4px 0 #1d3b80}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 #1d3b80}
+.btn.gold{background:var(--gold);color:#2b1f05;box-shadow:0 4px 0 #9b7220}.btn.gold:active{box-shadow:0 2px 0 #9b7220}
+.btn.ghost{background:var(--card);color:var(--accent);border:2px solid var(--line);box-shadow:var(--shadow)}.btn.ghost:active{box-shadow:none}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn.wide{width:100%;margin-top:14px}
+.fb{margin-top:14px;border-radius:14px;padding:12px 14px;display:none;animation:pop .2s ease-out}
+.fb.on{display:block}
+.fb.good{background:var(--goodSoft);border:2px solid var(--good)}
+.fb.warm{background:var(--warmSoft);border:2px solid var(--warm)}
+.fb .h{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:1.08rem;margin-bottom:3px}
+.fb.good .h{color:var(--good)}.fb.warm .h{color:var(--warm)}
+.fb p{margin:0;font-size:.96rem}
+/* intro card (idee chiave) */
+.intro h2{font-size:1.5rem;color:var(--accent);margin-bottom:4px}
+.intro .sub{color:var(--ink2);margin:0 0 12px;font-size:.95rem}
+.ideas{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.ideas li{display:flex;gap:10px;align-items:flex-start;background:var(--paper);border-radius:12px;padding:10px 12px;font-size:.98rem;line-height:1.4}
+.ideas li::before{content:"✦";color:var(--gold);font-weight:700;flex:0 0 auto;margin-top:2px}
+/* results */
+.res{text-align:center;background:var(--card);border:2px solid var(--line);border-radius:22px;padding:24px 18px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.res .stars{font-size:2rem;letter-spacing:5px;margin-bottom:4px}
+.res h2{font-size:1.5rem}
+.res p{color:var(--ink2);margin:6px 0 0}
+.res .num{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:2.6rem;color:var(--accent);line-height:1.1;margin-top:6px}
+.res .num small{font-size:1rem;color:var(--ink2);font-weight:600}
+.row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}.row .btn{flex:1;min-width:140px}
+.review{margin-top:18px}
+.review h3{font-size:1.1rem;margin-bottom:8px}
+.rv{background:var(--card);border:2px solid var(--line);border-left:6px solid var(--gold);border-radius:12px;padding:10px 12px;margin:8px 0;font-size:.93rem}
+.rv .q{font-weight:700}.rv .a{color:var(--ink2);margin-top:3px}.rv .a b{color:var(--good)}
+.confetti{position:absolute;inset:0;pointer-events:none}
+.confetti i{position:absolute;top:-10px;width:8px;height:13px;border-radius:2px;animation:fall 1.7s ease-in forwards}
+@keyframes fall{to{transform:translateY(400px) rotate(500deg);opacity:0}}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:999px;font-weight:700;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+<div class="app">
+
+<section id="home" class="screen on">
+  <div class="hero">
+    <div class="eyebrow">Storia · Capitoli 12 e 13</div>
+    <h1>Comuni, papi, imperatori e la peste</h1>
+    <p>Dieci tappe. In ogni tappa leggi prima le idee chiave, poi rispondi toccando. Se sbagli, riprovi: qui si impara, non si viene giudicati.</p>
+  </div>
+  <div class="summary">
+    <div class="big" id="sumNum">0<small>/10</small></div>
+    <div class="t"><b id="sumTitle">Si parte!</b><span id="sumSub">Scegli una tappa qualsiasi per cominciare.</span></div>
+  </div>
+  <div id="chapters"></div>
+  <button class="bigbtn" id="revBtn" style="display:none">
+    <div class="t">🔁 Ripassa i concetti da rivedere</div>
+    <div class="d" id="revD"></div>
+  </button>
+  <button class="bigbtn gold" id="mixBtn">
+    <div class="t">🎯 Prova generale</div>
+    <div class="d">16 domande miste da tutte le tappe. Vedi subito ogni risposta e alla fine scopri cosa sai già bene.</div>
+  </button>
+  <p class="small"><button class="link" id="resetBtn">Azzera i progressi</button></p>
+</section>
+
+<section id="quiz" class="screen">
+  <div class="top">
+    <button class="back" id="backBtn" aria-label="Torna alla mappa">←</button>
+    <div class="title" id="qTitle"></div>
+    <span class="pill" id="gotPill">✓ 0</span>
+  </div>
+  <div class="bar"><i id="barFill"></i></div>
+  <div class="qcount" id="qNum"></div>
+  <div class="card" id="qcard"></div>
+</section>
+
+<section id="results" class="screen">
+  <div class="top">
+    <button class="back" id="resBack" aria-label="Torna alla mappa">←</button>
+    <div class="title" id="resTitle"></div>
+  </div>
+  <div class="res" id="resCard"></div>
+  <div class="row" id="resRow"></div>
+  <div class="review" id="review"></div>
+</section>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ CONTENUTI ============ */
+const CH=[{n:"Capitolo 12",t:"I difficili rapporti fra Comuni, impero e Chiesa"},{n:"Capitolo 13",t:"La crisi del XIV secolo"}];
+const B=[
+{id:"barbarossa",ch:0,icon:"⚔️",name:"Barbarossa e i Comuni",ideas:[
+ "I Comuni del Nord Italia si governavano da soli e si erano presi le regalie, cioè i diritti del re: tasse, moneta, giustizia, esercito.",
+ "L’imperatore Federico Barbarossa voleva riprendersi quell’autorità: mandò i podestà e distrusse Milano (1162).",
+ "I Comuni, da soli deboli, si unirono nella Lega lombarda (1167) con l’appoggio del papa e vinsero a Legnano (1176).",
+ "Pace di Costanza (1183): i Comuni riconoscono l’imperatore ma tengono le loro autonomie. Un compromesso.",
+ "Barbarossa fa sposare il figlio Enrico VI con Costanza d’Altavilla, erede dei Normanni del Sud: da loro nascerà Federico II."],
+q:[
+ {t:"mc",q:"Perché Barbarossa e i Comuni si scontrarono?",o:["I Comuni si governavano da soli e usavano le regalie, che l’imperatore voleva riprendersi","I Comuni volevano far parte della Francia","Barbarossa voleva andare a vivere a Milano","I Comuni non volevano pagare le tasse al papa"],a:0,e:"Il cuore del conflitto è questo: chi comanda davvero nelle città, l’imperatore o i cittadini?"},
+ {t:"mc",q:"Che cosa sono le regalie?",o:["I diritti del re: riscuotere tasse, battere moneta, fare giustizia, avere un esercito","I regali che i Comuni facevano all’imperatore","Le tasse pagate al papa","Le feste organizzate dal re"],a:0,e:"Regalie viene da “re”: sono i poteri che spettano al sovrano. I Comuni se li erano presi da soli."},
+ {t:"mc",q:"Chi era il podestà mandato da Barbarossa nelle città?",o:["Un governatore scelto dall’imperatore per controllare il Comune","Il vescovo della città","Il capo dei mercanti","Un giudice mandato dal papa"],a:0,e:"Se controlli chi governa la città, controlli la città: per questo i Comuni odiavano i podestà imperiali."},
+ {t:"tf",q:"Barbarossa distrusse Milano per punire la città ribelle e spaventare le altre.",a:true,e:"Vero. Nel 1162, dopo un lungo assedio, Milano fu rasa al suolo. Ma la paura ebbe l’effetto opposto: i Comuni si unirono."},
+ {t:"mc",q:"Perché i Comuni formarono la Lega lombarda?",o:["Da soli erano deboli: uniti potevano resistere all’imperatore","Per commerciare con la Germania","Per eleggere un nuovo imperatore","Per conquistare Roma"],a:0,e:"Esatto: fino ad allora i Comuni litigavano tra loro. Il nemico comune li costrinse ad allearsi."},
+ {t:"mc",q:"Perché il papa appoggiò i Comuni contro Barbarossa?",o:["Temeva un imperatore troppo potente in Italia","Voleva diventare lui imperatore","I Comuni gli pagavano le tasse","Era nato a Milano"],a:0,e:"Un imperatore forte in Italia era una minaccia per lo Stato della Chiesa. Papa e Comuni avevano lo stesso nemico."},
+ {t:"mc",q:"Che cosa successe a Legnano nel 1176?",o:["La Lega lombarda sconfisse l’esercito di Barbarossa","Barbarossa conquistò Milano","Fu firmata la pace","Nacque Federico II"],a:0,e:"La fanteria dei Comuni, schierata attorno al carroccio, batté i cavalieri imperiali. Una sorpresa per tutti."},
+ {t:"mc",q:"La pace di Costanza (1183) fu un compromesso. Che cosa stabiliva?",o:["I Comuni riconoscevano l’imperatore, ma conservavano le loro autonomie","L’imperatore rinunciava a tutta l’Italia","I Comuni perdevano ogni libertà","Il papa governava i Comuni"],a:0,e:"Tutti e due cedono qualcosa: l’imperatore resta il capo formale, i Comuni continuano a governarsi."},
+ {t:"ord",q:"Metti in ordine gli eventi.",items:["Barbarossa distrugge Milano (1162)","Nasce la Lega lombarda (1167)","Battaglia di Legnano (1176)","Pace di Costanza (1183)"],e:"Prima la punizione, poi l’unione, poi la vittoria, infine l’accordo. La storia ha una logica!"},
+ {t:"mc",q:"Perché Barbarossa fece sposare suo figlio Enrico VI con Costanza d’Altavilla?",o:["Per legare la sua famiglia ai Normanni e ottenere il regno del Sud Italia","Per fare pace con i Comuni","Perché lo ordinò il papa","Per avere la Sicilia come colonia commerciale"],a:0,e:"Costanza era l’erede del regno normanno. Con quel matrimonio gli Svevi avrebbero avuto sia il Nord sia il Sud."},
+ {t:"mat",q:"Collega ogni causa alla sua conseguenza.",pairs:[["I Comuni si prendono le regalie","Barbarossa manda i podestà"],["Barbarossa vuole legami con i Normanni","Matrimonio di Enrico VI e Costanza"],["I Comuni da soli sono deboli","Nasce la Lega lombarda"]],e:"Ogni evento nasce da un bisogno: capire il perché è più importante di ricordare la data."}
+]},
+{id:"federico",ch:0,icon:"👑",name:"Federico II, stupor mundi",ideas:[
+ "Federico II è figlio di Enrico VI e Costanza d’Altavilla. Orfano da piccolo, cresce sotto la tutela del papa Innocenzo III.",
+ "Diventa re di Sicilia e poi imperatore (1220). Pensa che il suo potere venga da Dio e dal diritto romano, non dal papa.",
+ "Il papa invece dice: il papa è il Sole, l’imperatore la Luna, che riceve la luce dal Sole.",
+ "Costituzioni melfitane (1231): leggi scritte uguali per tutti, baroni ridimensionati, re forte.",
+ "La corte di Palermo è un centro di cultura: università di Napoli, scuola medica di Salerno, Scuola siciliana (prime poesie in volgare), Castel del Monte."],
+q:[
+ {t:"mc",q:"Perché Federico II fu chiamato stupor mundi, “stupore del mondo”?",o:["Era coltissimo, curioso, parlava molte lingue e la sua corte era un centro di cultura","Era altissimo e fortissimo","Aveva conquistato tutto il mondo","Non dormiva mai"],a:0,e:"Scriveva poesie, studiava i falchi, discuteva con studiosi arabi ed ebrei: un re molto diverso dagli altri."},
+ {t:"mc",q:"Da bambino, chi si occupò di Federico II?",o:["Il papa Innocenzo III, come suo tutore","Il re di Francia","Il nonno Barbarossa","I Comuni lombardi"],a:0,e:"Rimasto orfano a tre anni, la madre lo affidò al papa. Un dettaglio curioso: da grande Federico e i papi si scontreranno duramente."},
+ {t:"mc",q:"“Il papa è il Sole, l’imperatore è la Luna.” Che cosa voleva dire Innocenzo III?",o:["Il potere dell’imperatore dipende da quello del papa, che è superiore","Il papa lavora di giorno e l’imperatore di notte","Papa e imperatore sono uguali","L’imperatore è più potente del papa"],a:0,e:"La Luna brilla solo perché riflette la luce del Sole: così l’imperatore riceve la sua autorità dal papa."},
+ {t:"mc",q:"Federico II la pensava diversamente. Da dove veniva il suo potere, secondo lui?",o:["Direttamente da Dio e dal diritto dell’antico impero romano, non dal papa","Dai Comuni che lo avevano eletto","Dal papa, come diceva Innocenzo III","Dal re di Francia"],a:0,e:"Due idee opposte sullo stesso potere: per questo papa e imperatore non potevano andare d’accordo a lungo."},
+ {t:"mc",q:"Perché il papa non voleva che Federico governasse sia la Germania sia la Sicilia?",o:["Lo Stato della Chiesa sarebbe rimasto chiuso in una morsa, tra nord e sud","Federico avrebbe avuto troppe tasse da riscuotere","La Sicilia era troppo lontana dalla Germania","Il papa voleva la Sicilia per sé"],a:0,e:"Guarda la carta: Roma sta in mezzo. Un impero sopra e sotto è un pericolo mortale per il papa."},
+ {t:"mc",q:"Qual era l’idea nuova delle Costituzioni melfitane (1231)?",o:["Leggi scritte, uguali per tutti i sudditi, con il re sopra i baroni","Ogni barone fa le sue leggi","Solo i nobili devono obbedire","Le leggi restano non scritte"],a:0,e:"Prima ogni signore faceva giustizia come voleva. Con leggi uguali per tutti il re diventa il vero capo."},
+ {t:"mc",q:"Che cosa fece Federico II per rendere forte la monarchia in Sicilia?",o:["Tolse privilegi ai baroni, distrusse i loro castelli e usò funzionari fedeli","Regalò terre ai baroni","Lasciò governare il papa","Chiamò i Comuni a governare"],a:0,e:"Baroni deboli = re forte. Al posto dei castelli dei baroni costruì fortezze sue, come Castel del Monte."},
+ {t:"tf",q:"Federico II fondò l’università di Napoli e protesse la scuola medica di Salerno.",a:true,e:"Vero. Napoli (1224) formava i funzionari del regno; Salerno era la scuola di medicina più famosa d’Europa."},
+ {t:"mc",q:"Che cosa nacque alla corte di Palermo?",o:["La Scuola siciliana: le prime poesie in volgare italiano","La prima banca d’Europa","Il primo giornale","Il teatro moderno"],a:0,e:"Poeti come Iacopo da Lentini (inventore del sonetto) scrivevano d’amore in volgare. L’italiano comincia da qui."},
+ {t:"mc",q:"Che cosa aveva di speciale la corte di Federico II?",o:["Vi convivevano cristiani, musulmani ed ebrei e si parlavano molte lingue","C’erano solo cavalieri tedeschi","Stava sempre a Roma","Non c’erano studiosi"],a:0,e:"Una corte itinerante e multiculturale: per l’epoca era qualcosa di rarissimo."},
+ {t:"mat",q:"Collega ogni nome a che cosa c’entra con Federico II.",pairs:[["Innocenzo III","Il papa suo tutore, quello del “Sole”"],["Costanza d’Altavilla","Sua madre, erede dei Normanni"],["Castel del Monte","La fortezza che costruì in Puglia"],["Università di Napoli","La scuola che fondò nel 1224"]],e:"Persone e luoghi intorno a Federico: ora ti saranno familiari."}
+]},
+{id:"svevi",ch:0,icon:"🏴",name:"Guelfi, ghibellini e la fine degli Svevi",ideas:[
+ "Federico II rimanda la crociata promessa: il papa lo scomunica. Poi parte (1228) e ottiene Gerusalemme con trattati, senza combattere: al papa non piace.",
+ "Federico vuole estendere il potere anche al Nord: i Comuni si dividono in guelfi (col papa) e ghibellini (con l’imperatore).",
+ "Muore nel 1250. Il papa offre la Sicilia a Carlo d’Angiò, che batte Manfredi (1266) e Corradino (1268): gli Svevi finiscono.",
+ "Gli Angioini governano male: nel 1282 i Vespri siciliani, rivolta contro i francesi. La Sicilia va agli Aragonesi.",
+ "Pace di Caltabellotta (1302): Sud diviso tra Aragonesi (Sicilia) e Angioini (Napoli)."],
+q:[
+ {t:"mc",q:"Perché il papa Gregorio IX scomunicò Federico II?",o:["Perché continuava a rimandare la crociata che aveva promesso","Perché aveva sposato Costanza","Perché aveva distrutto Milano","Perché scriveva poesie"],a:0,e:"Federico era preso dal suo regno e partì anni dopo la promessa. Per il papa era un tradimento."},
+ {t:"mc",q:"La crociata di Federico II fu molto diversa dalle altre. Perché?",o:["Ottenne Gerusalemme con trattati e accordi, senza combattere","Durò cento anni","Fu guidata dal papa in persona","I crociati andarono in Spagna"],a:0,e:"Una crociata senza battaglie! Al papa non piacque: Federico fu perfino accusato di eresia."},
+ {t:"mc",q:"Chi erano i guelfi e i ghibellini?",o:["Guelfi: fedeli al papa. Ghibellini: fedeli all’imperatore","Due famiglie di Firenze","Due popoli tedeschi","Due ordini religiosi"],a:0,e:"I nomi vengono da due casate tedesche, ma in Italia indicavano i due schieramenti: papa o imperatore."},
+ {t:"mc",q:"Perché molti Comuni del Nord erano contro Federico II?",o:["Erano abituati alle loro autonomie e temevano le pretese dell’imperatore","Perché era siciliano","Perché non parlava italiano","Perché voleva le loro navi"],a:0,e:"Stessa storia di Barbarossa: i Comuni non volevano un padrone. E anche stavolta fecero una lega."},
+ {t:"ord",q:"Metti in ordine la fine degli Svevi.",items:["Muore Federico II (1250)","Manfredi sconfitto a Benevento (1266)","Corradino sconfitto a Tagliacozzo (1268)","Vespri siciliani (1282)"],e:"Padre, figlio, nipote: in vent’anni la famiglia sveva scompare. Poi i siciliani si ribellano ai nuovi padroni."},
+ {t:"mc",q:"Perché il papa offrì il regno di Sicilia a Carlo d’Angiò?",o:["Per togliere il Sud agli Svevi, nemici del papato","Perché Carlo era siciliano","Per ringraziarlo della crociata","Perché nessun altro lo voleva"],a:0,e:"Il papa cercava un alleato forte contro gli Svevi: lo trovò nel fratello del re di Francia."},
+ {t:"mc",q:"Che cosa furono i Vespri siciliani (1282)?",o:["Una rivolta dei siciliani contro il malgoverno degli Angioini","Una festa religiosa","Una battaglia tra guelfi e ghibellini a Firenze","Una crociata"],a:0,e:"Scoppiò a Palermo all’ora del vespro. In pochi giorni i francesi furono cacciati dall’isola."},
+ {t:"mc",q:"Perché i siciliani si ribellarono agli Angioini?",o:["Tasse pesanti, governo duro e potere dato ai nobili francesi","Volevano il ritorno di Federico II","Per colpa della peste","Perché erano tutti ghibellini"],a:0,e:"Un governo straniero che spreme e disprezza: prima o poi la gente esplode."},
+ {t:"mc",q:"Dopo la pace di Caltabellotta (1302), com’era l’Italia del Sud?",o:["Divisa: Aragonesi in Sicilia, Angioini a Napoli","Unita sotto il papa","Tutta aragonese","Tutta angioina"],a:0,e:"Quella divisione durerà secoli. Ricorda: Sicilia = Aragona (Spagna), Napoli = Angiò (Francia)."},
+ {t:"tf",q:"Con la morte di Federico II finì il sogno di un impero forte sia a nord sia a sud dell’Italia.",a:true,e:"Vero. Dopo il 1250 nessun imperatore riuscirà più a controllare l’Italia."},
+ {t:"mat",q:"Collega ogni gruppo alla sua descrizione.",pairs:[["Guelfi","Fedeli al papa"],["Ghibellini","Fedeli all’imperatore"],["Angioini","Francesi, governano Napoli"],["Aragonesi","Spagnoli, governano la Sicilia"]],e:"Quattro parole che tornano spesso: ora le hai messe a posto."}
+]},
+{id:"eresie",ch:0,icon:"🕯️",name:"Eresie, Inquisizione e frati",ideas:[
+ "Tra XII e XIII secolo molti laici vogliono una Chiesa più povera e vivere secondo il Vangelo. Alcuni gruppi (valdesi, catari) sono dichiarati eretici.",
+ "Eresia = interpretare la dottrina in modo sbagliato. La Chiesa la vede come ribellione contro Dio e la persegue.",
+ "Crociata contro gli albigesi (1209-1229), nel sud della Francia, molto violenta. Poi nasce l’Inquisizione: un tribunale per cercare e giudicare gli eretici.",
+ "Domenico di Guzmán fonda i domenicani (predicatori colti). Francesco d’Assisi fonda i frati minori (povertà, umiltà, amore per le creature).",
+ "Sono ordini mendicanti: vivono in città di elemosina, predicano e aiutano la gente. Rinnovano la Chiesa dall’interno."],
+q:[
+ {t:"mc",q:"Perché tra XII e XIII secolo nacquero tanti nuovi movimenti religiosi?",o:["Molti laici volevano una Chiesa più povera e vivere davvero secondo il Vangelo","Perché mancavano i preti","Per combattere i musulmani","Perché lo chiese il papa"],a:0,e:"La Chiesa era diventata ricca e potente. Molti cercavano una fede più semplice, come quella dei primi cristiani."},
+ {t:"mc",q:"Che cos’è un’eresia, secondo la Chiesa?",o:["Un’interpretazione sbagliata della dottrina cristiana","Una preghiera","Un tipo di tassa","Un’alleanza tra Comuni"],a:0,e:"Chi si allontana dalla dottrina ufficiale è eretico. Non per i cattivi comportamenti, ma per le idee."},
+ {t:"mc",q:"Perché la Chiesa reagì con tanta durezza alle eresie?",o:["Vedeva l’eresia come ribellione contro Dio e temeva di perdere il controllo dei fedeli","Perché gli eretici erano ricchi","Perché volevano un nuovo papa","Per invidia"],a:0,e:"Per la Chiesa di allora, un’idea sbagliata metteva in pericolo l’anima di tutti. Da qui la durezza."},
+ {t:"mc",q:"Che cosa fu la crociata contro gli albigesi (1209-1229)?",o:["Una guerra contro i catari nel sud della Francia, con grandi violenze","Una spedizione in Terra Santa","Una guerra contro i Comuni","Un pellegrinaggio"],a:0,e:"Per la prima volta una crociata contro altri cristiani. Il movimento cataro fu distrutto per sempre."},
+ {t:"mc",q:"Che cos’era l’Inquisizione?",o:["Un tribunale della Chiesa per cercare e giudicare gli eretici","Una scuola di teologia","L’esercito del papa","Una tassa per i fedeli"],a:0,e:"Nata nel Duecento, fu affidata soprattutto ai domenicani, esperti di dottrina."},
+ {t:"mc",q:"Che cosa avevano in comune Francesco e Domenico?",o:["Fondarono ordini mendicanti: frati poveri che vivevano in città di elemosina e predicavano","Erano entrambi papi","Combatterono i catari con le armi","Erano vescovi ricchi"],a:0,e:"Tutti e due risposero al bisogno di povertà e Vangelo, ma restando dentro la Chiesa e obbedienti al papa."},
+ {t:"mc",q:"In che cosa erano diversi domenicani e francescani?",o:["I domenicani puntavano sullo studio per convincere gli eretici; i francescani sull’esempio di povertà e carità","I domenicani erano laici","I francescani erano soldati","Non c’era nessuna differenza"],a:0,e:"Domenico: libri e predicazione. Francesco: vita semplice e amore per tutte le creature. Due strade, uno scopo."},
+ {t:"mc",q:"Perché i frati mendicanti vivevano in città e non in monasteri isolati?",o:["Per predicare e aiutare la gente là dove viveva","Perché le città erano più ricche","Perché non amavano la campagna","Per sfuggire alla peste"],a:0,e:"I monaci stavano lontani dal mondo; i frati ci stavano dentro. Per questo ebbero tanto successo."},
+ {t:"tf",q:"Francesco d’Assisi rinunciò alle ricchezze della famiglia per vivere in povertà.",a:true,e:"Vero. Figlio di un ricco mercante, lasciò tutto, perfino i vestiti, davanti al padre."},
+ {t:"mc",q:"Perché la Chiesa affidò l’Inquisizione proprio ai domenicani?",o:["Erano preparati nello studio e abili predicatori","Erano i più ricchi","Erano soldati","Vivevano tutti a Roma"],a:0,e:"Per giudicare le idee serve conoscere la dottrina: i domenicani erano i più esperti."},
+ {t:"mat",q:"Collega ogni nome a ciò che ha fatto.",pairs:[["Valdesi e catari","Movimenti dichiarati eretici"],["Innocenzo III","Indice la crociata contro gli albigesi"],["Domenico di Guzmán","Fonda l’ordine dei predicatori"],["Chiara d’Assisi","Fonda le clarisse"]],e:"Quattro protagonisti del rinnovamento e dello scontro religioso del Duecento."}
+]},
+{id:"dante",ch:0,icon:"📜",name:"Dante tra politica e poesia",ideas:[
+ "Dante nasce a Firenze nel 1265, in una città divisa tra guelfi e ghibellini e in piena crescita economica.",
+ "Per fare politica si iscrive a una corporazione (medici e speziali): a Firenze i nobili non potevano avere cariche.",
+ "I guelfi vincono e si dividono: bianchi (indipendenza di Firenze) e neri (col papa Bonifacio VIII). Dante è bianco.",
+ "I neri prendono il potere con l’aiuto del papa: Dante viene esiliato (1301) e non tornerà mai più.",
+ "In esilio scrive la Divina Commedia, in volgare: per questo è il “padre della lingua italiana”."],
+q:[
+ {t:"mc",q:"Perché Dante dovette iscriversi a una corporazione?",o:["A Firenze solo i membri delle corporazioni potevano avere cariche pubbliche","Perché era medico","Per pagare meno tasse","Per diventare vescovo"],a:0,e:"Nel Comune contavano i mestieri organizzati, non la nobiltà. Dante era di piccola nobiltà: dovette adattarsi."},
+ {t:"mc",q:"Guelfi bianchi e neri: qual era la differenza?",o:["I neri appoggiavano il papa Bonifacio VIII; i bianchi volevano l’indipendenza di Firenze","Il colore dei vestiti","I bianchi erano ghibellini","I neri erano tedeschi"],a:0,e:"Erano tutti guelfi, ma litigavano su quanto lasciar entrare il papa negli affari di Firenze."},
+ {t:"mc",q:"Perché Dante fu esiliato?",o:["I neri presero il potere con l’aiuto del papa e condannarono gli avversari, tra cui Dante","Perché scrisse la Commedia","Perché era povero","Perché vinsero i ghibellini"],a:0,e:"Era a Roma come ambasciatore quando i neri entrarono a Firenze. Fu accusato di corruzione e condannato."},
+ {t:"mc",q:"Perché Dante mette papa Bonifacio VIII all’inferno?",o:["Lo considerava responsabile della rovina sua e di Firenze","Perché era francese","Perché non lo conosceva","Per scherzo"],a:0,e:"Per Dante il papa non doveva fare politica. Nella Commedia regola i conti con i suoi nemici."},
+ {t:"tf",q:"La Divina Commedia è utile anche per la storia, perché parla di personaggi reali del tempo di Dante.",a:true,e:"Vero. Papi, imperatori, Manfredi, san Francesco: Dante li giudica uno per uno."},
+ {t:"mc",q:"Perché Dante è chiamato “padre della lingua italiana”?",o:["Scrisse il suo capolavoro in volgare, non in latino","Inventò l’alfabeto","Faceva l’insegnante","Tradusse la Bibbia"],a:0,e:"Il volgare fiorentino della Commedia diventò il modello dell’italiano che parliamo oggi."}
+]},
+{id:"peste",ch:1,icon:"🌧️",name:"Fame, freddo e peste nera",ideas:[
+ "L’agricoltura medievale rendeva pochissimo: un chicco seminato ne dava 3 o 4. Bastava una brutta stagione per la carestia.",
+ "All’inizio del XIV secolo il clima peggiora (“piccola era glaciale”): freddo e piogge, raccolti distrutti, fame.",
+ "La gente indebolita dalla fame si ammala facilmente: le epidemie trovano la strada aperta.",
+ "1347: la peste nera arriva da Caffa (Mar Nero) con le navi genovesi. Topi e pulci la portano ovunque seguendo i commerci.",
+ "In tre anni muore un terzo degli europei. La peste torna a ondate fino al Settecento."],
+q:[
+ {t:"mc",q:"Perché nel Medioevo bastava una brutta stagione per causare una carestia?",o:["L’agricoltura rendeva pochissimo: un chicco seminato dava solo 3 o 4 chicchi","Nessuno coltivava i campi","I contadini erano pigri","Mancavano le strade"],a:0,e:"Oggi un chicco ne rende decine. Allora non c’erano scorte: un raccolto perso significava fame."},
+ {t:"mc",q:"Che cosa fu la “piccola era glaciale”?",o:["Un periodo di clima più freddo e piovoso, iniziato nel XIV secolo","L’epoca dei mammut","Una guerra tra regni del Nord","Una malattia del bestiame"],a:0,e:"Gelavano fiumi e perfino la laguna di Venezia. Le terre in alto e a nord smisero di dare frutti."},
+ {t:"mat",q:"Collega ogni causa al suo effetto.",pairs:[["Clima freddo e piovoso","Raccolti distrutti e carestie"],["Carestie e fame","Gente indebolita, facile preda delle epidemie"],["Terreni poco fertili messi a coltura","Si impoveriscono in fretta"]],e:"Una catena: clima → fame → malattia. Capita la catena, capisci il Trecento."},
+ {t:"mc",q:"Da dove arrivò la peste nera in Europa?",o:["Dall’Asia, con le navi genovesi partite da Caffa sul Mar Nero","Dall’America","Dall’Africa, via Egitto","Dalla Germania"],a:0,e:"Caffa era una colonia genovese assediata dai Mongoli. Le navi che fuggirono portarono con sé i topi infetti."},
+ {t:"mc",q:"Come si trasmetteva la peste?",o:["Il bacillo passava dai topi alle pulci e dalle pulci agli uomini","Attraverso l’acqua dei pozzi","Con il vento","Guardando i malati"],a:0,e:"Nessuno allora lo sapeva. Il bacillo fu scoperto solo nel 1894."},
+ {t:"mc",q:"Perché la peste si diffuse così in fretta?",o:["Seguiva le vie dei commerci: navi e mercanti la portavano ovunque","Perché correva più veloce dei cavalli","Perché la gente non si lavava","Perché mancavano i medici"],a:0,e:"Più commerci = più contagi. Dove arrivava una nave, arrivava la peste. Messina, Genova, Marsiglia…"},
+ {t:"mc",q:"Quanta parte della popolazione europea morì?",o:["Circa un terzo: 25 milioni su 75","Quasi nessuno","Esattamente la metà","Quasi tutti"],a:0,e:"Firenze passò da 100 000 a 50 000 abitanti. Mai l’Europa aveva visto nulla di simile."},
+ {t:"tf",q:"Dopo il 1350 la peste scomparve per sempre dall’Europa.",a:false,e:"Falso. Tornò a ondate per secoli, fino al XVIII secolo. La paura non finì mai davvero."},
+ {t:"ord",q:"Segui il viaggio della peste.",items:["Parte da Caffa, sul Mar Nero (1347)","Arriva a Messina con le navi genovesi","Si diffonde in Italia e Francia (1348)","Raggiunge il Mare del Nord (1350)"],e:"Da est a ovest, da sud a nord: in tre anni tutta l’Europa."},
+ {t:"mc",q:"Perché la peste colpì così duramente?",o:["La popolazione era già indebolita da anni di carestie e fame","C’erano troppi medici","Perché era estate","Per la guerra con la Cina"],a:0,e:"Un corpo denutrito non si difende. Fame e peste lavorarono insieme."}
+]},
+{id:"vivere",ch:1,icon:"🏥",name:"Vivere al tempo della peste",ideas:[
+ "Nessuno conosceva la vera causa: si pensava a una punizione divina, ai peccati, alle stelle, all’aria corrotta.",
+ "Rimedi dell’epoca: incensi, processioni, pellegrinaggi, preghiere ai santi, fuga dalle città. Alcuni, i flagellanti, si frustavano in pubblico.",
+ "La paura cercava colpevoli: gli ebrei furono accusati e perseguitati.",
+ "I governi provarono la quarantena (navi ferme 40 giorni) e, nel Quattrocento, i lazzaretti: ospedali per isolare i malati.",
+ "Anche le guerre (come la guerra dei cent’anni) diffondevano epidemie e distruggevano i raccolti. Risultato: crollo della popolazione."],
+q:[
+ {t:"mc",q:"Perché nel Trecento si pensava che la peste fosse una punizione di Dio?",o:["Nessuno conosceva la vera causa e la Chiesa parlava dei peccati degli uomini","Lo dicevano i medici moderni","I topi erano considerati sacri","Era scritto così nel Vangelo"],a:0,e:"Davanti a una cosa che non capisci, cerchi un senso. Per l’epoca il senso era religioso."},
+ {t:"mc",q:"Quale “rimedio” del Trecento funzionava davvero, anche senza che lo sapessero?",o:["Scappare dalle città e la quarantena, perché riducevano il contagio","Bruciare incensi","Le processioni","Pregare le stelle"],a:0,e:"Allontanarsi dai malati funzionava: lo scoprirono per esperienza, non per scienza."},
+ {t:"mc",q:"Che cos’era la quarantena?",o:["Le navi sospette dovevano restare ferme 40 giorni prima di sbarcare","Una preghiera di 40 giorni","Una tassa sulle navi","Una medicina"],a:0,e:"Da “quaranta” giorni. Un’idea del Trecento che usiamo ancora oggi."},
+ {t:"mc",q:"Che cosa erano i lazzaretti?",o:["Ospedali dove isolare i malati di peste","Chiese per i morti","Prigioni","Mercati chiusi"],a:0,e:"Nati nel Quattrocento. Isolare i malati era un grande passo avanti, anche se spesso lì si moriva."},
+ {t:"mc",q:"Perché gli ebrei furono accusati e perseguitati?",o:["La paura cercava un colpevole: i “diversi” divennero capri espiatori","Perché erano tutti medici","Perché avevano avuto la peste per primi","Perché vivevano in campagna"],a:0,e:"Nei momenti di terrore si cerca qualcuno da incolpare. È una lezione che vale ancora oggi."},
+ {t:"mc",q:"Quando fu scoperta la vera causa della peste?",o:["Nel 1894, dal medico Alexandre Yersin","Nel 1348","Durante il Medioevo","Nel 1600"],a:0,e:"Più di 500 anni dopo. Per tutto quel tempo la gente combatté un nemico invisibile."},
+ {t:"mc",q:"Perché anche le guerre fecero calare la popolazione?",o:["Saccheggi dei raccolti, soldati che diffondevano epidemie, città assediate","Nessuno sopravviveva alle battaglie","I soldati mangiavano tutto il cibo d’Europa","Distruggevano i lazzaretti"],a:0,e:"La guerra dei cent’anni tra Francia e Inghilterra durò per tutto il secolo. Gli eserciti portavano fame e malattie."},
+ {t:"mat",q:"Collega ogni causa al suo effetto sulla popolazione.",pairs:[["Carestie","Gente indebolita e denutrita"],["Peste nera","Muore un terzo degli europei"],["Guerre","Raccolti saccheggiati, epidemie diffuse"],["Agricoltura poco produttiva","Cibo insufficiente"]],e:"Quattro cause, un solo risultato: il grande calo demografico del Trecento."},
+ {t:"tf",q:"Molti frati francescani morirono curando i malati di peste.",a:true,e:"Vero. A Montpellier morirono 133 frati su 140. Erano tra i pochi a restare vicino ai malati."},
+ {t:"mc",q:"Secondo Boccaccio, come reagiva la gente alla peste?",o:["In modi diversi: chi fuggiva, chi si chiudeva in casa, chi si abbandonava al vizio","Tutti pregavano insieme","Tutti scappavano","Nessuno faceva niente"],a:0,e:"Nel Decameron racconta anche che “il fratello abbandonava l’altro”: la paura cambiava le persone."}
+]},
+{id:"economia",ch:1,icon:"🐑",name:"Economia e rivolte",ideas:[
+ "Meno abitanti = meno bisogno di grano: campi abbandonati, terre a pascolo (pecore per la lana), nuove colture come riso e gelsi.",
+ "I contadini sopravvissuti sono pochi e preziosi: ottengono contratti migliori, come la mezzadria (si divide a metà il raccolto e le spese).",
+ "In città i lavoratori tessili hanno salari bassi e sono esclusi dalle corporazioni: non contano nulla.",
+ "Rivolte ovunque: le jacqueries dei contadini francesi, il tumulto dei ciompi a Firenze (1378).",
+ "I mercanti-banchieri prestano ai re: quando i re non pagano, banche come i Bardi e i Peruzzi falliscono. Ma per chi sopravvive crescono eredità, lusso e commerci."],
+q:[
+ {t:"mc",q:"Perché dopo la peste molti campi furono abbandonati?",o:["C’erano molte meno persone, quindi serviva meno grano","I semi erano finiti","La terra era considerata maledetta","I contadini erano tutti in guerra"],a:0,e:"Meno bocche da sfamare, meno campi coltivati. Il prezzo del grano scese."},
+ {t:"mc",q:"Perché i contadini sopravvissuti ottennero condizioni migliori?",o:["Erano pochi e i proprietari avevano bisogno di loro","Il re lo aveva ordinato","Erano diventati più forti","Erano diventati ricchi"],a:0,e:"Quando la manodopera è scarsa, chi lavora può chiedere di più. Una regola che vale ancora oggi."},
+ {t:"mc",q:"Che cos’è la mezzadria?",o:["Un contratto: il contadino lavora la terra del padrone e si dividono a metà prodotti e spese","Una tassa sui campi","La vendita di metà della terra","Un lavoro di mezza giornata"],a:0,e:"Da “mezzo”: metà a te, metà a me. Si diffuse soprattutto in Toscana."},
+ {t:"mc",q:"Perché le campagne si riempirono di pecore?",o:["Il pascolo richiede pochi lavoratori e la lana serviva all’industria tessile","Per avere più carne","Per fare lanterne","Perché i contadini amavano gli animali"],a:0,e:"Pochi uomini, tanta terra libera: le pecore erano la soluzione più comoda e redditizia."},
+ {t:"mc",q:"Perché i lavoratori tessili erano scontenti?",o:["Salari bassi ed erano esclusi dalle corporazioni, quindi senza voce politica","Lavoravano troppo poco","Non sapevano tessere","Volevano tornare in campagna"],a:0,e:"Niente corporazione = niente diritti, niente voce nel governo della città."},
+ {t:"mc",q:"Il tumulto dei ciompi (1378): chi erano e che cosa chiedevano?",o:["Salariati della lana di Firenze: volevano salari più alti e partecipare al governo","Nobili che volevano un re","Mercanti che chiedevano più tasse","Contadini francesi"],a:0,e:"Per un breve periodo vinsero e crearono la loro corporazione. Poi i ricchi ripresero il controllo."},
+ {t:"mc",q:"Le jacqueries in Francia: perché i contadini si ribellarono?",o:["Tasse aumentate e campagne saccheggiate dagli eserciti","Per il prezzo della lana","Per colpa di Dante","Per la quarantena"],a:0,e:"Il nome viene da Jacques Bonhomme, il soprannome con cui i nobili prendevano in giro i contadini."},
+ {t:"mc",q:"Perché banche come i Bardi e i Peruzzi fallirono?",o:["Avevano prestato enormi somme ai re, che non le restituirono","Per la peste","Per un incendio","Non avevano navi"],a:0,e:"Il re d’Inghilterra non pagò i debiti: le compagnie fiorentine crollarono, e con loro i risparmi di molti."},
+ {t:"tf",q:"La crisi del Trecento ebbe solo conseguenze negative.",a:false,e:"Falso. Chi sopravvisse ereditò ricchezze, comprò beni di lusso, i commerci crebbero e i contadini ottennero contratti migliori."},
+ {t:"mat",q:"Collega ogni situazione alla sua conseguenza.",pairs:[["Pochi contadini rimasti","Condizioni migliori per chi resta"],["Pochi abitanti","Campi abbandonati, grano meno caro"],["Salari bassi, niente corporazioni","Tumulto dei ciompi"],["Prestiti ai re non restituiti","Fallimento delle banche"]],e:"L’economia del Trecento in quattro mosse. Ogni causa ha il suo effetto."}
+]},
+{id:"universali",ch:1,icon:"🌍",name:"Papato e impero in crisi",ideas:[
+ "Potere universale = un potere sopra tutti i cristiani e tutti i regni. Nel Trecento sia il papa sia l’imperatore lo perdono.",
+ "Enrico VII di Lussemburgo scende in Italia, è incoronato imperatore (1312), ma i Comuni guelfi gli si oppongono e muore nel 1313. Dopo di lui gli imperatori rinunciano all’Italia.",
+ "Bonifacio VIII proclama il primo giubileo (1300): un successo. Ma poi si scontra con Filippo IV il Bello, re di Francia, che vuole tassare il clero.",
+ "Filippo si appoggia agli stati generali e accusa il papa di eresia. Ad Anagni (1302) i suoi inviati umiliano il papa, che muore poco dopo.",
+ "Lezione: i nuovi regni forti (Francia, Inghilterra) non accettano più nessuna autorità sopra di sé."],
+q:[
+ {t:"mc",q:"Che cosa significa “potere universale”?",o:["Un potere che vale per tutti i cristiani, sopra i re e i regni","Un potere sull’universo","Il potere di un Comune","Il potere dei mercanti"],a:0,e:"Papa e imperatore si consideravano entrambi capi di tutta la cristianità. Nel Trecento questa idea tramonta."},
+ {t:"mc",q:"Perché il progetto di Enrico VII fallì?",o:["I Comuni guelfi gli si opposero e lui morì presto (1313)","Il papa lo scomunicò","Non arrivò mai in Italia","Perse la guerra contro la Francia"],a:0,e:"Dante sperava in lui come in un salvatore. Ma Firenze gli chiuse le porte in faccia e la morte fece il resto."},
+ {t:"mc",q:"Dopo Enrico VII, che cosa decisero gli imperatori tedeschi?",o:["Di rinunciare all’Italia e limitarsi ai territori tedeschi","Di conquistare la Francia","Di trasferirsi a Roma","Di diventare papi"],a:0,e:"E anche in Germania contavano poco: principi e città erano quasi indipendenti."},
+ {t:"mc",q:"Che cosa fu il giubileo del 1300?",o:["Un anno santo proclamato da Bonifacio VIII: chi andava a Roma otteneva il perdono dei peccati","Una grande battaglia","Un concilio di vescovi","Una nuova tassa"],a:0,e:"Centinaia di migliaia di pellegrini. Sembrava il trionfo del papa: invece era l’ultimo grande momento."},
+ {t:"mc",q:"Perché Filippo il Bello e Bonifacio VIII si scontrarono?",o:["Filippo volle far pagare le tasse anche al clero e il papa si oppose","Per la Sicilia","Per colpa di Dante","Per la crociata"],a:0,e:"Il re aveva bisogno di soldi per le guerre. Per il papa, tassare i preti era un’offesa alla Chiesa."},
+ {t:"mc",q:"Perché Filippo il Bello non si spaventò per la minaccia di scomunica?",o:["Era a capo di una monarchia forte e non riconosceva nessuna autorità sopra di sé","Perché era eretico","Perché non era cristiano","Perché il papa era vecchio"],a:0,e:"Confronta con Enrico IV a Canossa, due secoli prima: i tempi erano davvero cambiati."},
+ {t:"mc",q:"Che cosa successe ad Anagni (1302)?",o:["Gli inviati del re umiliarono il papa (lo “schiaffo”) e tentarono di arrestarlo","Fu firmata la pace","Il papa scomunicò i Comuni","Morì Enrico VII"],a:0,e:"Il popolo liberò il papa, ma Bonifacio morì poco dopo. L’umiliazione fu enorme."},
+ {t:"mc",q:"Che cosa dimostrò lo schiaffo di Anagni?",o:["I rapporti di forza erano cambiati: i nuovi regni erano più forti del papa","Il papa era il più potente di tutti","La Francia era debole","Roma stava in Francia"],a:0,e:"Il papa restava capo spirituale, ma non poteva più comandare ai re."},
+ {t:"tf",q:"Il re di Francia si appoggiò agli stati generali per resistere al papa.",a:true,e:"Vero. Nobili, clero e ricchi cittadini (terzo stato): per la prima volta un re chiedeva l’appoggio di tutto il regno."},
+ {t:"mat",q:"Collega ogni nome a ciò che gli è successo.",pairs:[["Enrico VII","Tenta di far rinascere l’impero, muore nel 1313"],["Bonifacio VIII","Proclama il giubileo del 1300"],["Filippo il Bello","Re di Francia, vuole tassare il clero"],["Anagni","Il papa viene umiliato (1302)"]],e:"Il tramonto dei due poteri universali in quattro nomi."}
+]},
+{id:"avignone",ch:1,icon:"⛪",name:"Avignone e lo scisma",ideas:[
+ "1309: papa Clemente V (francese) sposta la sede ad Avignone. Roma era pericolosa e il re di Francia offriva protezione. Il papato resta lì 70 anni, sotto l’influenza francese.",
+ "A Roma, senza papa, disordini: nel 1347 Cola di Rienzo guida una sommossa popolare. Viene ucciso nel 1354.",
+ "1377: Gregorio XI torna a Roma, spinto anche dalle lettere di Caterina da Siena.",
+ "1378: muore e vengono eletti due papi, uno a Roma e uno ad Avignone. È il Grande scisma d’Occidente: nessuno sa chi è il vero papa.",
+ "1417: il concilio di Costanza depone i papi rivali ed elegge Martino V. La Chiesa è di nuovo unita, ma il papa non è più un potere sopra i re."],
+q:[
+ {t:"mc",q:"Perché Clemente V spostò la sede del papa ad Avignone (1309)?",o:["Roma era pericolosa per le lotte tra nobili e voleva la protezione del re di Francia","Avignone era più bella","Per il clima migliore","Perché era malato"],a:0,e:"Dopo Anagni il papa sapeva di essere debole: cercò un alleato forte e lo trovò in Francia."},
+ {t:"mc",q:"Qual è stata la conseguenza principale del periodo di Avignone?",o:["Il papato subì l’influenza del re di Francia e perse prestigio","Il papa divenne imperatore","Roma divenne francese","Finirono le tasse"],a:0,e:"Tutti i papi di Avignone furono francesi. Per il resto d’Europa il papa sembrava un servo del re."},
+ {t:"mc",q:"Chi fu Cola di Rienzo?",o:["Un notaio che guidò una sommossa popolare a Roma (1347) contro i nobili","Un papa","Un re","Un pittore"],a:0,e:"Sognava di far rinascere la grandezza dell’antica Roma. Il popolo prima lo seguì, poi lo uccise."},
+ {t:"mc",q:"Chi spinse Gregorio XI a tornare a Roma?",o:["Santa Caterina da Siena, con le sue lettere","Filippo il Bello","Dante","Enrico VII"],a:0,e:"Una giovane donna laica che scriveva al papa “venite, venite dunque”. E il papa la ascoltò."},
+ {t:"mc",q:"Che cosa fu il Grande scisma d’Occidente?",o:["La Chiesa si divise: due (poi tre) papi, uno a Roma e uno ad Avignone","Una guerra tra Francia e Italia","Una crociata","La divisione dell’impero"],a:0,e:"Scisma = divisione. Dal 1378 al 1417 i cristiani ebbero più papi contemporaneamente."},
+ {t:"mc",q:"Perché lo scisma fu così grave?",o:["I fedeli non sapevano chi fosse il vero papa, e re e popoli si schieravano","Costava troppo","I papi erano troppo giovani","Durò solo un anno"],a:0,e:"Ogni papa scomunicava l’altro. La confusione fu il punto più basso della storia della Chiesa medievale."},
+ {t:"mc",q:"Come finì lo scisma?",o:["Il concilio di Costanza (1417) depose i papi rivali ed elesse Martino V","Con una guerra","I papi si misero d’accordo da soli","Il re di Francia scelse il papa"],a:0,e:"Un concilio, cioè un’assemblea di vescovi, decise al posto dei papi. Un segno di quanto fosse cambiato il papato."},
+ {t:"ord",q:"Metti in ordine la storia del papato nel Trecento.",items:["La sede va ad Avignone (1309)","Gregorio XI torna a Roma (1377)","Inizia il Grande scisma (1378)","Concilio di Costanza, eletto Martino V (1417)"],e:"Partenza, ritorno, divisione, riunione: un secolo di crisi."},
+ {t:"tf",q:"Caterina da Siena era una suora di clausura che non uscì mai dal convento.",a:false,e:"Falso. Era una laica del terz’ordine domenicano: viaggiò, curò i malati e scrisse lettere ai potenti. Oggi è patrona d’Italia."},
+ {t:"mc",q:"Dopo lo scisma, che cosa era cambiato per il papa?",o:["Era ancora il capo spirituale, ma non più un’autorità sopra i re","Era diventato re di Francia","Il papato non esisteva più","Governava tutta l’Italia"],a:0,e:"Questa è la grande lezione del capitolo 13: i poteri universali tramontano, nascono gli Stati nazionali."}
+]}
+];
+
+/* ============ STATO ============ */
+const KEY="storia-1213-v1";
+let store={blocks:{},review:[]};
+try{const s=localStorage.getItem(KEY);if(s)store=Object.assign(store,JSON.parse(s));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}}
+const $=id=>document.getElementById(id);
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));$(id).classList.add("on");window.scrollTo({top:0});}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1500);}
+function starsFor(p){return p>=90?3:p>=70?2:1;}
+function starStr(n){let s="";for(let i=0;i<3;i++)s+=i<n?"★":"<span class='off'>★</span>";return s;}
+function qid(b,i){return b.id+":"+i;}
+B.forEach(b=>b.q.forEach((q,i)=>{q.id=qid(b,i);q.block=b;}));
+
+/* ============ HOME ============ */
+function renderHome(){
+  const wrap=$("chapters");wrap.innerHTML="";let done=0;
+  CH.forEach((c,ci)=>{
+    const sec=document.createElement("div");sec.className="chap";
+    sec.innerHTML=`<h2><span>${c.n}</span> · ${c.t}</h2><ul class="road"></ul>`;
+    const ul=sec.querySelector("ul");
+    B.filter(b=>b.ch===ci).forEach(b=>{
+      const r=store.blocks[b.id];const st=r?r.stars:0;if(r)done++;
+      const li=document.createElement("li");li.className="stop"+(r?" done":"");
+      li.innerHTML=`<button class="blk ${r?'done':''}"><div class="ico">${b.icon}</div><div><div class="name">${b.name}</div><div class="meta">${r?`Completata · ${b.q.length} domande`:`${b.q.length} domande · circa 6 minuti`}</div></div><div class="stars">${starStr(st)}</div></button>`;
+      li.querySelector("button").onclick=()=>startBlock(b);ul.appendChild(li);
+    });
+    wrap.appendChild(sec);
+  });
+  $("sumNum").innerHTML=`${done}<small>/${B.length}</small>`;
+  $("sumTitle").textContent=done===0?"Si parte!":done===B.length?"Tutte le tappe completate!":done<4?"Buon inizio":"Stai andando forte";
+  $("sumSub").textContent=done===0?"Scegli una tappa qualsiasi per cominciare.":done===B.length?"Fai la prova generale per sentirti sicuro.":"Continua con la prossima tappa, oppure ripassa.";
+  const rv=store.review.filter(id=>findQ(id));
+  $("revBtn").style.display=rv.length?"":"none";
+  $("revD").textContent=`${rv.length} ${rv.length===1?"concetto":"concetti"} che vale la pena rivedere. Pochi minuti.`;
+}
+function findQ(id){for(const b of B){const q=b.q.find(x=>x.id===id);if(q)return q;}return null;}
+
+/* ============ SESSIONE ============ */
+let S=null;
+function prep(q){const c={...q};if(q.t==="mc"){const idx=shuffle(q.o.map((_,i)=>i));c.o=idx.map(i=>q.o[i]);c.a=idx.indexOf(q.a);}return c;}
+function startBlock(b){
+  S={mode:"block",block:b,title:b.icon+" "+b.name,qs:b.q.map(prep),i:0,got:0,first:{},log:[]};
+  renderIntro();
+}
+function startReview(){
+  const qs=store.review.map(findQ).filter(Boolean);
+  if(!qs.length)return;
+  S={mode:"review",title:"🔁 Ripasso",qs:shuffle(qs).map(prep),i:0,got:0,first:{},log:[]};
+  show("quiz");renderQ();
+}
+function startMix(){
+  let pool=[];B.forEach(b=>{pool=pool.concat(shuffle(b.q).slice(0,2));});
+  pool=shuffle(pool).slice(0,16);
+  S={mode:"mix",title:"🎯 Prova generale",qs:pool.map(prep),i:0,got:0,first:{},log:[]};
+  show("quiz");renderQ();
+}
+function renderIntro(){
+  const b=S.block;
+  $("qTitle").textContent=S.title;$("gotPill").style.display="none";$("barFill").style.width="0%";$("qNum").textContent="Prima di cominciare";
+  $("qcard").innerHTML=`<div class="intro"><h2>Le idee chiave</h2><p class="sub">Leggile con calma: tutte le domande partono da qui.</p><ul class="ideas">${b.ideas.map(i=>`<li>${esc(i)}</li>`).join("")}</ul><button class="btn gold wide" id="go">Ho letto, iniziamo</button></div>`;
+  $("go").onclick=()=>{$("gotPill").style.display="";renderQ();};
+  show("quiz");
+}
+
+/* ============ DOMANDE ============ */
+const KIND={mc:"Scegli",tf:"Vero o falso",ord:"Metti in ordine",mat:"Collega"};
+function kindOf(q){if(q.t==="mc"&&/^Perch/.test(q.q))return "Perché?";if(q.t==="mc"&&/^(Che cos|Cosa|Che cosa)/.test(q.q))return "Che cosa significa?";return KIND[q.t];}
+let cur=null; // stato della domanda corrente
+function renderQ(){
+  const q=S.qs[S.i],n=S.qs.length;cur={tries:0,miss:0};
+  $("barFill").style.width=(S.i/n*100)+"%";
+  $("qNum").textContent=`Domanda ${S.i+1} di ${n}`;
+  $("gotPill").textContent="✓ "+S.got;
+  const card=$("qcard");
+  let html=`<div class="kind ${q.again?'again':''}">${q.again?"🔁 Rivediamola":kindOf(q)}</div><div class="qtext">${esc(q.q)}</div>`;
+  if(q.t==="mc")html+=`<div class="opts">`+q.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${"ABCD"[i]}</span><span>${esc(o)}</span></button>`).join("")+`</div>`;
+  else if(q.t==="tf")html+=`<div class="opts tf"><button class="opt" data-i="1">Vero</button><button class="opt" data-i="0">Falso</button></div>`;
+  else if(q.t==="ord"){
+    cur.order=[];cur.pool=shuffle(q.items);
+    html+=`<div class="slots" id="slots"></div><div class="chips" id="chips"></div><div class="hintline">Tocca gli eventi nell’ordine giusto. Tocca uno slot per rimetterlo giù.</div><button class="btn wide" id="check" disabled>Controlla</button>`;
+  }else if(q.t==="mat"){
+    cur.left=q.pairs.map(p=>p[0]);cur.right=shuffle(q.pairs.map(p=>p[1]));cur.sel=null;cur.locked=0;
+    html+=`<div class="cols"><div id="colL" style="display:grid;gap:8px"></div><div id="colR" style="display:grid;gap:8px"></div></div><div class="hintline">Tocca una cosa a sinistra, poi la sua coppia a destra.</div>`;
+  }
+  html+=`<div class="fb" id="fb"></div><button class="btn wide" id="next" style="display:none">Avanti</button>`;
+  card.innerHTML=html;
+  card.querySelectorAll(".opt").forEach(b=>b.onclick=()=>answerChoice(q,q.t==="tf"?b.dataset.i==="1":+b.dataset.i,b));
+  if(q.t==="ord"){drawOrd(q);$("check").onclick=()=>checkOrd(q);}
+  if(q.t==="mat")drawMat(q);
+  $("next").onclick=next;
+}
+function finishQ(q,firstOk){
+  const fresh=!(q.id in S.first);
+  if(fresh){S.first[q.id]=firstOk;if(firstOk)S.got++;S.log.push({q,ok:firstOk});
+    if(!firstOk&&!q.again){const c={...q,again:true};S.qs.push(c);}
+  }else if(!q.again){/* nulla */}
+  // lista da rivedere (persistente)
+  if(fresh){const idx=store.review.indexOf(q.id);
+    if(firstOk&&idx>=0)store.review.splice(idx,1);
+    if(!firstOk&&idx<0)store.review.push(q.id);save();}
+  $("gotPill").textContent="✓ "+S.got;
+  const nb=$("next");nb.style.display="";nb.textContent=S.i===S.qs.length-1?"Vedi com’è andata":"Avanti";nb.focus({preventScroll:true});
+}
+const CHEER=["Esatto!","Giusto!","Hai capito!","Perfetto!","Proprio così!","Bravo!"];
+function fbGood(q,extra){const fb=$("fb");fb.className="fb on good";fb.innerHTML=`<div class="h">${CHEER[Math.floor(Math.random()*CHEER.length)]}${extra?" "+extra:""}</div><p>${esc(q.e)}</p>`;}
+function fbWarm(h,p){const fb=$("fb");fb.className="fb on warm";fb.innerHTML=`<div class="h">${h}</div>${p?`<p>${p}</p>`:""}`;}
+
+/* scelta multipla / vero-falso */
+function answerChoice(q,val,btn){
+  const card=$("qcard");
+  if(q.t==="tf"){
+    card.querySelectorAll(".opt").forEach(b=>{b.disabled=true;if((b.dataset.i==="1")===q.a)b.classList.add("ok");});
+    const ok=val===q.a;
+    if(ok)fbGood(q);else fbWarm(`In realtà è ${q.a?"vero":"falso"}, e ora lo sai.`,esc(q.e));
+    finishQ(q,ok);return;
+  }
+  const ok=val===q.a;
+  if(ok){
+    card.querySelectorAll(".opt").forEach(b=>{b.disabled=true;if(+b.dataset.i===q.a)b.classList.add("ok");});
+    fbGood(q,cur.tries>0?"Al secondo colpo, ma ci sei arrivato tu.":"");
+    finishQ(q,cur.tries===0);
+  }else{
+    cur.tries++;btn.disabled=true;btn.classList.add("dim");
+    if(cur.tries===1){fbWarm("Non è questa. Riprova, ne restano tre.","Rileggi la domanda con calma: la risposta giusta spiega un perché.");}
+    else{
+      card.querySelectorAll(".opt").forEach(b=>{b.disabled=true;if(+b.dataset.i===q.a)b.classList.add("ok");});
+      fbWarm("Ecco la risposta giusta. La rivediamo tra poco.",esc(q.e));
+      finishQ(q,false);
+    }
+  }
+}
+
+/* ordina */
+function drawOrd(q){
+  const n=q.items.length,sl=$("slots"),ch=$("chips");
+  sl.innerHTML="";ch.innerHTML="";
+  for(let i=0;i<n;i++){
+    const it=cur.order[i];const d=document.createElement("div");d.className="slot"+(it!==undefined?" filled":"");
+    d.innerHTML=`<span class="n">${i+1}</span>`+(it!==undefined?`<button>${esc(it)}</button>`:`<span style="color:var(--ink2)">…</span>`);
+    if(it!==undefined)d.querySelector("button").onclick=()=>{if(cur.done)return;cur.order.splice(i,1);cur.pool.push(it);drawOrd(q);};
+    sl.appendChild(d);
+  }
+  cur.pool.forEach((it,k)=>{const b=document.createElement("button");b.className="chip";b.textContent=it;b.onclick=()=>{if(cur.done)return;cur.pool.splice(k,1);cur.order.push(it);drawOrd(q);};ch.appendChild(b);});
+  $("check").disabled=cur.order.length!==n;
+}
+function checkOrd(q){
+  const n=q.items.length;let right=0;const slots=$("slots").children;
+  for(let i=0;i<n;i++){const okp=cur.order[i]===q.items[i];if(okp)right++;slots[i].classList.toggle("okpos",okp);}
+  if(right===n){cur.done=true;$("check").style.display="none";$("chips").style.display="none";fbGood(q,cur.tries>0?"Ci sei arrivato!":"");finishQ(q,cur.tries===0);return;}
+  cur.tries++;
+  if(cur.tries===1){fbWarm(`${right} su ${n} al posto giusto: quelli verdi sono corretti.`,"Sposta solo gli altri e controlla di nuovo.");}
+  else{cur.done=true;cur.order=q.items.slice();cur.pool=[];drawOrd(q);for(const s of $("slots").children)s.classList.add("okpos");$("check").style.display="none";
+    fbWarm("Ecco l’ordine giusto. Lo rivediamo tra poco.",esc(q.e));finishQ(q,false);}
+}
+
+/* collega */
+function drawMat(q){
+  const L=$("colL"),R=$("colR");L.innerHTML="";R.innerHTML="";
+  cur.left.forEach((t,i)=>{const b=document.createElement("button");b.className="mitem";b.textContent=t;b.dataset.k=t;
+    if(cur.lockL&&cur.lockL.has(t)){b.classList.add("lock");b.disabled=true;}
+    if(cur.sel===t)b.classList.add("sel");
+    b.onclick=()=>{cur.sel=cur.sel===t?null:t;drawMat(q);};L.appendChild(b);});
+  cur.right.forEach(t=>{const b=document.createElement("button");b.className="mitem";b.textContent=t;
+    if(cur.lockR&&cur.lockR.has(t)){b.classList.add("lock");b.disabled=true;}
+    b.onclick=()=>{if(!cur.sel){toast("Prima tocca una cosa a sinistra");return;}
+      const pair=q.pairs.find(p=>p[0]===cur.sel);
+      if(pair[1]===t){cur.lockL=cur.lockL||new Set();cur.lockR=cur.lockR||new Set();cur.lockL.add(cur.sel);cur.lockR.add(t);cur.sel=null;cur.locked++;drawMat(q);
+        if(cur.locked===q.pairs.length){fbGood(q,cur.miss>0?"Alcune al secondo tentativo, ma ora le sai tutte.":"Tutte al primo colpo!");finishQ(q,cur.miss===0);}
+      }else{cur.miss++;b.classList.add("shake");setTimeout(()=>b.classList.remove("shake"),300);fbWarm("Non è questa coppia. Prova un’altra.","");cur.sel=null;setTimeout(()=>drawMat(q),250);}
+    };R.appendChild(b);});
+}
+
+function next(){S.i++;if(S.i>=S.qs.length)finish();else renderQ();}
+
+/* ============ RISULTATI ============ */
+function finish(){
+  const n=S.log.length,ok=S.got,pct=n?Math.round(ok/n*100):0;
+  let html="",title="";
+  if(S.mode==="block"){
+    const st=starsFor(pct);const prev=store.blocks[S.block.id];
+    store.blocks[S.block.id]={stars:Math.max(st,prev?prev.stars:0),pct};save();
+    const msg=pct>=90?"Questa tappa è tua.":pct>=70?"Molto bene, quasi tutto chiaro.":"Tappa completata. Ogni risposta che hai rivisto adesso la sai.";
+    html=`<div class="stars">${starStr(st)}</div><h2>${msg}</h2><div class="num">${ok}<small> su ${n} al primo colpo</small></div><p>${n-ok===0?"Nessun concetto da rivedere.":`${n-ok} ${n-ok===1?"concetto rivisto":"concetti rivisti"} durante la tappa.`}</p>`;
+    title=S.title;
+  }else if(S.mode==="mix"){
+    const msg=pct>=90?"Sei pronto per la verifica.":pct>=70?"Buona base: ripassa i punti qui sotto e sei a posto.":"Hai visto tanti concetti. Rifai le tappe segnate e tornerà tutto chiaro.";
+    html=`<h2>${msg}</h2><div class="num">${ok}<small> su ${n} al primo colpo</small></div><p>Qui sotto trovi tappa per tappa cosa è andato bene e cosa rivedere.</p>`;
+    title="🎯 Com’è andata";
+  }else{
+    html=`<h2>${ok===n?"Ripasso completato: tutto chiaro!":"Ripasso completato"}</h2><div class="num">${ok}<small> su ${n} al primo colpo</small></div><p>${ok===n?"Questi concetti ora sono tuoi.":"Quelli ancora incerti restano nel ripasso: puoi rifarlo quando vuoi."}</p>`;
+    title="🔁 Ripasso";
+  }
+  if(pct>=70)html+=`<div class="confetti">`+Array.from({length:26},(_,i)=>`<i style="left:${Math.random()*100}%;background:${["#c99a2e","#2f57b5","#2e8b57","#e1b549","#86a6ee"][i%5]};animation-delay:${Math.random()*.6}s"></i>`).join("")+`</div>`;
+  $("resTitle").textContent=title;$("resCard").innerHTML=html;
+  const row=$("resRow");row.innerHTML="";
+  const wrong=S.log.filter(l=>!l.ok);
+  if(wrong.length){const b=document.createElement("button");b.className="btn gold";b.textContent=`Rivedi questi (${wrong.length})`;b.onclick=()=>{S={mode:"review",title:"🔁 Ripasso",qs:shuffle(wrong.map(l=>l.q)).map(x=>prep(findQ(x.id))),i:0,got:0,first:{},log:[]};show("quiz");renderQ();};row.appendChild(b);}
+  const again=document.createElement("button");again.className="btn ghost";again.textContent=S.mode==="block"?"Rifai la tappa":S.mode==="mix"?"Nuova prova":"Ripeti";
+  const blk=S.block;again.onclick=()=>S.mode==="block"?startBlock(blk):S.mode==="mix"?startMix():startReview();row.appendChild(again);
+  const home=document.createElement("button");home.className="btn ghost";home.textContent="Mappa";home.onclick=goHome;row.appendChild(home);
+  const rv=$("review");
+  if(S.mode==="mix"){
+    const byB={};S.log.forEach(l=>{const id=l.q.block.id;byB[id]=byB[id]||{b:l.q.block,ok:0,n:0};byB[id].n++;if(l.ok)byB[id].ok++;});
+    rv.innerHTML=`<h3>Tappa per tappa</h3>`+Object.values(byB).map(x=>`<div class="rv" style="border-left-color:${x.ok===x.n?'var(--good)':'var(--gold)'}"><div class="q">${x.b.icon} ${esc(x.b.name)}</div><div class="a">${x.ok===x.n?"<b>Tutto chiaro</b>":`${x.ok} su ${x.n} · vale la pena rifare questa tappa`}</div></div>`).join("");
+  }else if(wrong.length){
+    rv.innerHTML=`<h3>Quello che hai imparato oggi</h3>`+wrong.map(l=>{const q=l.q;const corr=q.t==="mc"?q.o[q.a]:q.t==="tf"?(q.a?"Vero":"Falso"):q.t==="ord"?q.items.join(" → "):q.pairs.map(p=>p[0]+" → "+p[1]).join("; ");
+      return `<div class="rv"><div class="q">${esc(q.q)}</div><div class="a"><b>${esc(corr)}</b><br>${esc(q.e)}</div></div>`;}).join("");
+  }else rv.innerHTML="";
+  show("results");
+}
+function goHome(){S=null;renderHome();show("home");}
+
+/* ============ EVENTI ============ */
+$("backBtn").onclick=()=>{if(S&&S.i>0&&!confirm("Vuoi tornare alla mappa? Questa tappa riparte da capo la prossima volta."))return;goHome();};
+$("resBack").onclick=goHome;
+$("mixBtn").onclick=startMix;
+$("revBtn").onclick=startReview;
+$("resetBtn").onclick=()=>{if(confirm("Azzerare tutti i progressi?")){store={blocks:{},review:[]};save();renderHome();toast("Progressi azzerati");}};
+renderHome();
+</script>
+</body>
+</html>

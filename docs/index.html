@@ -31,7 +31,7 @@
     for (const [id, label] of MATERIE) {
       const list = RIPASSO.filter(q => q.materia === id);
       const n = list.length;
-      const ic = el('span', { class: 'icona' }); ic.innerHTML = icona(id);
+      const ic = el('span', { class: 'illu' }); ic.innerHTML = illu(id);
       const t = el('a', { class: 'tile' + (n ? '' : ' vuota'), href: '#' + id, 'data-materia': id },
         ic,
         el('div', {}, el('h3', {}, label),

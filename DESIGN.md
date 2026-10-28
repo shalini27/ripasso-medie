@@ -34,11 +34,12 @@ score ring, list markers and definition rules.
 
 ## Subject symbols
 
-`assets/icone.js` holds one line-drawn symbol per subject (book, column,
-globe, square root, atom, palette, speech bubble, notes, chip). Use
-`<span class="icona" data-icona="<id>"></span>`; the script fills it. Shown on
-the home tile, the subject header and the quiz page label, always in the
-subject colour on a 12% tint. These are the only icons on the site.
+`assets/icone.js` holds, per subject, a small line icon (`icona(id)`, used on
+subject headers and quiz page labels via `<span class="icona"
+data-icona="<id>">`) and a flat two-tone illustration (`illu(id)`, used on the
+home tiles). Both are inline SVG in the subject colour; the illustration's
+`.t` shapes are a 35% tint and `.l` shapes are surface-coloured lines. These
+are the only pictures on the site.
 
 ## Components
 

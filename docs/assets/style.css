@@ -95,14 +95,15 @@ button{font:inherit;color:inherit}
 
 /* ---- subject tiles (home) ---- */
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:8px}
-.tile{display:grid;gap:18px;align-content:space-between;min-height:168px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:18px;text-decoration:none;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s}
-.tile .icona{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:var(--mc);background:color-mix(in srgb,var(--mc) 12%,transparent);transition:transform .2s}
-.tile .icona svg{width:28px;height:28px}
-.tile::after{content:"";position:absolute;right:-28px;bottom:-28px;width:120px;height:120px;border-radius:50%;background:var(--mc);opacity:0;transition:opacity .2s}
+.tile{display:grid;align-content:end;min-height:190px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:18px;text-decoration:none;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s,border-color .15s}
+.tile::before{content:"";position:absolute;inset:0 0 auto;height:112px;background:color-mix(in srgb,var(--mc) 10%,transparent)}
+.tile .illu{position:absolute;top:10px;right:14px;width:104px;height:104px;color:var(--mc);transition:transform .25s}
+.tile .illu .t{opacity:.35}
+.tile .illu .l{fill:none;stroke:var(--surface);stroke-width:4;stroke-linecap:round}
 .tile:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--mc)}
-.tile:hover .icona{transform:rotate(-6deg) scale(1.08)}
-.tile:hover::after{opacity:.08}
-.tile h3{font-size:22px;line-height:1.1}
+.tile:hover .illu{transform:translateY(-3px) rotate(-3deg)}
+.tile>div{position:relative}
+.tile h3{font-size:22px;line-height:1.1;margin-top:100px}
 .tile .n{color:var(--ink-2);font-size:14px;font-weight:600}
 .tile .n b{color:var(--ink);font-family:var(--display);font-size:26px;font-weight:700;display:block;letter-spacing:-.02em;line-height:1}
 .tile.vuota{opacity:.55}

@@ -27,8 +27,8 @@ written in Italian, published as a static site on GitHub Pages.
 - `docs/index.html` is the home: subject tiles, then (via `#<materia>`) that
   subject's pages, newest first (array order). It renders `docs/assets/elenco.js`; **add one
   entry there for every new page** at the TOP of the array (file, titolo,
-  materia, classe, optional argomento, tipo, domande). **No dates anywhere**:
-  pages are "esercitazioni", never tied to a test date.
+  materia, classe, optional argomento, tipo, domande). A `data` field is
+  optional and used **only if Shalini gives the date**; never invent one.
 - Subject ids: italiano, storia, geografia, matematica, scienze, arte (storia
   dell'arte), inglese, musica, tecnologia, altro. Set `data-materia` on `<body>`.
 - `docs/quiz/<materia>-<argomento>.html` one page per topic.

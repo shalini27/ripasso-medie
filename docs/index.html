@@ -20,6 +20,8 @@
 (function () {
   const app = document.getElementById('app'), back = document.getElementById('back');
   const nome = Object.fromEntries(MATERIE);
+  const MESI = ['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+  const quando = iso => { if (!iso) return ''; const [y,m,d] = iso.split('-'); return `verifica ${+d} ${MESI[+m-1]}`; };
   const el = (t, a, ...k) => { const e = document.createElement(t); for (const n in a || {}) n === 'class' ? e.className = a[n] : e.setAttribute(n, a[n]); e.append(...k); return e; };
 
   function home() {
@@ -53,7 +55,7 @@
       rows.append(el('a', { class: 'row', href: 'quiz/' + q.file },
         el('div', { class: 'num' }, String(list.length - k)),
         el('div', {}, el('h3', {}, q.titolo),
-          el('div', { class: 'sub' }, [q.classe && q.classe + ' media', q.argomento, q.domande && q.domande + ' domande'].filter(Boolean).join(' · '))),
+          el('div', { class: 'sub' }, [q.classe && q.classe + ' media', q.argomento, quando(q.data), q.domande && q.domande + ' domande'].filter(Boolean).join(' · '))),
         el('span', { class: 'kind' }, q.tipo || 'quiz')));
     });
     if (!list.length) rows.append(el('div', { class: 'empty' }, el('b', {}, 'In arrivo'), 'Appena è pronta un’esercitazione, compare qui.'));

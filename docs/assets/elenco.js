@@ -2,6 +2,7 @@
    materia: italiano | storia | geografia | matematica | scienze | arte | inglese | musica | tecnologia | altro
    ordine:  la prima riga è la più recente (aggiungi in cima). Niente date.
    argomento: breve etichetta opzionale (es. "capitolo 3")
+   data:    opzionale, solo se fornita (AAAA-MM-GG): mostra "verifica 12 nov"
    tipo:    "quiz" | "guida" | "quiz+guida"      domande: numero (solo per i quiz) */
 window.MATERIE = [
   ["italiano","Italiano"],["storia","Storia"],["geografia","Geografia"],["matematica","Matematica"],

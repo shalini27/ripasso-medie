@@ -35,9 +35,18 @@ Hai trovato un errore in una domanda? → [Segnala un errore](../../issues/new?t
 
 ## Regole della casa
 
-- Uso personale e didattico. Niente nomi di ragazzi, classi, scuole o
-  insegnanti nelle pagine.
-- Contenuti riscritti con parole nostre, mai pagine copiate.
+- Questo è un sito personale, nato per i nostri figli e mantenuto nel tempo
+  libero. Non è un servizio, non ha garanzie, può avere errori.
+- I contenuti sono pensati per uso didattico personale: ripassare a casa,
+  condividere con altri genitori e insegnanti. Per ogni altro uso vale la
+  licenza qui sotto.
+- Le pagine contengono solo argomenti di studio. Nessun dato personale:
+  niente nomi, classi, scuole o insegnanti, né nei quiz né nelle issue.
+- Il materiale di partenza resta sul computer di chi prepara il quiz e non
+  viene pubblicato. Online c'è solo la pagina finale.
+- Le issue (richieste, errori, proposte) sono aperte solo ai collaboratori
+  invitati. Le richieste vengono guardate con i tempi di chi le fa come
+  volontario.
 
 ## Licenza
 

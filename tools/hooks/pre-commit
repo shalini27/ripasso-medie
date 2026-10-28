@@ -1,0 +1,8 @@
+#!/bin/sh
+# Blocca qualsiasi commit che contenga materiale privato, anche con `git add -f`.
+bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -Ei '^sources/(.+)$|\.(png|jpe?g|heic|webp|gif|pdf)$' | grep -v '^sources/README.md$' || true)
+if [ -n "$bad" ]; then
+  echo "COMMIT BLOCCATO: questi file non devono essere pubblicati:" >&2
+  echo "$bad" | sed 's/^/  /' >&2
+  exit 1
+fi

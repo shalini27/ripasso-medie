@@ -68,3 +68,9 @@ answer, rewrite that entry with a plain `"risposta"` and run `sigilla.py`
 again; other entries are left untouched (the script is idempotent).
 
 Language of pages, commit messages and issue replies: Italian.
+
+## Safety net
+
+`tools/hooks/pre-commit` (enabled via `git config core.hooksPath tools/hooks`)
+refuses any commit that contains a file from `sources/` or any image/PDF, even
+after `git add -f`. If a fresh clone is made, run that config command once.

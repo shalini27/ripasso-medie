@@ -43,6 +43,25 @@ written in Italian, published as a static site on GitHub Pages.
   the tokens, fonts and subject colour.
 - `tools/sigilla.py` seals answers: replaces `"risposta"` with `"hash"`.
 
+## Reading the textbooks in `sources/`
+
+The textbooks are full-book PDFs (100–250 MB, 300–1100 pages) with **no text
+layer**: pages are images. The Read tool refuses PDFs over 100 MB, so:
+
+1. Find the chapter: render the index pages small
+   (`pdftoppm -f 2 -l 9 -r 60 -png book.pdf /tmp/.../idx`) and read the PNGs.
+   Printed page numbers differ from PDF page numbers; locate the offset by
+   rendering one page and checking its printed number.
+2. Extract the chapter: `pdfseparate -f A -l B book.pdf /tmp/.../p-%d.pdf`
+   then `pdfunite /tmp/.../p-*.pdf sources/<materia>/<capitolo>.pdf`, or
+   render straight to PNG at ~110 dpi with `pdftoppm` and read those.
+3. Read the extract with the Read tool (`pages` ranges of up to 20).
+
+Books on disk (seconda media unless noted): scienze `Scopri perché!` A–D
+(one file, 1132 pp); geografia `GeoAgenda` 2 and 3; storia `Di tempo in
+tempo` 1 and 2; matematica `Conosco, risolvo, argomento` 1 and 2; arte
+`Artemondo` A. Nothing in `sources/` is ever committed or named in commits.
+
 ## Workflow A — Shalini asks for a quiz or guide
 
 1. Ask which folder in `sources/` to use if not stated; read the images/notes.

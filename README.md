@@ -1,65 +1,35 @@
 # Ripasso Medie
 
-Guide di ripasso e quiz per la scuola media, fatti in casa da genitori per i
-propri figli, in vista delle verifiche. Una pagina per argomento, divisa per
-materia, dalla verifica più recente alla più vecchia.
+Materiali di studio interattivi per la scuola media: quiz, esercizi e guide
+di ripasso, divisi per materia. Fatti in casa da genitori, nel tempo libero.
 
-**Il sito, con tutti i quiz: https://shalini27.github.io/ripasso-medie/**
+**Il sito: https://shalini27.github.io/ripasso-medie/**
 
-## Come nasce un quiz
+## Come funziona
 
-Il materiale di partenza resta sul computer del genitore che prepara il quiz:
-è lui o lei a verificarlo e a dare il contesto. Niente di tutto questo viene
-pubblicato. Online finiscono solo il quiz o la guida finali, scritti con parole
-nostre.
+Ogni argomento è una pagina: si apre nel browser, funziona su telefono,
+tablet e computer, e si può rifare quante volte si vuole. Le domande cambiano
+ordine a ogni tentativo.
 
-Le risposte giuste nelle pagine pubblicate sono "sigillate": chi apre il
-sorgente della pagina vede le domande, non le soluzioni.
+Il sito è un progetto personale, al momento pensato per la seconda media.
+Non è un servizio e può contenere errori: se ne trovi uno, segnalalo.
 
-## Vuoi un quiz o del materiale di preparazione su un argomento?
+## Richieste, errori, proposte
 
-Apri una *issue* → [Richiedi un quiz](../../issues/new?template=richiesta-quiz.yml).
-Non serve saper programmare: basta un account GitHub. Per evitare lo spam le
-issue sono aperte solo a chi è stato invitato come collaboratore.
-
-Questo progetto è portato avanti su base volontaria, al momento per ragazzi di
-**seconda media**: le richieste vengono guardate in quel contesto e con i
-tempi di chi le fa nel tempo libero.
-
-Sei un genitore o un insegnante di ragazzi delle medie? Sei il benvenuto:
-chiedi un argomento, segnala un errore, proponi un quiz tuo (anche solo
-domande e risposte in un messaggio: lo impaginiamo noi), oppure clona il
-repo e usa il motore per i tuoi. Ogni feedback è apprezzato.
-
-Hai trovato un errore in una domanda? → [Segnala un errore](../../issues/new?template=errore.yml).
-
-## Regole della casa
-
-- Questo è un sito personale, nato per i nostri figli e mantenuto nel tempo
-  libero. Non è un servizio, non ha garanzie, può avere errori.
-- I contenuti sono pensati per uso didattico personale: ripassare a casa,
-  condividere con altri genitori e insegnanti. Per ogni altro uso vale la
-  licenza qui sotto.
-- Le pagine contengono solo argomenti di studio. Nessun dato personale:
-  niente nomi, classi, scuole o insegnanti, né nei quiz né nelle issue.
-- Il materiale di partenza resta sul computer di chi prepara il quiz e non
-  viene pubblicato. Online c'è solo la pagina finale.
-- Le issue (richieste, errori, proposte) sono aperte solo ai collaboratori
-  invitati. Le richieste vengono guardate con i tempi di chi le fa come
-  volontario.
+Le *issue* sono aperte solo ai collaboratori invitati. Se sei un genitore o
+un insegnante di ragazzi delle medie e vuoi partecipare, chiedere un
+argomento o proporre un quiz tuo, sei il benvenuto.
 
 ## Licenza
 
-- Quiz e guide: [CC BY-NC-SA 4.0](LICENSE-CONTENT.md) — condividi e modifica
-  liberamente, cita la fonte, niente usi commerciali, stessa licenza.
+- Quiz, esercizi e guide: [CC BY-NC-SA 4.0](LICENSE-CONTENT.md).
+  Condividi e modifica liberamente, cita la fonte, niente usi commerciali,
+  stessa licenza.
 - Codice del sito: [MIT](LICENSE).
 
 ---
 
-*English:* home-made revision guides and quizzes for Italian middle school,
-organised by subject and test date, at https://shalini27.github.io/ripasso-medie/.
-Run by volunteers, currently for 2nd-year students. Parents and teachers of
-middle-schoolers are welcome to request topics, report mistakes, contribute
-quizzes or fork the engine. Source material stays on the parent's computer and
-is never published; only the finished page is. Content is CC BY-NC-SA 4.0,
-code is MIT.
+*English:* home-made interactive study materials for Italian middle school,
+organised by subject, at https://shalini27.github.io/ripasso-medie/.
+A personal, volunteer project. Issues are open to invited collaborators.
+Content is CC BY-NC-SA 4.0, code is MIT.

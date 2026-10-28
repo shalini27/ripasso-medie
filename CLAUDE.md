@@ -88,9 +88,9 @@ Code: MIT (`LICENSE`). Quizzes and guides: CC BY-NC-SA 4.0
 
 ## Wording rule
 
-In public-facing text (README, issue replies) do not describe the source
-material as photos or screenshots of textbooks. Say: the source material stays
-on the parent's computer, is checked by a parent, and is not published.
+Public-facing text (README, issue replies) stays high level: "interactive
+study materials made at home by parents". Never describe how pages are made,
+where source material lives, what tools are used, or how answers are sealed.
 
 ## Safety net
 

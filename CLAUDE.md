@@ -4,8 +4,8 @@ Revision guides and quizzes for Italian middle school (scuola media, 1ª–3ª),
 written in Italian, published as a static site on GitHub Pages.
 
 - Repo: https://github.com/shalini27/ripasso-medie (public)
-- Site: NOT deployed. GitHub Pages is disabled on purpose. Enable it only when
-  Shalini explicitly asks (settings: branch `main`, folder `/docs`).
+- Site: https://shalini27.github.io/ripasso-medie/ (GitHub Pages, branch
+  `main`, folder `/docs`; redeploys automatically ~1 minute after each push).
 - Owner: Shalini (shalini27). Other parents open issues; they do not push.
 
 ## Privacy rules (non-negotiable)
@@ -58,9 +58,9 @@ written in Italian, published as a static site on GitHub Pages.
    `.materia`, `.back` link and `.meta` line in the page.
 6. Quick check: open the file in a browser or at least `python3 -c "import json,re;json.loads(re.search(r'id=\"quiz\">(.*?)</script>',open('docs/quiz/<file>.html').read(),re.S).group(1))"`.
 7. `git add docs && git commit -m "Aggiunge <materia>: <argomento>"` then
-   `git push`.
-8. Reply with the path of the new page. (Once Pages is enabled the URL will be
-   `https://shalini27.github.io/ripasso-medie/quiz/<file>.html`.)
+   `git push`. Pages redeploys on its own.
+8. Reply with the public URL:
+   `https://shalini27.github.io/ripasso-medie/quiz/<file>.html`
 
 ## Workflow B — an issue from another parent
 

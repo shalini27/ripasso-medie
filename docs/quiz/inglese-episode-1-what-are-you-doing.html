@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Episode 1 – What are you doing this afternoon?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,500;0,700;0,800;0,900;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#D6EBF8; --sky2:#BFDDF2; --cloud:#FFFFFF; --ink:#16325C; --ink2:#4A6382;
+  --sun:#FFC83D; --sun2:#F2A900; --rain:#2F7FD6; --rain2:#1E62AD; --grass:#3BA55D; --grass2:#DDF4E4;
+  --warn:#E5484D; --warn2:#FDE2E3; --line:#A9CBE6; --mute:#EEF5FB;
+  --shadow:0 6px 0 var(--sky2);
+  --r:18px; --rs:10px;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --sky:#0F1E36; --sky2:#0A1526; --cloud:#182B49; --ink:#EAF3FC; --ink2:#A9BDD6;
+    --sun:#FFC83D; --sun2:#FFD65C; --rain:#5AA2F0; --rain2:#7FB8F5; --grass:#4CC070; --grass2:#1D3A2A;
+    --warn:#F07A7E; --warn2:#4A2224; --line:#2A4466; --mute:#1F355A; --shadow:0 6px 0 var(--sky2);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --sky:#0F1E36; --sky2:#0A1526; --cloud:#182B49; --ink:#EAF3FC; --ink2:#A9BDD6;
+  --sun:#FFC83D; --sun2:#FFD65C; --rain:#5AA2F0; --rain2:#7FB8F5; --grass:#4CC070; --grass2:#1D3A2A;
+  --warn:#F07A7E; --warn2:#4A2224; --line:#2A4466; --mute:#1F355A; --shadow:0 6px 0 var(--sky2);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;min-height:100%;background:var(--sky);color:var(--ink);font-family:"Nunito","Segoe UI",system-ui,-apple-system,Arial,sans-serif;font-size:17px;line-height:1.45;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--sky);z-index:10}
+button{font:inherit;color:inherit}
+input,textarea{font:inherit;color:inherit}
+a{color:var(--rain)}
+.wrap{max-width:720px;margin:0 auto;padding:12px 14px 96px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sky);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 2px 10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px;letter-spacing:-.2px}
+.brand .sun{width:34px;height:34px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 6px rgba(255,200,61,.25);display:inline-block}
+.stats{display:flex;gap:8px}
+.chip{background:var(--cloud);border-radius:999px;padding:6px 12px;font-weight:800;font-size:14px;box-shadow:var(--shadow);white-space:nowrap}
+.chip span{color:var(--rain)}
+
+/* cards */
+.card{background:var(--cloud);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);margin:0 0 14px}
+.card h2{margin:0 0 8px;font-size:21px;font-weight:900}
+.card h3{margin:14px 0 6px;font-size:17px;font-weight:800}
+.card p{margin:6px 0}
+.small{font-size:14px;color:var(--ink2)}
+.it{color:var(--ink2);font-style:italic;font-weight:600}
+
+/* hero thermometer */
+.hero{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.hero h1{margin:0 0 6px;font-size:26px;line-height:1.15;font-weight:900}
+.thermo{display:flex;gap:10px;align-items:stretch;height:200px}
+.thermo .tube{width:34px;border-radius:17px;background:var(--mute);position:relative;overflow:hidden;border:3px solid var(--line)}
+.thermo .fill{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(to top,#3B7DD8,#59B7E8,#8DD2A0,#F8D44C,#F7A531,#E8513D);height:0;transition:height .8s cubic-bezier(.2,.9,.3,1.2)}
+.thermo .bulb{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);width:44px;height:44px;border-radius:50%;background:var(--warn);border:3px solid var(--line)}
+.thermo ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column-reverse;justify-content:space-between;font-size:12px;font-weight:800;color:var(--ink2)}
+.thermo li.on{color:var(--ink)}
+.bigpct{font-size:40px;font-weight:900;line-height:1}
+.levelword{font-weight:900;color:var(--rain)}
+
+/* mode tiles */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{display:block;width:100%;text-align:left;background:var(--cloud);border:0;border-radius:var(--r);padding:16px 14px 14px;box-shadow:var(--shadow);cursor:pointer;position:relative}
+.tile:active{transform:translateY(3px);box-shadow:0 3px 0 var(--sky2)}
+.tile .ico{font-size:30px;line-height:1;margin-bottom:8px;display:block}
+.tile .name{font-weight:900;font-size:17px;display:block}
+.tile .itn{font-size:13px;color:var(--ink2);font-weight:700;display:block}
+.tile .done{margin-top:8px;height:6px;border-radius:3px;background:var(--mute);overflow:hidden}
+.tile .done i{display:block;height:100%;background:var(--grass);width:0}
+.tile.wide{grid-column:1/-1;background:var(--ink);color:var(--cloud)}
+.tile.wide .itn{color:var(--sky)}
+.tile.wide .done{background:rgba(255,255,255,.2)}
+.tile.mist{background:var(--sun)}
+.tile.mist .itn{color:var(--ink)}
+:root[data-theme="dark"] .tile.mist, :root:not([data-theme="light"]) .tile.mist{color:#16325C}
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]) .tile.mist{color:#16325C} }
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:13px 20px;font-weight:900;font-size:17px;cursor:pointer;background:var(--rain);color:#fff;box-shadow:0 5px 0 var(--rain2)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--rain2)}
+.btn.sec{background:var(--mute);color:var(--ink);box-shadow:0 5px 0 var(--line)}
+.btn.sec:active{box-shadow:0 2px 0 var(--line)}
+.btn.sun{background:var(--sun);color:#16325C;box-shadow:0 5px 0 var(--sun2)}
+.btn.ok{background:var(--grass);box-shadow:0 5px 0 #2C7F47}
+.btn.ghost{background:transparent;box-shadow:none;color:var(--rain);padding:8px 10px}
+.btn[disabled]{opacity:.5;cursor:default}
+.btn.block{width:100%}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row.end{justify-content:flex-end}
+.row.between{justify-content:space-between}
+.btn:focus-visible,.opt:focus-visible,.tile:focus-visible,input:focus-visible,textarea:focus-visible,.tab:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+
+/* question area */
+.qbar{display:flex;align-items:center;gap:10px;margin:4px 0 12px}
+.qbar .prog{flex:1;height:10px;border-radius:5px;background:var(--cloud);overflow:hidden;box-shadow:inset 0 0 0 2px var(--line)}
+.qbar .prog i{display:block;height:100%;background:var(--rain);width:0;transition:width .3s}
+.qbar b{font-size:14px;white-space:nowrap}
+.instr{display:inline-block;background:var(--sun);color:#16325C;font-weight:900;border-radius:8px;padding:3px 10px;font-size:14px;margin-bottom:10px}
+.qtext{font-size:22px;font-weight:800;line-height:1.35;margin:6px 0 14px}
+.qtext .blank{display:inline-block;min-width:70px;border-bottom:3px solid var(--rain);margin:0 4px;text-align:center;color:var(--rain)}
+.qtext .hintv{color:var(--ink2);font-weight:700;font-style:italic}
+.qtext.emo{font-size:64px;text-align:center;margin:10px 0 16px}
+.opts{display:grid;gap:10px}
+.opt{display:block;width:100%;text-align:left;background:var(--mute);border:3px solid transparent;border-radius:14px;padding:13px 16px;font-weight:800;font-size:18px;cursor:pointer}
+.opt:active{transform:translateY(2px)}
+.opt.sel{border-color:var(--rain)}
+.opt.right{border-color:var(--grass);background:var(--grass2)}
+.opt.wrong{border-color:var(--warn);background:var(--warn2)}
+.ansin{width:100%;border:3px solid var(--line);border-radius:14px;padding:14px 16px;font-size:19px;font-weight:700;background:var(--cloud);outline:none}
+.ansin:focus{border-color:var(--rain)}
+.ansin.right{border-color:var(--grass);background:var(--grass2)}
+.ansin.wrong{border-color:var(--warn);background:var(--warn2)}
+textarea.ansin{min-height:170px;resize:vertical;line-height:1.5}
+.fb{border-radius:14px;padding:12px 14px;margin-top:12px;font-weight:700;animation:pop .25s cubic-bezier(.2,.9,.3,1.3)}
+.fb.ok{background:var(--grass2);border-left:6px solid var(--grass)}
+.fb.no{background:var(--warn2);border-left:6px solid var(--warn)}
+.fb.hint{background:var(--mute);border-left:6px solid var(--sun)}
+.fb .why{display:block;font-weight:600;margin-top:4px;color:var(--ink2)}
+.fb .ans{display:block;margin-top:4px}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
+.passage{background:var(--mute);border-radius:14px;padding:14px 16px;font-size:17px;line-height:1.55;margin-bottom:12px;max-height:260px;overflow:auto;white-space:pre-line}
+.passage b{color:var(--rain)}
+.tfrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.tfrow .opt{text-align:center;font-size:20px}
+.checks{list-style:none;padding:0;margin:10px 0}
+.checks li{padding:6px 0 6px 30px;position:relative;font-weight:700}
+.checks li::before{content:"○";position:absolute;left:4px;color:var(--ink2)}
+.checks li.ok::before{content:"✔";color:var(--grass)}
+.checks li.no::before{content:"✘";color:var(--warn)}
+.tips{background:var(--mute);border-radius:12px;padding:10px 14px;margin:8px 0 12px;font-size:15px}
+.tips b{display:block;margin-bottom:4px}
+.wc{font-size:14px;color:var(--ink2);text-align:right;margin-top:4px}
+.model{white-space:pre-line;background:var(--grass2);border-radius:12px;padding:12px 14px;margin-top:10px;font-weight:600}
+.ai{white-space:pre-wrap;background:var(--mute);border-radius:12px;padding:12px 14px;margin-top:10px;font-weight:600;line-height:1.5}
+
+/* summary */
+.score{font-size:46px;font-weight:900;line-height:1}
+.stars{font-size:30px;letter-spacing:4px}
+.conf{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+.conf i{position:absolute;top:-20px;font-size:22px;animation:fall 1.4s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.2}}
+
+/* learn */
+details{background:var(--cloud);border-radius:var(--r);box-shadow:var(--shadow);margin-bottom:12px;padding:0 16px}
+summary{cursor:pointer;font-weight:900;font-size:18px;padding:14px 0;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:24px;color:var(--rain)}
+details[open] summary::after{content:"–"}
+details .body{padding:0 0 16px;font-size:16px}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:8px 0}
+td,th{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--ink2);font-weight:800}
+.tbl{overflow-x:auto}
+.ex{background:var(--mute);border-radius:10px;padding:8px 12px;margin:6px 0;font-weight:700}
+.ex i{color:var(--ink2);font-weight:600}
+.pill{display:inline-block;background:var(--mute);border-radius:999px;padding:3px 10px;margin:3px 4px 3px 0;font-weight:800;font-size:14px}
+.tempscale{display:flex;justify-content:space-between;background:linear-gradient(90deg,#3B7DD8,#59B7E8,#8DD2A0,#F8D44C,#F7A531,#E8513D);border-radius:999px;padding:8px 14px;color:#fff;font-weight:900;text-shadow:0 1px 2px rgba(0,0,0,.45);font-size:14px;margin:8px 0}
+
+/* nav */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--cloud);display:flex;justify-content:space-around;padding:8px 6px calc(8px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 0 var(--sky2);z-index:20}
+.tab{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;font-weight:800;color:var(--ink2);padding:4px 10px;border-radius:12px;cursor:pointer}
+.tab .i{font-size:22px}
+.tab.on{color:var(--rain);background:var(--mute)}
+.timer{font-variant-numeric:tabular-nums;font-weight:900;color:var(--warn)}
+.listbtn{display:block;width:100%;text-align:left;background:var(--cloud);border:0;border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);margin-bottom:10px;font-weight:800;font-size:17px;cursor:pointer}
+.listbtn small{display:block;font-weight:700;color:var(--ink2);font-size:14px}
+.listbtn.done{border-left:6px solid var(--grass)}
+.listbtn.redo{border-left:6px solid var(--sun)}
+@media (max-width:420px){ .hero{grid-template-columns:1fr} .thermo{height:150px} .qtext{font-size:20px} }
+@media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="sun"></span>Episode 1</div>
+    <div class="stats"><div class="chip">⭐ <span id="xp">0</span> XP</div><div class="chip">🔥 <span id="streak">0</span></div></div>
+  </header>
+  <main id="app"></main>
+</div>
+<nav class="tabs">
+  <button class="tab on" data-v="home"><span class="i">🏠</span>Home</button>
+  <button class="tab" data-v="learn"><span class="i">📖</span>Learn</button>
+  <button class="tab" data-v="mistakes"><span class="i">🔁</span>Mistakes</button>
+  <button class="tab" data-v="exam"><span class="i">🏆</span>Exam</button>
+</nav>
+<div class="conf" id="conf"></div>
+
+<script>
+/* ================= DATA ================= */
+const MCQ = [
+ ["Ryan always ___ early.",["is getting up","gets up"],1,"'always' = a habit → present simple."],
+ ["Sam ___ at the moment.",["works","is working"],1,"'at the moment' = now → present continuous."],
+ ["It rarely ___ in May.",["is raining","rains"],1,"'rarely' = a habit → present simple."],
+ ["I often ___ tea.",["am drinking","drink"],1,"'often' = a habit → present simple."],
+ ["Tim ___ to Grandma now.",["talks","is talking"],1,"'now' → present continuous."],
+ ["They ___ fruit once a week.",["buy","are buying"],0,"'once a week' = a habit → present simple."],
+ ["I never ___ home at night.",["walk","am walking"],0,"'never' = a habit → present simple."],
+ ["Look! Lucy ___!",["sings","is singing"],1,"'Look!' = it's happening now → present continuous."],
+ ["We ___ to Leeds this evening.",["drive","are driving"],1,"A plan for this evening → present continuous for the future."],
+ ["Are we having a party ___ 4th May?",["on","in","at"],0,"on + day / date (on Sunday, on 4th May)."],
+ ["My sisters are going to Vienna ___ week.",["next","on","in"],0,"next week / next month / next year – no preposition."],
+ ["I'm going to the doctor's ___ 10 o'clock.",["at","on","in"],0,"at + time (at 10 o'clock, at the weekend)."],
+ ["Rob isn't starting school ___ October.",["in","on","at"],0,"in + month / season / year (in October, in summer, in 2026)."],
+ ["Where are you going ___ morning?",["tomorrow","next","on"],0,"tomorrow morning / this morning – no preposition."],
+ ["It's -2°C in Calgary. It's ___.",["freezing","warm","hot"],0,"Below zero = freezing 🧊"],
+ ["It's 36°C in Mumbai. It's ___.",["hot","cool","cold"],0,"36°C = hot 🔥"],
+ ["It's 10°C in Milan. It's ___.",["cool","hot","freezing"],0,"10°C = cool. Scale: hot – warm – mild – cool – cold – freezing."],
+ ["\"Would you like to play tennis with me?\" \"___\"",["Yes, I'd love to!","Yes, I do.","Yes, I like."],0,"Would you like to…? → Yes, I'd love to! / I'd love to, but I can't."],
+ ["\"Are you doing anything on Saturday?\" \"___\"",["No, I'm not.","No, I don't.","No, I'm not doing."],0,"Are you doing…? → short answer with am/is/are: No, I'm not."],
+ ["Sorry, I can't. I ___ for a test tomorrow.",["am studying","study","studying"],0,"A fixed plan for tomorrow → present continuous (am studying)."],
+ ["It's cloudy, but it ___.",["isn't raining","doesn't rain","not raining"],0,"Right now → present continuous negative: it isn't raining."],
+ ["It never ___ in August.",["snows","is snowing","snow"],0,"'never' + it → present simple with -s: snows."],
+ ["___ Melina wearing her jeans now?",["Is","Does","Are"],0,"Present continuous question: Is + she/he/it + -ing?"],
+ ["How often ___ Steve write letters?",["does","is","do"],0,"Present simple question with he/she/it → does."],
+ ["We're ___ in the final on Saturday.",["playing","play","plays"],0,"are + -ing: We're playing."],
+ ["What's the weather ___ in Mumbai?",["like","as","how"],0,"Fixed question: What's the weather like?"],
+ ["24°C = twenty-four ___ Celsius.",["degrees","grades","temperatures"],0,"Temperature is in degrees (gradi)."],
+ ["\"What time are you going?\" \"___\"",["We're going at 7 o'clock.","We go at 7 o'clock.","At 7 o'clock we going."],0,"Future plan → We're going at 7 o'clock."],
+ ["OK, let's ___ at the park.",["meet","meeting","to meet"],0,"Let's + base verb: Let's meet."],
+ ["Sophie ___ to St Mark's school every day.",["goes","is going","go"],0,"'every day' = a habit → goes."],
+ ["Dad ___ at the moment.",["is cooking","cooks","cook"],0,"'at the moment' → present continuous."],
+ ["They ___ P.E. once a week.",["do","are doing","does"],0,"'once a week' = a habit; they → do."],
+ ["Lily ___ early this morning.",["isn't getting up","doesn't get up","not get up"],0,"'this morning' (now) → present continuous negative."],
+ ["Erica ___ basketball every Friday.",["plays","is playing","play"],0,"'every Friday' = a habit → plays."],
+ ["I'd love to, but I ___.",["can't","don't","am not"],0,"I'd love to, but I can't. = Mi piacerebbe, ma non posso."],
+ ["What ___ you doing on Sunday?",["are","do","is"],0,"Present continuous question: What are you doing…?"],
+ ["It's sunny ___ it's hot in Sydney.",["and","but","or"],0,"Two similar ideas → and."],
+ ["In Edinburgh it's snowing ___ it's windy.",["and","but","so"],0,"Two weather conditions together → and."],
+ ["Izzie: What are you doing this afternoon? – Logan: ___",["I'm going to football practice.","I go to football practice.","I going to football practice."],0,"A plan for this afternoon → I'm going."],
+ ["Dom: Are you going to the workshop? – Izzie: ___",["Yes, I am.","Yes, I go.","Yes, I'm."],0,"Short answer: Yes, I am. (never 'Yes, I'm.')"],
+ ["Ruby: I can't come. ___ football practice.",["I've got","I'm got","I has got"],0,"I've got = ho."],
+ ["Logan: Sure, ___ interesting.",["sounds","it sound","sounding"],0,"sounds interesting / sounds stupid = sembra interessante / stupido."],
+ ["Evie: ___ you doing anything tomorrow?",["Are","Do","Is"],0,"Are you doing anything…? = Fai qualcosa…?"],
+ ["Max: Would you like to go running in the park? – Evie: Oh yes, ___.",["I'd love to","I love","I'd like"],0,"I'd love to! = Mi piacerebbe molto!"],
+ ["We're meeting at the station ___ 12.45 p.m.",["at","on","in"],0,"at + time."],
+ ["What ___ the weather like in Madrid?",["'s","does","are"],0,"What's the weather like? (What is…)"],
+ ["It's never warm and sunny here. It ___ rains!",["always","never","now"],0,"always = sempre (habit → rains)."],
+ ["I hope it's sunny ___ warm in Madrid!",["and","or","but"],0,"sunny and warm."],
+ ["Izzie: See you there, Dom! – Dom: ___",["See you!","I see you.","You see."],0,"See you! = Ci vediamo!"],
+ ["\"What time are they leaving?\" \"___\"",["At half past five.","On half past five.","In half past five."],0,"at + time: at half past five (5.30)."],
+];
+const GAP = [
+ // present simple / continuous
+ ["It never ___ (snow) in August.",["snows"],"'never' = habit → it snows."],
+ ["We always ___ (finish) work at 2 o'clock.",["finish"],"'always' = habit → present simple."],
+ ["I ___ (have) a shower at the moment.",["am having","'m having"],"'at the moment' → am having."],
+ ["Lily ___ (not get up) early this morning.",["isn't getting up","is not getting up","'s not getting up"],"'this morning' + now → isn't getting up."],
+ ["They ___ (not phone) us very often!",["don't phone","do not phone"],"'very often' = habit → don't phone."],
+ ["How often ___ (Steve / write) letters?",["does steve write"],"Habit question with he → does Steve write."],
+ ["___ (Melina / wear) her jeans now?",["is melina wearing"],"'now' → Is Melina wearing…?"],
+ ["Hi, Jim. How ___ (it / go)?",["is it going","'s it going"],"How's it going? = Come va?"],
+ ["Terrible! It ___ (rain) right now!",["is raining","'s raining"],"'right now' → is raining."],
+ ["It always ___ (rain) on Saturdays.",["rains"],"'always' = habit → rains."],
+ ["It ___ (not rain) here at the moment. It's warm.",["isn't raining","is not raining","'s not raining"],"'at the moment' → isn't raining."],
+ ["I ___ (sit) on the balcony now.",["am sitting","'m sitting"],"sit → sitting (double t)."],
+ ["I ___ (study) History at the moment.",["am studying","'m studying"],"study → studying (keep the y)."],
+ ["You're crazy! I never ___ (study) at the weekend.",["study"],"'never' = habit → present simple."],
+ ["You ___ (not have) tests very often at your school.",["don't have","do not have"],"'very often' = habit → don't have."],
+ ["How often ___ (you / have) tests?",["do you have"],"Habit question with you → do you have."],
+ ["I ___ (pack) my bag at the moment.",["am packing","'m packing"],"'at the moment' → am packing."],
+ ["It's terrible here – it ___ (rain) and it's really cold!",["is raining","'s raining"],"Now → is raining."],
+ ["This evening, I ___ (go) to the summer party at my school.",["am going","'m going"],"A plan for this evening → am going."],
+ ["We always ___ (have) a barbecue at the end of the school year.",["have"],"'always' = habit → have."],
+ ["Dad usually ___ (help) with the food.",["helps"],"'usually' + Dad (he) → helps."],
+ ["I ___ (meet) all my friends at 5 p.m. today.",["am meeting","'m meeting"],"A fixed plan → am meeting."],
+ ["I'm rubbish at bowling and I never ___ (win).",["win"],"'never' = habit → win."],
+ ["It's my uncle's birthday tomorrow and we ___ (have) dinner with him.",["are having","'re having"],"A plan for tomorrow → are having."],
+ ["We ___ (get up) at 5 a.m. on Saturday for our flight.",["are getting up","'re getting up"],"A plan for Saturday → are getting up."],
+ ["What ___ (you / do) on Saturday?",["are you doing"],"Future plan question → are you doing."],
+ ["___ (you / come) to the airport to meet us?",["are you coming"],"Future plan question → Are you coming…?"],
+ ["Sophie ___ (go) to St Mark's school.",["goes"],"A fact / every day → goes."],
+ ["Look! It ___ (snow)!",["is snowing","'s snowing"],"'Look!' → now → is snowing."],
+ ["Erica ___ (play) basketball every Friday.",["plays"],"'every Friday' = habit → plays."],
+ ["Erica ___ (play) basketball now.",["is playing","'s playing"],"'now' → is playing."],
+ ["Dad sometimes ___ (cook).",["cooks"],"'sometimes' = habit → cooks."],
+ ["They ___ (do) P.E. now.",["are doing","'re doing"],"'now' → are doing."],
+ ["I usually ___ (wear) boots in winter.",["wear"],"'usually' = habit → wear."],
+ ["I ___ (wear) boots at the moment.",["am wearing","'m wearing"],"'at the moment' → am wearing."],
+ ["Listen! Lucy ___ (sing).",["is singing","'s singing"],"'Listen!' → now → is singing."],
+ ["Lucy ___ (sing) in the concert next week.",["is singing","'s singing"],"'next week' = fixed plan → is singing."],
+ ["Mike ___ (not listen) to the podcast now.",["isn't listening","is not listening","'s not listening"],"Now, negative → isn't listening."],
+ ["We ___ (not play) football on Friday.",["aren't playing","are not playing","'re not playing"],"A plan for Friday, negative → aren't playing."],
+ ["Ruby ___ (not come) to the workshop. She's got football practice.",["isn't coming","is not coming","'s not coming"],"Future plan, negative → isn't coming."],
+ // time expressions
+ ["Are we having a party ___ 4th May? (on / in / at)",["on"],"on + date."],
+ ["I'm going to the doctor's ___ 10 o'clock. (on / in / at)",["at"],"at + time."],
+ ["Rob isn't starting school ___ October. (on / in / at)",["in"],"in + month."],
+ ["We're going to Spain ___ the summer. (on / in / at)",["in"],"in + season."],
+ ["Let's meet ___ the weekend. (on / in / at)",["at"],"at the weekend."],
+ ["They're leaving ___ Monday morning. (on / in / at)",["on"],"on + day."],
+ ["We always have a party ___ Christmas. (on / in / at)",["at"],"at Christmas."],
+ // weather words
+ ["☀️ It's ___ in Cairo.",["sunny"],"☀️ = sunny"],
+ ["☁️ It's ___ in Mumbai.",["cloudy"],"☁️ = cloudy"],
+ ["🌧️ It's ___ in Shanghai.",["raining","rainy"],"🌧️ = raining (verb: It's raining.)"],
+ ["❄️ It's ___ in Reykjavik.",["snowing","snowy"],"❄️ = snowing (verb: It's snowing.)"],
+ ["🌫️ It's ___ in Milan.",["foggy"],"🌫️ = foggy (nebbioso)"],
+ ["💨 It's ___ in Edinburgh.",["windy"],"💨 = windy (ventoso)"],
+ ["⛈️ There's a ___ in Miami.",["storm","thunderstorm"],"⛈️ = a storm / a thunderstorm"],
+ ["🌡️ 40°C → It's ___ in Sydney.",["hot"],"40°C = hot"],
+ ["🌡️ 23°C → It's ___ in Cairo.",["warm"],"23°C = warm (20–29°C)"],
+ ["🌡️ 15°C → It's ___ today.",["mild"],"15°C = mild (13–19°C)"],
+ ["🌡️ 10°C → It's ___ in Milan.",["cool"],"10°C = cool (8–12°C)"],
+ ["🌡️ 3°C → It's ___ in New York.",["cold"],"3°C = cold (1–7°C)"],
+ ["🌡️ -1°C → It's ___ in Reykjavik.",["freezing"],"-1°C (below zero) = freezing"],
+ ["What's the weather ___ in London? (like / as)",["like"],"What's the weather like?"],
+ ["What ___ is it? – It's 24 degrees. (temperature / weather)",["temperature"],"What temperature is it?"],
+ ["-2°C = ___ two degrees Celsius.",["minus"],"minus two degrees"],
+ // invitations
+ ["___ you like to go swimming on Saturday? (Would / Do)",["would"],"Would you like to…? = Ti piacerebbe…?"],
+ ["I'd ___ to, but I can't. I'm having a picnic with Holly. (love / like)",["love"],"I'd love to, but I can't."],
+ ["I'm not doing anything ___ on Saturday. (special / specially)",["special"],"I'm not doing anything special. = Non faccio niente di speciale."],
+ ["OK, let's ___ at the park at 11 o'clock. (meet / see)",["meet"],"Let's meet at the park."],
+ ["What ___ are you going? – At 7 o'clock. (time / hour)",["time"],"What time are you going?"],
+ ["Are you ___ anything on Friday? (doing / do)",["doing"],"Are you doing anything on…?"],
+ ["Yes, that's ___. See you there! (fine / nice)",["fine"],"Yes, that's fine."],
+ // story dialogue (Episode 1)
+ ["Logan: It always rains! – Izzie: That's not true! It's cloudy, but it ___ (not rain).",["isn't raining","is not raining","'s not raining"],"Right now → it isn't raining."],
+ ["Izzie: What ___ (you / do) this afternoon? There's a well-being workshop after school.",["are you doing"],"Plan for this afternoon → What are you doing?"],
+ ["Izzie: I ___ (go) to the workshop. Let's all go!",["am going","'m going"],"I'm going to it. = a fixed plan."],
+ ["Logan: Sure, sounds interesting. ___ (you / come), Ruby?",["are you coming"],"Are you coming? = Vieni?"],
+ ["Ruby: I can't. We ___ (play) in the final on Saturday.",["are playing","'re playing"],"Saturday = a fixed plan → We're playing."],
+ ["Dom: Where is the workshop? – Izzie: It's in the library. ___ (you / go)?",["are you going"],"Are you going? = Ci vai?"],
+ ["Evie: I'd love to, but I ___. I'm having a picnic with Holly. (can / can't)",["can't","cannot"],"I'd love to, but I can't."],
+ ["Max: What are you doing on Saturday? – Evie: I'm not ___ anything special. (do)",["doing"],"I'm not doing anything special."],
+ ["Max: OK, let's meet ___ the park at 11. (at / in / on)",["at"],"Let's meet at the park."],
+ ["What time ___ (you / go)? – We're going at 7 o'clock.",["are you going"],"What time are you going?"],
+ // Riley / Cameron / Ava
+ ["Riley ___ (go) to Leeds this weekend to visit a friend.",["is going","'s going"],"this weekend = a fixed plan → is going."],
+ ["Cameron usually ___ (see) his cousins twice a year.",["sees"],"'usually' + he → sees."],
+ ["They ___ (come) back on Sunday evening.",["are coming","'re coming"],"A plan → are coming."],
+ ["It's Saturday morning in Manchester and it ___ (snow)!",["is snowing","'s snowing"],"Now → it's snowing."],
+ ["It's also cold – the temperature is ___ three degrees Celsius. (−3°C)",["minus"],"minus three degrees = -3°C."],
+ ["It isn't a school day, so I ___ (wear) jeans and a white jumper.",["am wearing","'m wearing"],"Today, now → I'm wearing."],
+ ["My sister ___ (listen) to music in her bedroom at the moment.",["is listening","'s listening"],"at the moment → is listening."],
+ ["This afternoon, my brother and I ___ (go) shopping.",["are going","'re going"],"A plan for this afternoon → are going."],
+ ["We ___ (run) in a race next weekend for charity.",["are running","'re running"],"next weekend → are running (run → running)."],
+ ["My sister ___ (not run), but she's coming to watch us.",["isn't running","is not running","'s not running"],"Future plan, negative → isn't running."],
+];
+const TR = [
+ // negative
+ ["Volgi al negativo · make it negative","Lucy's singing in the concert next week.",["lucy isn't singing in the concert next week"],"is → isn't"],
+ ["Volgi al negativo · make it negative","We're playing football on Friday.",["we aren't playing football on friday"],"are → aren't"],
+ ["Volgi al negativo · make it negative","I'm studying at home this evening.",["i'm not studying at home this evening"],"am → am not (I'm not)"],
+ ["Volgi al negativo · make it negative","Mike is listening to the podcast.",["mike isn't listening to the podcast"],"is → isn't"],
+ ["Volgi al negativo · make it negative","Dad cooks on Sundays.",["dad doesn't cook on sundays"],"Present simple, he → doesn't + cook (no -s!)"],
+ ["Volgi al negativo · make it negative","They do P.E. once a week.",["they don't do p.e. once a week","they don't do pe once a week"],"Present simple, they → don't"],
+ ["Volgi al negativo · make it negative","Riley is going to Liverpool.",["riley isn't going to liverpool"],"is → isn't"],
+ ["Volgi al negativo · make it negative","I like running.",["i don't like running"],"Present simple, I → don't"],
+ ["Volgi al negativo · make it negative","It always rains at the weekend.",["it doesn't always rain at the weekend"],"it → doesn't + always + rain (no -s)"],
+ ["Volgi al negativo · make it negative","Erica plays basketball every Friday.",["erica doesn't play basketball every friday"],"she → doesn't + play"],
+ // question
+ ["Volgi alla forma interrogativa · make a question","Ruby is going to football practice.",["is ruby going to football practice"],"Is + subject + -ing?"],
+ ["Volgi alla forma interrogativa · make a question","They're leaving at half past six.",["are they leaving at half past six"],"Are + they + -ing?"],
+ ["Volgi alla forma interrogativa · make a question","Sophie goes to St Mark's school.",["does sophie go to st mark's school","does sophie go to st marks school"],"Does + she + go (no -s!)"],
+ ["Volgi alla forma interrogativa · make a question","You usually wear boots in winter.",["do you usually wear boots in winter"],"Do + you + usually + wear?"],
+ ["Volgi alla forma interrogativa · make a question","It's snowing in Reykjavik.",["is it snowing in reykjavik"],"Is + it + snowing?"],
+ ["Volgi alla forma interrogativa · make a question","Jason and Julie are going cycling on Sunday afternoon.",["are jason and julie going cycling on sunday afternoon"],"Are + subject + going?"],
+ ["Volgi alla forma interrogativa · make a question","Steve writes letters every week.",["does steve write letters every week"],"Does + he + write (no -s!)"],
+ ["Volgi alla forma interrogativa · make a question","Melina is wearing her jeans.",["is melina wearing her jeans"],"Is + she + wearing?"],
+ ["Volgi alla forma interrogativa · make a question","Logan likes the weather in the UK.",["does logan like the weather in the uk"],"Does + he + like (no -s!)"],
+ // simple → continuous
+ ["Volgi al present continuous · rewrite with the new time expression","Dad sometimes cooks. → (at the moment)",["dad is cooking at the moment"],"sometimes → at the moment: present continuous."],
+ ["Volgi al present continuous · rewrite with the new time expression","They do P.E. once a week. → (now)",["they are doing p.e. now","they are doing pe now"],"once a week → now: present continuous."],
+ ["Volgi al present continuous · rewrite with the new time expression","I usually wear boots in winter. → (at the moment)",["i am wearing boots at the moment"],"usually → at the moment: present continuous."],
+ ["Volgi al present continuous · rewrite with the new time expression","It often rains in spring. → (at the moment)",["it is raining at the moment"],"often → at the moment: present continuous."],
+ ["Volgi al present continuous · rewrite with the new time expression","Sam works every day. → (at the moment)",["sam is working at the moment"],"every day → at the moment."],
+ // continuous → simple
+ ["Volgi al present simple · rewrite with the new time expression","Erica's playing basketball now. → (every Friday)",["erica plays basketball every friday"],"now → every Friday: present simple, -s."],
+ ["Volgi al present simple · rewrite with the new time expression","Sam is working at the moment. → (every day)",["sam works every day"],"at the moment → every day: present simple."],
+ ["Volgi al present simple · rewrite with the new time expression","I'm drinking tea now. → (often)",["i often drink tea","i drink tea often"],"'often' goes before the verb: I often drink tea."],
+ ["Volgi al present simple · rewrite with the new time expression","Tim is talking to Grandma now. → (every Sunday)",["tim talks to grandma every sunday"],"now → every Sunday: present simple, -s."],
+ ["Volgi al present simple · rewrite with the new time expression","Lily isn't getting up early this morning. → (never)",["lily never gets up early"],"never → present simple: Lily never gets up early."],
+ // short answers
+ ["Scrivi la risposta breve · short answer","Are we meeting there at 8.30? (✓)",["yes we are"],"Yes, + pronoun + am/is/are."],
+ ["Scrivi la risposta breve · short answer","Is Joe wearing his jeans this morning? (✗)",["no he isn't","no he's not"],"No, + pronoun + isn't. Joe → he."],
+ ["Scrivi la risposta breve · short answer","Are you seeing your friends today? (✗)",["no i'm not","no we aren't","no we're not"],"you → I: No, I'm not."],
+ ["Scrivi la risposta breve · short answer","Are they going swimming on Thursday? (✗)",["no they aren't","no they're not"],"No, they aren't."],
+ ["Scrivi la risposta breve · short answer","Am I singing in the concert tonight? (✓)",["yes you are"],"I → you: Yes, you are."],
+ ["Scrivi la risposta breve · short answer","Is your mum going away next week? (✗)",["no she isn't","no she's not"],"your mum → she: No, she isn't."],
+ ["Scrivi la risposta breve · short answer","Does it snow in August? (✗)",["no it doesn't"],"Does…? → No, it doesn't."],
+ ["Scrivi la risposta breve · short answer","Do you like running? (✓)",["yes i do"],"Do you…? → Yes, I do."],
+ ["Scrivi la risposta breve · short answer","Is it raining in London? (✓)",["yes it is"],"Yes, it is."],
+ // questions from prompts
+ ["Scrivi la domanda (present continuous)","Where / they meet / on 10th May?",["where are they meeting on 10th may"],"Where + are + they + meeting?"],
+ ["Scrivi la domanda (present continuous)","What / they do / in the morning?",["what are they doing in the morning"],"What + are + they + doing?"],
+ ["Scrivi la domanda (present continuous)","What time / they have dinner?",["what time are they having dinner"],"What time + are + they + having?"],
+ ["Scrivi la domanda (present continuous)","What time / they arrive back at school?",["what time are they arriving back at school"],"What time + are + they + arriving?"],
+ ["Scrivi la domanda (present continuous)","What / you do / tomorrow?",["what are you doing tomorrow"],"What are you doing tomorrow?"],
+ ["Scrivi la domanda (present simple)","How often / you go / swimming?",["how often do you go swimming"],"How often + do + you + go?"],
+ ["Scrivi la domanda (present simple)","What / you do / on Sundays?",["what do you do on sundays"],"What do you do on Sundays?"],
+ ["Scrivi la domanda (present continuous)","What / you wear / at the moment?",["what are you wearing at the moment"],"What are you wearing at the moment?"],
+ // change the subject
+ ["Volgi al nuovo soggetto · change the subject","I go swimming on Sundays. → He",["he goes swimming on sundays"],"he → goes (-es)."],
+ ["Volgi al nuovo soggetto · change the subject","We study History on Mondays. → She",["she studies history on mondays"],"study → studies (y → ies)."],
+ ["Volgi al nuovo soggetto · change the subject","I'm having a picnic with Holly. → She",["she is having a picnic with holly"],"am → is."],
+ ["Volgi al nuovo soggetto · change the subject","She's wearing boots at the moment. → They",["they are wearing boots at the moment"],"is → are."],
+ ["Volgi al nuovo soggetto · change the subject","The student is meeting in the car park. → The students",["the students are meeting in the car park"],"plural → are."],
+ ["Volgi al nuovo soggetto · change the subject","I don't like the weather here. → Logan",["logan doesn't like the weather here"],"don't → doesn't."],
+ ["Volgi al nuovo soggetto · change the subject","They watch TV every evening. → My brother",["my brother watches tv every evening"],"watch → watches (-es)."],
+ // futuro
+ ["Volgi al futuro (present continuous) · make it a plan","I play tennis. → (tomorrow)",["i am playing tennis tomorrow","tomorrow i am playing tennis"],"A fixed plan → present continuous + tomorrow."],
+ ["Volgi al futuro (present continuous) · make it a plan","We have a pizza in town. → (on Friday)",["we are having a pizza in town on friday","on friday we are having a pizza in town"],"are having + on Friday."],
+ ["Volgi al futuro (present continuous) · make it a plan","She goes to the cinema. → (this evening)",["she is going to the cinema this evening","this evening she is going to the cinema"],"is going + this evening."],
+ ["Volgi al futuro (present continuous) · make it a plan","They visit their grandparents. → (next Sunday)",["they are visiting their grandparents next sunday","next sunday they are visiting their grandparents"],"are visiting + next Sunday."],
+ ["Volgi al futuro (present continuous) · make it a plan","I don't go to school. → (tomorrow)",["i am not going to school tomorrow","tomorrow i am not going to school"],"am not going + tomorrow."],
+ // plurale / singolare
+ ["Volgi al plurale · make it plural","She isn't coming to the party.",["they aren't coming to the party"],"she isn't → they aren't."],
+ ["Volgi al plurale · make it plural","Is he going swimming tomorrow?",["are they going swimming tomorrow"],"Is he → Are they."],
+ ["Volgi al plurale · make it plural","The boy plays football on Saturdays.",["the boys play football on saturdays"],"the boy plays → the boys play (no -s!)."],
+ ["Volgi al plurale · make it plural","Does she study at the weekend?",["do they study at the weekend"],"Does she → Do they."],
+ ["Volgi al plurale · make it plural","My sister is listening to music.",["my sisters are listening to music"],"is → are."],
+ ["Volgi al singolare · make it singular","They're wearing boots. → (She)",["she is wearing boots"],"are → is."],
+ ["Volgi al singolare · make it singular","We don't like the rain. → (He)",["he doesn't like the rain"],"don't → doesn't."],
+ ["Volgi al singolare · make it singular","Are they coming to the airport? → (she)",["is she coming to the airport"],"Are they → Is she."],
+ ["Volgi al singolare · make it singular","The students meet in the car park at 7.30. → (The student)",["the student meets in the car park at 7.30"],"meet → meets."],
+ // Wh- questions
+ ["Volgi alla forma interrogativa con il Wh- · ask the question","Riley is going to Leeds. → (Where…?)",["where is riley going"],"Where + is + Riley + going?"],
+ ["Volgi alla forma interrogativa con il Wh- · ask the question","They're leaving at half past five. → (What time…?)",["what time are they leaving"],"What time + are + they + leaving?"],
+ ["Volgi alla forma interrogativa con il Wh- · ask the question","She goes to Leeds three times a year. → (How often…?)",["how often does she go to leeds"],"How often + does + she + go?"],
+ ["Volgi alla forma interrogativa con il Wh- · ask the question","Evie is having a picnic with Holly. → (Who … with?)",["who is evie having a picnic with"],"Who is Evie having a picnic with?"],
+ ["Volgi alla forma interrogativa con il Wh- · ask the question","The workshop is in the library. → (Where…?)",["where is the workshop"],"Where is the workshop?"],
+ ["Volgi alla forma interrogativa con il Wh- · ask the question","Logan is going to football practice this afternoon. → (What…?)",["what is logan doing this afternoon"],"What is Logan doing this afternoon?"],
+ // more negativo / interrogativa
+ ["Volgi al negativo · make it negative","Evie is doing something special on Saturday.",["evie isn't doing anything special on saturday"],"In the negative, something → anything!"],
+ ["Volgi al negativo · make it negative","It's snowing in Manchester.",["it isn't snowing in manchester"],"is → isn't."],
+ ["Volgi al negativo · make it negative","Darcy's uncle lives in Madrid.",["darcy's uncle doesn't live in madrid"],"lives → doesn't live."],
+ ["Volgi al negativo · make it negative","We're going to the zoo on Sunday morning.",["we aren't going to the zoo on sunday morning"],"are → aren't."],
+ ["Volgi alla forma interrogativa · make a question","Darcy is packing her bag.",["is darcy packing her bag"],"Is + Darcy + packing?"],
+ ["Volgi alla forma interrogativa · make a question","Cameron sees his cousins twice a year.",["does cameron see his cousins twice a year"],"Does + he + see (no -s!)"],
+ ["Volgi alla forma interrogativa · make a question","Ava and her brother are going shopping this afternoon.",["are ava and her brother going shopping this afternoon"],"Are + subject + going?"],
+ ["Volgi alla forma interrogativa · make a question","It snows a lot in Reykjavik.",["does it snow a lot in reykjavik"],"Does + it + snow (no -s!)"],
+];
+const TF = [
+ {id:"riley",title:"Riley's weekend",
+  text:"Riley is going to Leeds this weekend. She's going there to visit a friend, Hannah. She goes to Leeds about three times a year. This time she's going with her mum. They're leaving on Friday at half past five and they're coming back on Monday. On Saturday evening, Riley and Hannah are going to a party.",
+  items:[
+   ["Riley is going to Liverpool.",false,"Riley is going to Leeds.",["leeds"]],
+   ["She's going there to visit a friend.",true],
+   ["She goes to Leeds about three times a year.",true],
+   ["She's going with her dad.",false,"She's going with her mum.",["mum"]],
+   ["They're leaving at half past six.",false,"They're leaving at half past five.",["five"]],
+   ["They're coming back on Monday.",true],
+   ["Riley's going to a party on Sunday evening.",false,"Riley's going to a party on Saturday evening.",["saturday"]],
+  ]},
+ {id:"darcy",title:"Darcy's email",
+  text:"Hi Carina,\nHow's it going? We can't wait to see you! I'm packing my bag at the moment. What's the weather like in Madrid? I hope it's sunny and warm! It's terrible here at the moment – it's raining and it's really cold!\nThis evening, I'm going to the summer party at my school. We always have a barbecue at the end of the school year. Dad usually helps with the food, but he can't this year because he's working late today.\nI'm meeting all my friends at 5 p.m. and we're going bowling before the barbecue. I'm rubbish at bowling and I never win, but it's good fun.\nIt's my uncle's birthday tomorrow and we're having dinner with him. We're coming home early because we're getting up at 5 a.m. on Saturday for our flight to Madrid! What are you doing on Saturday? Are you coming to the airport to meet us? Please come!\nSee you soon!\nDarcy",
+  items:[
+   ["Darcy is packing her bag at the moment.",true],
+   ["The weather in Darcy's town is sunny and warm.",false,"The weather in Darcy's town is rainy and cold. / It's raining and it's cold.",["cold"]],
+   ["Darcy's school has a barbecue every year.",true],
+   ["Dad is helping with the food this year.",false,"Dad isn't helping with the food this year because he's working late.",["isn't","working"]],
+   ["Darcy is meeting her friends at 5 p.m.",true],
+   ["Darcy often wins at bowling.",false,"Darcy never wins at bowling.",["never"]],
+   ["It's Darcy's uncle's birthday tomorrow.",true],
+   ["Darcy's flight to Madrid is on Sunday.",false,"Darcy's flight to Madrid is on Saturday.",["saturday"]],
+  ]},
+ {id:"weather",title:"World weather report",
+  text:"Good morning! Here is today's weather. In London it's cloudy and it's cold – the temperature is 4 degrees. In Edinburgh it's snowing and it's windy. It's freezing: minus two degrees! In Sydney it's sunny and hot, 40 degrees Celsius. In Milan it's foggy and cool, about 10 degrees. In Shanghai it's raining, but it's warm: 24 degrees. And in Mumbai it's cloudy and very hot – 36 degrees!",
+  items:[
+   ["It's raining in London.",false,"It's cloudy in London.",["cloudy"]],
+   ["It's freezing in Edinburgh.",true],
+   ["The temperature in Sydney is 40°C.",true],
+   ["It's sunny in Milan.",false,"It's foggy in Milan.",["foggy"]],
+   ["It's cold in Shanghai.",false,"It's warm in Shanghai.",["warm"]],
+   ["It's windy in Edinburgh.",true],
+   ["It's 36 degrees in Mumbai.",true],
+  ]},
+ {id:"maxevie",title:"Max and Evie",
+  text:"Max: Would you like to play tennis with me on Friday afternoon?\nEvie: I'd love to, but I can't. I'm having a picnic with Holly.\nMax: What are you doing on Saturday?\nEvie: Um… I'm not doing anything special.\nMax: OK, let's go on Saturday then. Is 11 o'clock OK?\nEvie: Yes, that's fine. Let's meet at the park.",
+  items:[
+   ["Max wants to play tennis on Friday afternoon.",true],
+   ["Evie is having a picnic with Max on Friday.",false,"Evie is having a picnic with Holly on Friday.",["holly"]],
+   ["Evie is busy on Saturday.",false,"Evie isn't busy on Saturday. / She isn't doing anything special.",["isn't"]],
+   ["They're playing tennis at 11 o'clock on Saturday.",true],
+   ["They're meeting at the station.",false,"They're meeting at the park.",["park"]],
+  ]},
+ {id:"julie",title:"Julie's weekend diary",
+  text:"SATURDAY\nMorning – go bowling with Tina 🙂\nAfternoon – study for the History test at Tina's house 🙁\nEvening – have a pyjama party with Sonia and Tina\n\nSUNDAY\nMorning – visit my grandparents 🙂\nAfternoon – go swimming with Jason (2 km!)\nEvening – watch TV with my family 🙂",
+  items:[
+   ["Julie's staying at home on Saturday morning.",false,"She's going bowling with Tina on Saturday morning.",["bowling"]],
+   ["On Saturday afternoon, she's tidying her room.",false,"She's studying for the History test at Tina's house.",["studying"]],
+   ["Julie and her friends are watching a film on Saturday evening.",false,"They're having a pyjama party on Saturday evening.",["pyjama"]],
+   ["On Sunday morning, Julie's meeting her friends.",false,"She's visiting her grandparents on Sunday morning.",["grandparents"]],
+   ["On Sunday afternoon, Jason and Julie are going swimming.",true],
+   ["Julie's going to a concert with her family on Sunday evening.",false,"She's watching TV with her family on Sunday evening.",["tv"]],
+  ]},
+ {id:"izzie",title:"The well-being workshop",
+  text:"Izzie: What's up, Logan?\nLogan: Ugh!… It's never warm and sunny here. It always rains!\nIzzie: That's not true! It's cloudy, but it isn't raining.\nRuby: Yeah, Logan. Be more positive!\nIzzie: That reminds me. What are you doing this afternoon? There's a well-being workshop after school. I'm going to it. Let's all go!\nLogan: Sure, sounds interesting. Are you coming, Ruby?\nRuby: I can't, I've got football practice. We're playing in the final on Saturday.\nDom: Hey, sorry, where is the workshop?\nIzzie: It's in the library. Are you going?\nDom: Yes, I am.",
+  items:[
+   ["Logan likes the weather in the UK.",false,"Logan doesn't like the weather in the UK.",["doesn't"]],
+   ["It's raining today.",false,"It's cloudy today, but it isn't raining.",["cloudy"]],
+   ["The workshop is after school.",true],
+   ["Ruby is going to the workshop.",false,"Ruby isn't going to the workshop. She's got football practice.",["isn't"]],
+   ["Ruby's team is playing in the final on Saturday.",true],
+   ["The workshop is in the library.",true],
+   ["Dom isn't going to the workshop.",false,"Dom is going to the workshop.",["is going"]],
+  ]},
+ {id:"cameron",title:"Cameron's weekend",
+  text:"Cameron is going to Dublin this weekend. He's visiting his cousins. He usually sees them twice a year, in summer and at Christmas, but this weekend it's his cousin Aoife's birthday, so they're having a big party on Saturday. On Sunday morning, they're all going to the zoo. Cameron and his family are leaving on Friday evening and they're coming home on Sunday night.",
+  items:[
+   ["Cameron is going to Dublin this weekend.",true],
+   ["He's visiting his grandparents.",false,"He's visiting his cousins.",["cousins"]],
+   ["He usually sees them twice a year.",true],
+   ["The party is for Cameron's birthday.",false,"The party is for his cousin Aoife's birthday.",["aoife"]],
+   ["They're going to the zoo on Sunday morning.",true],
+   ["They're leaving on Saturday evening.",false,"They're leaving on Friday evening.",["friday"]],
+   ["They're coming home on Sunday night.",true],
+  ]},
+ {id:"ava",title:"Ava's blog",
+  text:"It's Saturday morning in Manchester and it's snowing! It's also cold – the temperature is minus three degrees Celsius! It isn't a school day, so I'm wearing jeans and a white jumper. At the moment, I'm drinking coffee and looking out the window. My sister is listening to music in her bedroom. This afternoon, my brother and I are going shopping. We're buying some new trainers because we're running in a race next weekend for charity. My sister isn't running, but she's coming to watch us.",
+  items:[
+   ["It's Sunday morning.",false,"It's Saturday morning.",["saturday"]],
+   ["It's snowing in Manchester.",true],
+   ["The temperature is three degrees.",false,"The temperature is minus three degrees.",["minus"]],
+   ["Ava is wearing her school uniform.",false,"Ava is wearing jeans and a white jumper.",["jeans"]],
+   ["Ava's sister is listening to music.",true],
+   ["This afternoon Ava is going shopping with her sister.",false,"Ava is going shopping with her brother.",["brother"]],
+   ["Ava and her brother are running in a race next weekend.",true],
+   ["Ava's sister is running in the race too.",false,"Ava's sister isn't running in the race. She's coming to watch.",["isn't"]],
+  ]},
+];
+const WRITE = [
+ {id:"w1",title:"Invite Marco to go swimming",
+  task:"Write a text message to your friend Marco. Say hello, invite him to go swimming tomorrow morning, say what time you're going and suggest where to meet.",
+  it:"Saluta Marco, invitalo ad andare a nuotare domani mattina, di' a che ora vai e proponi dove incontrarvi.",
+  min:25,
+  checks:[
+   ["Say hello (Hi / Hey)",/\b(hi|hey|hello)\b/i],
+   ["Invite him: Would you like to… / Do you want to…",/\b(would you like to|do you want to|let's)\b/i],
+   ["Say the activity: go swimming",/\bswim/i],
+   ["Say when: tomorrow morning",/\btomorrow\s+morning\b/i],
+   ["Say the time: at 10 o'clock / at 10.30",/\bat\s+\d{1,2}([.:]\d{2})?(\s*(o'?clock|a\.?m\.?|p\.?m\.?))?\b/i],
+   ["Suggest a place: Let's meet at…",/\b(let's meet|meet (me |you )?at|see you at)\b/i],
+   ["Use a question mark (?)",/\?/],
+  ],
+  model:"Hi Marco! 😊 Are you doing anything tomorrow morning? Would you like to go swimming with me? I'm going at 10 o'clock. Let's meet at the swimming pool. Is that OK? See you!"},
+ {id:"w2",title:"Say no to Anna and suggest another day",
+  task:"Anna writes: \"Hi! Would you like to play tennis with me on Saturday afternoon?\" Reply: say sorry, you can't. Say what you're doing on Saturday (present continuous). Suggest Sunday instead and ask what time is OK.",
+  it:"Rispondi ad Anna: dille che ti dispiace ma non puoi, di' cosa fai sabato (present continuous), proponi domenica e chiedi a che ora.",
+  min:25,
+  checks:[
+   ["Say sorry: Sorry / I'd love to, but…",/\b(sorry|i'd love to,? but)\b/i],
+   ["Say you can't",/\bcan't\b|\bcannot\b/i],
+   ["Say what you're doing: I'm + -ing",/\b(i'm|i am)\s+(not\s+)?\w+ing\b/i],
+   ["Suggest Sunday",/\bsunday\b/i],
+   ["Ask what time",/\bwhat time\b/i],
+   ["Use a question mark (?)",/\?/],
+  ],
+  model:"Hi Anna! I'd love to, but I can't. I'm visiting my grandparents on Saturday afternoon. Are you doing anything on Sunday? We can play tennis on Sunday. What time is OK for you? Let's meet at the park!"},
+ {id:"w3",title:"Message from your holiday",
+  task:"You're on holiday. Write a message to a friend: say where you are, what the weather's like (use two weather words and the temperature), what you're doing at the moment and what you're doing tomorrow.",
+  it:"Sei in vacanza. Scrivi a un amico: dove sei, che tempo fa (due parole del meteo + temperatura), cosa stai facendo in questo momento e cosa fai domani.",
+  min:35,
+  checks:[
+   ["Say where you are: I'm in…",/\b(i'm|i am|we're|we are)\s+in\b/i],
+   ["Two weather words (sunny, cloudy, raining, hot, cold…)",(t)=>(t.toLowerCase().match(/\b(sunny|cloudy|raining|rainy|snowing|foggy|windy|stormy|hot|warm|mild|cool|cold|freezing)\b/g)||[]).filter((v,i,a)=>a.indexOf(v)===i).length>=2],
+   ["The temperature: It's 28 degrees / 28°C",/\d+\s*(°|degrees)/i],
+   ["Now: at the moment / right now + -ing",/\b(at the moment|right now|now)\b/i],
+   ["Tomorrow + a plan: tomorrow … I'm / we're + -ing",(t)=>/\btomorrow\b/i.test(t)&&/\b(i'm|i am|we're|we are)\s+\w+ing\b/i.test(t)],
+  ],
+  model:"Hi Luca! I'm in Sydney with my family. The weather is great – it's sunny and hot, 32 degrees! At the moment I'm sitting on the beach and I'm drinking a lemonade. Tomorrow we're going swimming with dolphins! What are you doing this week? See you soon!"},
+ {id:"w4",title:"Invite a friend to the cinema",
+  task:"Write a text message to a friend. Ask if they're doing anything on Friday. Suggest going to the cinema. Say what time the film starts and where to meet.",
+  it:"Chiedi a un amico/a se fa qualcosa venerdì. Proponi di andare al cinema. Di' a che ora inizia il film e dove incontrarvi.",
+  min:25,
+  checks:[
+   ["Ask: Are you doing anything on Friday?",/\bare you doing anything\b/i],
+   ["Say the day: Friday",/\bfriday\b/i],
+   ["Suggest the cinema: Would you like to go to the cinema?",/\bcinema\b/i],
+   ["Say the time: at 6 o'clock / at 6.30",/\bat\s+\d{1,2}([.:]\d{2})?(\s*(o'?clock|a\.?m\.?|p\.?m\.?))?\b/i],
+   ["Say where to meet",/\b(let's meet|meet (me |you )?at|see you at|in front of)\b/i],
+   ["Use a question mark (?)",/\?/],
+  ],
+  model:"Hey Sofia! Are you doing anything on Friday evening? Would you like to go to the cinema with me? The film starts at 6.30. Let's meet in front of the cinema at 6 o'clock. Is that OK? 🎬"},
+ {id:"w5",title:"Accept an invitation",
+  task:"Your friend writes: \"Hey! Are you doing anything on Sunday? Would you like to go cycling in the park with me and Luca?\" Reply: accept, ask what time they're going, and say where you can meet.",
+  it:"Rispondi: accetta l'invito, chiedi a che ora vanno e proponi dove incontrarvi.",
+  min:20,
+  checks:[
+   ["Say you're free: No, I'm not. / I'm not doing anything special.",/\b(no,? i'm not|not doing anything|i'm free)\b/i],
+   ["Accept: Yes, I'd love to! / Good idea!",/\b(i'd love to|love to|good idea|great idea|sounds (great|good|interesting))\b/i],
+   ["Ask what time",/\bwhat time\b/i],
+   ["Say where to meet",/\b(let's meet|meet (me |you )?at|see you at)\b/i],
+   ["Use a question mark (?)",/\?/],
+  ],
+  model:"Hi! No, I'm not doing anything special on Sunday. Yes, I'd love to go cycling with you and Luca! What time are you going? Let's meet at the park entrance. See you there! 🚲"},
+ {id:"w6",title:"Phone call: what are you doing now?",
+  task:"Write a short chat with a friend (4–6 messages). Say hello and ask what they're doing at the moment. They answer (present continuous). Then invite them to play tennis this afternoon. They say sorry, they can't – they're studying for a Science test. Suggest going cycling tomorrow morning at 11.",
+  it:"Scrivi una chat di 4–6 messaggi: saluta e chiedi cosa sta facendo; risponde (present continuous); invitalo/a a giocare a tennis oggi pomeriggio; dice che non può perché studia per il test di scienze; proponi un giro in bici domani mattina alle 11.",
+  min:40,
+  checks:[
+   ["Ask: What are you doing?",/\bwhat are you doing\b/i],
+   ["Answer with present continuous: I'm + -ing",/\b(i'm|i am)\s+\w+ing\b/i],
+   ["Invite: Would you like to play tennis…?",/\bwould you like to\b/i],
+   ["Say no: Sorry, I can't",/\bsorry\b/i],
+   ["Reason: studying for a Science test",/\bstudy/i],
+   ["Suggest cycling tomorrow morning at 11",(t)=>/\bcycl|bike|bicycle/i.test(t)&&/\btomorrow\b/i.test(t)&&/\b11\b/.test(t)],
+  ],
+  model:"A: Hi Leo! What are you doing at the moment?\nB: Hi! I'm having lunch. And you?\nA: Would you like to play tennis with me this afternoon?\nB: Sorry, I can't. I'm studying for the Science test today.\nA: Oh, OK. Would you like to go cycling tomorrow morning at 11?\nB: Yes, I'd love to! Let's meet at the park."},
+];
+
+/* ================= STATE ================= */
+let S = {xp:0,streak:0,best:0,ok:{},bad:{},writes:{}};
+try{ const raw=localStorage.getItem("ws_unit1_v1"); if(raw) S=Object.assign(S,JSON.parse(raw)); }catch(e){}
+function save(){ try{localStorage.setItem("ws_unit1_v1",JSON.stringify(S));}catch(e){} renderTop(); }
+function renderTop(){ document.getElementById("xp").textContent=S.xp; document.getElementById("streak").textContent=S.streak; }
+
+/* ================= ITEM BANK ================= */
+const ITEMS=[];
+MCQ.forEach((m,i)=>ITEMS.push({id:"m"+i,t:"mcq",q:m[0],opts:m[1],a:m[2],why:m[3],xp:5,mode:"mcq"}));
+GAP.forEach((g,i)=>ITEMS.push({id:"g"+i,t:"gap",q:g[0],a:g[1],why:g[2],xp:10,mode:"gap"}));
+TR.forEach((t,i)=>ITEMS.push({id:"t"+i,t:"tr",instr:t[0],q:t[1],a:t[2],why:t[3],xp:15,mode:"tr"}));
+const byId=id=>ITEMS.find(x=>x.id===id);
+const MODES={
+ mcq:{name:"Multiple choice",it:"Scelta multipla",ico:"🔘",items:()=>ITEMS.filter(x=>x.t==="mcq")},
+ gap:{name:"Complete the sentence",it:"Completamento (scrivi tu)",ico:"✏️",items:()=>ITEMS.filter(x=>x.t==="gap")},
+ tr:{name:"Transform",it:"Manipolazione (volgi al…)",ico:"🔄",items:()=>ITEMS.filter(x=>x.t==="tr")},
+ tf:{name:"True or false",it:"Vero o falso + correggi",ico:"✅",items:()=>[]},
+ write:{name:"Write a message",it:"Produzione scritta",ico:"💬",items:()=>[]},
+};
+
+/* ================= HELPERS ================= */
+function norm(s){
+  s=(s||"").toLowerCase().replace(/[’‘`´]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,"-");
+  s=s.replace(/\blet's\b/g,"lets");
+  s=s.replace(/\bcan't\b/g,"cannot").replace(/\bwon't\b/g,"will not").replace(/n't\b/g," not");
+  s=s.replace(/\bi'm\b/g,"i am").replace(/'re\b/g," are").replace(/'s\b/g," is").replace(/'d\b/g," would").replace(/'ll\b/g," will").replace(/'ve\b/g," have");
+  s=s.replace(/\bp\.e\.?/g,"pe").replace(/\ba\.m\.?/g,"am").replace(/\bp\.m\.?/g,"pm");
+  s=s.replace(/[.,!?;:"()]/g," ").replace(/\s+/g," ").trim();
+  return s;
+}
+function lev(a,b){const m=a.length,n=b.length;if(!m)return n;if(!n)return m;const d=[];for(let i=0;i<=m;i++){d[i]=[i];}for(let j=1;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
+function checkText(input,answers,q){
+  const u=norm(input); if(!u) return {ok:false,close:false};
+  if(q&&q.includes("___")){ // also accept "subject + answer" or the whole sentence
+    const pre=norm(q.split("___")[0].replace(/\([^)]*\)/g,"")).split(" ").filter(Boolean);
+    const extra=[];
+    for(const a of answers){ for(let k=1;k<=3&&k<=pre.length;k++) extra.push(pre.slice(-k).join(" ")+" "+norm(a)); extra.push(norm(q.replace("___",a).replace(/\([^)]*\)/g,""))); }
+    answers=answers.concat(extra);
+  }
+  for(const a of answers){ const n=norm(a); if(u===n) return {ok:true}; }
+  for(const a of answers){ const n=norm(a); if(lev(u,n)<=Math.max(1,Math.floor(n.length/12))) return {ok:false,close:true}; }
+  return {ok:false,close:false};
+}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function blankify(q){ return esc(q).replace(/___/g,'<span class="blank">&nbsp;</span>').replace(/\(([^)]+)\)/g,'<span class="hintv">($1)</span>'); }
+function confetti(){ const c=document.getElementById("conf"); const em=["⭐","🌟","☀️","🎉","✨"]; for(let i=0;i<18;i++){const s=document.createElement("i");s.textContent=em[i%em.length];s.style.left=Math.random()*100+"%";s.style.animationDelay=(Math.random()*.3)+"s";c.appendChild(s);setTimeout(()=>s.remove(),1700);} }
+function record(id,ok,xp){ if(ok){S.ok[id]=(S.ok[id]||0)+1; delete S.bad[id]; S.xp+=xp; S.streak++; if(S.streak>S.best)S.best=S.streak;} else {S.bad[id]=(S.bad[id]||0)+1; S.streak=0;} save(); }
+function masteryPct(){ const total=ITEMS.length+TF.reduce((n,p)=>n+p.items.length,0)+WRITE.length; let done=Object.keys(S.ok).length; return Math.round(100*done/total); }
+function tempWord(p){ return p<10?"freezing":p<25?"cold":p<45?"cool":p<65?"mild":p<85?"warm":"hot"; }
+const app=document.getElementById("app");
+let view="home", sampleFn=null;
+(async()=>{ try{ if(window.claude&&window.claude.use){ sampleFn=await window.claude.use("sample"); } }catch(e){ sampleFn=null; } })();
+
+/* ================= VIEWS ================= */
+function go(v,arg){ view=v; document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.dataset.v===v)); window.scrollTo(0,0); ({home,learn,mistakes,exam,modeMenu,run,tfList,writeList}[v])(arg); }
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>go(t.dataset.v));
+
+function home(){
+  const p=masteryPct(); const w=tempWord(p); const nb=Object.keys(S.bad).length;
+  const tiles=Object.keys(MODES).map(k=>{
+    const M=MODES[k]; let n,d;
+    if(k==="tf"){ n=TF.length; d=TF.filter(x=>x.items.every((it,i)=>S.ok[x.id+"_"+i])).length; }
+    else if(k==="write"){ n=WRITE.length; d=WRITE.filter(x=>S.ok[x.id]).length; }
+    else { const its=M.items(); n=its.length; d=its.filter(x=>S.ok[x.id]).length; }
+    return `<button class="tile" data-mode="${k}"><span class="ico">${M.ico}</span><span class="name">${M.name}</span><span class="itn">${M.it} · ${d}/${n}</span><span class="done"><i style="width:${n?100*d/n:0}%"></i></span></button>`;
+  }).join("");
+  app.innerHTML=`
+  <section class="card hero">
+    <div>
+      <h1>What are you doing this afternoon?</h1><p class="small" style="margin-top:-2px">Episode 1 practice – ready for the test?</p>
+      <div class="bigpct">${p}%</div>
+      <p>Your knowledge is <span class="levelword">${w}</span> ${w==="hot"?"🔥":w==="warm"?"😎":w==="mild"?"🙂":w==="cool"?"🧥":w==="cold"?"🥶":"🧊"}</p>
+      <p class="small">Get every exercise right at least once to reach 100% – that's "hot"! Best streak: ${S.best} 🔥</p>
+    </div>
+    <div class="thermo">
+      <div class="tube"><div class="fill" id="fill"></div><div class="bulb"></div></div>
+      <ul>${["freezing","cold","cool","mild","warm","hot"].map(x=>`<li class="${x===w?"on":""}">${x}</li>`).join("")}</ul>
+    </div>
+  </section>
+  <div class="tiles">
+    ${tiles}
+    ${nb?`<button class="tile mist" data-mode="mistakes"><span class="ico">🔁</span><span class="name">Fix my mistakes</span><span class="itn">${nb} to practise again</span></button>`:""}
+    <button class="tile wide" data-mode="exam"><span class="ico">🏆</span><span class="name">Exam simulation</span><span class="itn">Manipolazione · Vero o falso · Produzione scritta · Completamento. 30 minutes.</span></button>
+  </div>
+  <p class="small" style="text-align:center;margin-top:14px">Grammar: present simple / present continuous · present continuous for future · future time expressions<br>Vocabulary: the weather · Competences: inviting and making arrangements, talking and writing about plans</p>`;
+  setTimeout(()=>{document.getElementById("fill").style.height=Math.max(4,p)+"%";},50);
+  app.querySelectorAll(".tile").forEach(b=>b.onclick=()=>{const m=b.dataset.mode; if(m==="exam")go("exam"); else if(m==="mistakes")go("mistakes"); else if(m==="tf")go("tfList"); else if(m==="write")go("writeList"); else go("modeMenu",m);});
+}
+
+function modeMenu(k){
+  const M=MODES[k]; const its=M.items(); const left=its.filter(x=>!S.ok[x.id]);
+  app.innerHTML=`<section class="card"><h2>${M.ico} ${M.name}</h2><p class="it">${M.it}</p>
+  <p>${k==="mcq"?"Read the sentence carefully and tap the correct option. Look for the <b>signal words</b> (always, now, tomorrow…).":k==="gap"?"Type the missing word(s). For verbs, use the <b>present simple</b> or the <b>present continuous</b> of the verb in brackets. Short forms (I'm, isn't) are fine.":"Read the instruction (<b>volgi al negativo</b>, <b>alla forma interrogativa</b>, <b>al plurale</b>, <b>al futuro</b>…), then type the whole new sentence. Capital letters and the final full stop don't matter – the words and the verb form do!"}</p>
+  <div class="row" style="margin-top:12px">
+    <button class="btn" id="q10">Quick round (10)</button>
+    <button class="btn sec" id="qall">All ${its.length}</button>
+    ${left.length&&left.length<its.length?`<button class="btn sun" id="qleft">Only new ones (${left.length})</button>`:""}
+  </div>
+  <p class="small" style="margin-top:12px">You've got ${its.filter(x=>S.ok[x.id]).length}/${its.length} right so far.</p></section>`;
+  document.getElementById("q10").onclick=()=>go("run",{items:shuffle(left.length>=10?left:its).slice(0,10),title:M.name});
+  document.getElementById("qall").onclick=()=>go("run",{items:shuffle(its),title:M.name});
+  const ql=document.getElementById("qleft"); if(ql) ql.onclick=()=>go("run",{items:shuffle(left),title:M.name});
+}
+
+/* ---- generic runner for mcq / gap / tr ---- */
+function run(cfg){
+  const items=cfg.items; let i=0, right=0, hinted=false, results=[];
+  const onDone=cfg.onDone;
+  function step(){
+    if(i>=items.length){ return summary(); }
+    const it=items[i]; hinted=false;
+    const instr=it.t==="mcq"?"Choose the correct option":it.t==="gap"?"Complete the sentence":it.instr;
+    const emo=/^[^\w\s]/.test(it.q)&&it.t==="gap";
+    app.innerHTML=`<div class="qbar"><button class="btn ghost" id="quit">✕</button><div class="prog"><i style="width:${100*i/items.length}%"></i></div><b>${i+1}/${items.length}</b>${cfg.timerEl||""}</div>
+    <section class="card">
+      <span class="instr">${esc(instr)}</span>
+      <div class="qtext${emo?" emo":""}">${it.t==="tr"?esc(it.q):blankify(it.q)}</div>
+      <div id="zone"></div>
+      <div id="fb"></div>
+      <div class="row between" style="margin-top:14px"><button class="btn ghost" id="hint">💡 Hint</button><div class="row"><button class="btn" id="check">Check</button><button class="btn ok" id="next" style="display:none">Next ➜</button></div></div>
+    </section>`;
+    document.getElementById("quit").onclick=()=>{ if(confirm("Stop this round?")) go("home"); };
+    const zone=document.getElementById("zone"), fb=document.getElementById("fb"), bC=document.getElementById("check"), bN=document.getElementById("next"), bH=document.getElementById("hint");
+    let sel=-1, answered=false;
+    if(it.t==="mcq"){
+      zone.innerHTML=`<div class="opts">${it.opts.map((o,k)=>`<button class="opt" data-k="${k}">${esc(o)}</button>`).join("")}</div>`;
+      zone.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{ if(answered)return; sel=+b.dataset.k; zone.querySelectorAll(".opt").forEach(x=>x.classList.toggle("sel",+x.dataset.k===sel)); });
+    } else {
+      zone.innerHTML=`<input class="ansin" id="ans" autocomplete="off" autocapitalize="${it.t==="tr"?"sentences":"off"}" spellcheck="false" placeholder="${it.t==="tr"?"Type the new sentence…":"Type here…"}">`;
+      const inp=document.getElementById("ans"); inp.focus(); inp.addEventListener("keydown",e=>{ if(e.key==="Enter"){ answered?bN.click():bC.click(); } });
+    }
+    bH.onclick=()=>{ hinted=true; fb.innerHTML=`<div class="fb hint">💡 ${esc(it.why)}</div>`; };
+    bC.onclick=()=>{
+      if(answered) return;
+      let ok=false, close=false, user="";
+      if(it.t==="mcq"){ if(sel<0) return; ok=sel===it.a; zone.querySelectorAll(".opt").forEach(x=>{const k=+x.dataset.k; if(k===it.a)x.classList.add("right"); else if(k===sel)x.classList.add("wrong");}); }
+      else { const inp=document.getElementById("ans"); user=inp.value; if(!user.trim()) return; const r=checkText(user,it.a,it.t==="gap"?it.q:null); ok=r.ok; close=r.close; inp.classList.add(ok?"right":"wrong"); inp.readOnly=true; }
+      answered=true;
+      const gain=ok?(hinted?Math.ceil(it.xp/2):it.xp):0;
+      const best=it.t==="mcq"?it.opts[it.a]:it.a[0];
+      if(ok){ right++; fb.innerHTML=`<div class="fb ok">✔ Correct! +${gain} XP${hinted?" (hint used)":""}<span class="why">${esc(it.why)}</span></div>`; confetti(); }
+      else { fb.innerHTML=`<div class="fb no">${close?"✘ Almost! Check your spelling.":"✘ Not quite."}<span class="ans">Correct answer: <b>${esc(best)}</b></span><span class="why">${esc(it.why)}</span></div>`; }
+      if(!cfg.noRecord) record(it.id,ok,gain);
+      results.push({it,ok,user});
+      bC.style.display="none"; bN.style.display=""; bN.focus();
+    };
+    bN.onclick=()=>{ i++; step(); };
+  }
+  function summary(){
+    if(onDone) return onDone(results);
+    const pct=Math.round(100*right/items.length); const stars="★".repeat(Math.round(pct/20))+"☆".repeat(5-Math.round(pct/20));
+    const wrong=results.filter(r=>!r.ok);
+    app.innerHTML=`<section class="card" style="text-align:center"><h2>${cfg.title} – round finished</h2><div class="score">${right}/${items.length}</div><div class="stars">${stars}</div>
+    <p>${pct===100?"Perfect! You're on fire! 🔥":pct>=80?"Great job! Nearly perfect. 😎":pct>=60?"Good! Practise the wrong ones again. 🙂":"Keep going – read the hints and try again. 💪"}</p>
+    <div class="row" style="justify-content:center;margin-top:10px">${wrong.length?`<button class="btn sun" id="again">Retry the ${wrong.length} wrong</button>`:""}<button class="btn" id="more">Another round</button><button class="btn sec" id="hm">Home</button></div></section>
+    ${wrong.length?`<section class="card"><h2>Look again</h2>${wrong.map(r=>`<div class="ex">${esc(r.it.q)}<br>${r.user?`<i>You wrote: ${esc(r.user)}</i><br>`:""}✔ ${esc(r.it.t==="mcq"?r.it.opts[r.it.a]:r.it.a[0])}<br><i>${esc(r.it.why)}</i></div>`).join("")}</section>`:""}`;
+    if(wrong.length) document.getElementById("again").onclick=()=>go("run",{items:wrong.map(r=>r.it),title:cfg.title});
+    document.getElementById("more").onclick=()=>{ const m=items[0].mode; const its=MODES[m].items(); go("run",{items:shuffle(its).slice(0,10),title:cfg.title}); };
+    document.getElementById("hm").onclick=()=>go("home");
+  }
+  step();
+}
+
+/* ---- true / false ---- */
+function tfList(){
+  app.innerHTML=`<section class="card"><h2>✅ True or false</h2><p class="it">Vero o falso – e correggi le frasi false</p><p>Read the text, decide if each sentence is true or false, then <b>write the correct sentence</b> for the false ones (like in the test!).</p></section>
+  ${TF.map(p=>{const d=p.items.filter((it,i)=>S.ok[p.id+"_"+i]).length; return `<button class="listbtn ${d===p.items.length?"done":d?"redo":""}" data-id="${p.id}">${esc(p.title)}<small>${p.items.length} sentences · ${d} correct so far</small></button>`;}).join("")}`;
+  app.querySelectorAll(".listbtn").forEach(b=>b.onclick=()=>runTF(TF.find(p=>p.id===b.dataset.id)));
+}
+function runTF(p,opts){
+  opts=opts||{}; let i=0, right=0, fixes=0, results=[];
+  function step(){
+    if(i>=p.items.length) return done();
+    const it=p.items[i]; const [s,truth,fix,keys]=it;
+    app.innerHTML=`<div class="qbar"><button class="btn ghost" id="quit">✕</button><div class="prog"><i style="width:${100*i/p.items.length}%"></i></div><b>${i+1}/${p.items.length}</b>${opts.timerEl||""}</div>
+    <section class="card"><span class="instr">Read the text</span><h2 style="font-size:18px">${esc(p.title)}</h2><div class="passage">${esc(p.text)}</div>
+    <span class="instr">True or false?</span><div class="qtext">${esc(s)}</div>
+    <div class="tfrow"><button class="opt" data-v="true">TRUE ✔</button><button class="opt" data-v="false">FALSE ✘</button></div>
+    <div id="fb"></div><div id="fixzone"></div>
+    <div class="row end" style="margin-top:12px"><button class="btn ok" id="next" style="display:none">Next ➜</button></div></section>`;
+    document.getElementById("quit").onclick=()=>{ if(confirm("Stop this exercise?")) go("home"); };
+    const fb=document.getElementById("fb"), fz=document.getElementById("fixzone"), bN=document.getElementById("next");
+    let answered=false, tfOk=false;
+    app.querySelectorAll(".tfrow .opt").forEach(b=>b.onclick=()=>{
+      if(answered)return; answered=true; const v=b.dataset.v==="true"; tfOk=v===truth;
+      app.querySelectorAll(".tfrow .opt").forEach(x=>{const xv=x.dataset.v==="true"; if(xv===truth)x.classList.add("right"); else if(xv===v)x.classList.add("wrong");});
+      if(tfOk){ right++; fb.innerHTML=`<div class="fb ok">✔ Correct! +5 XP${truth?"":`<span class="why">It's false. Now correct it!</span>`}</div>`; }
+      else { fb.innerHTML=`<div class="fb no">✘ No, it's ${truth?"TRUE":"FALSE"}.${truth?"":`<span class="ans">Correct sentence: <b>${esc(fix)}</b></span>`}</div>`; }
+      if(!truth&&tfOk){
+        fz.innerHTML=`<span class="instr">Write the correct sentence</span><input class="ansin" id="fixin" autocomplete="off" placeholder="Correct the sentence…"><div class="row end" style="margin-top:8px"><button class="btn" id="fixbtn">Check</button></div>`;
+        const inp=document.getElementById("fixin"); inp.focus();
+        const doFix=()=>{ const u=inp.value.trim(); if(!u)return; const low=norm(u); const ok=keys.every(k=>low.includes(norm(k)))&&u.split(/\s+/).length>=3; inp.readOnly=true; inp.classList.add(ok?"right":"wrong");
+          document.getElementById("fixbtn").disabled=true;
+          if(ok){ fixes++; fz.insertAdjacentHTML("beforeend",`<div class="fb ok">✔ Good correction! +5 XP<span class="ans">Model: ${esc(fix)}</span></div>`); confetti(); }
+          else fz.insertAdjacentHTML("beforeend",`<div class="fb no">✘ Not quite.<span class="ans">Model answer: <b>${esc(fix)}</b></span></div>`);
+          if(!opts.noRecord) record(p.id+"_"+i,ok,5);
+          results.push({s,ok:true,fixOk:ok,user:u,fix}); bN.style.display=""; bN.focus(); };
+        document.getElementById("fixbtn").onclick=doFix; inp.addEventListener("keydown",e=>{if(e.key==="Enter"){ if(inp.readOnly) bN.click(); else doFix(); }});
+      } else {
+        if(!opts.noRecord) record(p.id+"_"+i,tfOk,5);
+        results.push({s,ok:tfOk,fix:truth?null:fix}); if(tfOk)confetti(); bN.style.display=""; bN.focus();
+      }
+    });
+    bN.onclick=()=>{i++;step();};
+  }
+  function done(){
+    if(opts.onDone) return opts.onDone(results);
+    const nF=p.items.filter(x=>!x[1]).length;
+    app.innerHTML=`<section class="card" style="text-align:center"><h2>${esc(p.title)}</h2><div class="score">${right}/${p.items.length}</div><p>True/false correct: ${right} · Corrections right: ${fixes}/${nF}</p>
+    <div class="row" style="justify-content:center"><button class="btn" id="again">Try again</button><button class="btn sec" id="list">Other texts</button></div></section>`;
+    document.getElementById("again").onclick=()=>runTF(p); document.getElementById("list").onclick=()=>go("tfList");
+  }
+  step();
+}
+
+/* ---- writing ---- */
+function writeList(){
+  app.innerHTML=`<section class="card"><h2>💬 Write a message</h2><p class="it">Produzione scritta – un messaggio di testo</p><p>Write the message, then tap <b>Check</b>: the checklist shows what's missing. ${sampleFn?"Then ask the <b>AI teacher</b> to correct your grammar.":""}</p></section>
+  ${WRITE.map(w=>`<button class="listbtn ${S.ok[w.id]?"done":S.writes[w.id]?"redo":""}" data-id="${w.id}">${esc(w.title)}<small>${S.ok[w.id]?"Completed ✔":S.writes[w.id]?"Started – continue":"Not started"}</small></button>`).join("")}`;
+  app.querySelectorAll(".listbtn").forEach(b=>b.onclick=()=>runWrite(WRITE.find(w=>w.id===b.dataset.id)));
+}
+function runWrite(w,opts){
+  opts=opts||{};
+  app.innerHTML=`<div class="qbar"><button class="btn ghost" id="quit">✕</button><b>${esc(w.title)}</b>${opts.timerEl||""}</div>
+  <section class="card"><span class="instr">Write a text message</span><p style="font-weight:800;font-size:18px">${esc(w.task)}</p><p class="it">${esc(w.it)}</p>
+  <div class="tips"><b>Useful phrases</b>Hi! · Are you doing anything on…? · What are you doing…? · Would you like to…? · Yes, I'd love to! · I'd love to, but I can't. I'm… · What time are you going? · Let's meet at… · Is … o'clock OK? · See you there!</div>
+  <textarea class="ansin" id="txt" placeholder="Write at least ${w.min} words…">${esc(S.writes[w.id]||"")}</textarea><div class="wc" id="wc">0 words</div>
+  <ul class="checks" id="cl">${w.checks.map(c=>`<li>${esc(c[0])}</li>`).join("")}<li id="lenc">At least ${w.min} words</li></ul>
+  <div class="row"><button class="btn" id="chk">Check my message</button>${sampleFn?`<button class="btn sun" id="ai">🧑‍🏫 AI teacher, correct me</button>`:""}<button class="btn sec" id="model">Show a model answer</button></div>
+  <div id="out"></div><div id="aiout"></div></section>`;
+  document.getElementById("quit").onclick=()=>{ saveDraft(); opts.onQuit?opts.onQuit():go("writeList"); };
+  const ta=document.getElementById("txt"), wc=document.getElementById("wc"), out=document.getElementById("out"), aiout=document.getElementById("aiout");
+  const words=()=>ta.value.trim()?ta.value.trim().split(/\s+/).length:0;
+  const upd=()=>{wc.textContent=words()+" words";}; upd(); ta.addEventListener("input",upd);
+  function saveDraft(){ S.writes[w.id]=ta.value; save(); }
+  function runChecks(){
+    const t=ta.value; let pass=0; const lis=document.querySelectorAll("#cl li");
+    w.checks.forEach((c,k)=>{ const ok=typeof c[1]==="function"?c[1](t):c[1].test(t); lis[k].className=ok?"ok":"no"; if(ok)pass++; });
+    const lenOk=words()>=w.min; document.getElementById("lenc").className=lenOk?"ok":"no";
+    return {pass,total:w.checks.length,lenOk};
+  }
+  document.getElementById("chk").onclick=()=>{
+    if(!ta.value.trim())return; saveDraft(); const r=runChecks(); const all=r.pass===r.total&&r.lenOk;
+    const xp=all?30:Math.round(30*r.pass/r.total*0.5);
+    if(!opts.noRecord){ if(all&&!S.ok[w.id]){ S.xp+=xp; } if(all){S.ok[w.id]=1; delete S.bad[w.id];} else S.bad[w.id]=1; save(); }
+    out.innerHTML=all?`<div class="fb ok">✔ Your message has everything! +${xp} XP 🎉 ${sampleFn?"Now ask the AI teacher to check your grammar.":"Compare it with the model answer."}</div>`:`<div class="fb no">${r.pass}/${r.total} parts done. Look at the ✘ in the checklist and add what's missing.</div>`;
+    if(all)confetti(); if(opts.onChecked) opts.onChecked(all,r);
+  };
+  document.getElementById("model").onclick=()=>{ out.insertAdjacentHTML("beforeend",`<div class="model"><b>Model answer</b>\n${esc(w.model)}</div>`); };
+  const aib=document.getElementById("ai");
+  if(aib) aib.onclick=async()=>{
+    const t=ta.value.trim(); if(!t||!sampleFn)return; saveDraft(); aib.disabled=true; aiout.innerHTML=`<div class="ai">Thinking…</div>`;
+    const prompt=`You are a friendly English teacher for a 12-year-old Italian student (A1-A2 level). The student is practising: present simple vs present continuous (also for future plans), weather vocabulary, and inviting / making arrangements (Would you like to…? I'd love to, but I can't. Let's meet at…).
+
+TASK the student had to do: ${w.task}
+
+STUDENT'S MESSAGE:
+"""
+${t}
+"""
+
+Reply in simple English (max 150 words). Format exactly:
+1) ⭐ Score: X/5
+2) ✅ What's good: one short sentence.
+3) ✏️ Corrections: list each mistake as "wrong → correct" with a 5-10 word explanation (you may add a short Italian hint in brackets). If there are no mistakes, say "No mistakes!".
+4) 📝 Corrected version: the full message, corrected.
+Do not add anything else.`;
+    try{ const {text}=await sampleFn(prompt,{modelTier:"default",onText:({text})=>{aiout.innerHTML=`<div class="ai">${esc(text)}</div>`;}}); aiout.innerHTML=`<div class="ai">${esc(text)}</div>`; }
+    catch(e){ aiout.innerHTML=`<div class="fb no">${e&&e.code==="not_granted"?"AI teacher not allowed on this device. Compare with the model answer instead.":"The AI teacher isn't available right now. Compare with the model answer instead."}</div>`; }
+    finally{ aib.disabled=false; }
+  };
+}
+
+/* ---- mistakes ---- */
+function mistakes(){
+  const ids=Object.keys(S.bad); const its=ids.map(byId).filter(Boolean);
+  const tfIds=ids.filter(x=>!byId(x)&&x.includes("_")); const wIds=ids.filter(x=>x.startsWith("w"));
+  app.innerHTML=`<section class="card"><h2>🔁 Fix my mistakes</h2><p>${ids.length?"These are the exercises you got wrong last time. Get them right to remove them from the list!":"No mistakes to fix. Go and practise! 🎉"}</p>
+  ${its.length?`<button class="btn block" id="go" style="margin-top:8px">Practise ${its.length} sentence${its.length>1?"s":""}</button>`:""}
+  ${tfIds.length?`<p class="small" style="margin-top:12px">You also have ${tfIds.length} true/false sentence${tfIds.length>1?"s":""} to redo – open <b>True or false</b> and look for the yellow texts.</p>`:""}
+  ${wIds.length?`<p class="small">And ${wIds.length} message${wIds.length>1?"s":""} to finish in <b>Write a message</b>.</p>`:""}
+  </section>`;
+  const g=document.getElementById("go"); if(g) g.onclick=()=>go("run",{items:shuffle(its),title:"Mistakes"});
+}
+
+/* ---- exam simulation ---- */
+function exam(){
+  app.innerHTML=`<section class="card"><h2>🏆 Exam simulation</h2><p>A mixed test in the same four parts as the real one:</p>
+  <ol><li><b>Manipolazione</b> (volgi al…) – 8 sentences to transform</li><li><b>Vero o falso</b> – one text, correct the false sentences</li><li><b>Produzione scritta</b> – one text message</li><li><b>Completamento di frasi</b> – 6 multiple choice + 8 open gaps</li></ol>
+  <p>You have <b>30 minutes</b>. No hints. Good luck! 🍀</p><button class="btn block" id="start">Start the exam</button></section>`;
+  document.getElementById("start").onclick=startExam;
+}
+function startExam(){
+  const t0=Date.now(), limit=30*60; let timerInt; const res={}; let finished=false;
+  const timerEl=`<span class="timer" id="tm">30:00</span>`;
+  function tick(){ const el=document.getElementById("tm"); if(!el)return; const left=Math.max(0,limit-Math.floor((Date.now()-t0)/1000)); el.textContent=String(Math.floor(left/60)).padStart(2,"0")+":"+String(left%60).padStart(2,"0"); if(left===0){clearInterval(timerInt); finish(true);} }
+  timerInt=setInterval(tick,500);
+  const pickTr=()=>{ const kinds={}; ITEMS.filter(x=>x.t==="tr").forEach(x=>{(kinds[x.instr]=kinds[x.instr]||[]).push(x);}); const out=[]; shuffle(Object.keys(kinds)).forEach(k=>{ if(out.length<8) out.push(shuffle(kinds[k])[0]); }); return shuffle(out); };
+  const part1=pickTr();
+  const tfP=TF[Math.floor(Math.random()*TF.length)];
+  const wr=WRITE[Math.floor(Math.random()*WRITE.length)];
+  const part4=shuffle(ITEMS.filter(x=>x.t==="mcq")).slice(0,6).concat(shuffle(ITEMS.filter(x=>x.t==="gap")).slice(0,8));
+  run({items:part1,title:"Part 1 – Manipolazione",timerEl,onDone:r=>{ res.tr=r;
+    runTF(tfP,{timerEl,onDone:r2=>{ res.tf=r2;
+      runWrite(wr,{timerEl,onChecked:(all,rr)=>{ res.w={all,r:rr}; setTimeout(()=>{ if(finished)return; run({items:part4,title:"Part 4 – Completamento",timerEl,onDone:r3=>{ res.c=r3; finish(false); }}); },1200); },onQuit:()=>finish(false)});
+    }});
+  }});
+  function finish(timeUp){
+    if(finished)return; finished=true; clearInterval(timerInt);
+    const tr=res.tr||[], tf=res.tf||[], c=res.c||[], w=res.w;
+    const s1=tr.filter(x=>x.ok).length;
+    const n2=tf.length+tfP.items.filter(x=>!x[1]).length, s2=tf.filter(x=>x.ok).length+tf.filter(x=>x.fixOk).length;
+    const s3=w?(w.all?6:Math.round(6*w.r.pass/w.r.total)):0;
+    const s4=c.filter(x=>x.ok).length;
+    const tot=s1+s2+s3+s4, max=8+n2+6+14; const pct=Math.round(100*tot/max);
+    const grade=pct>=95?"10":pct>=85?"9":pct>=75?"8":pct>=65?"7":pct>=55?"6":"5";
+    const secs=Math.floor((Date.now()-t0)/1000);
+    app.innerHTML=`<section class="card" style="text-align:center"><h2>${timeUp?"⏰ Time's up!":"Exam finished!"}</h2><div class="score">${pct}%</div><p style="font-size:22px;font-weight:900">Grade: ${grade}</p><p class="small">Time: ${Math.floor(secs/60)} min ${secs%60} s</p>
+    <div class="tbl"><table><tr><th>Part</th><th>Score</th></tr><tr><td>1 · Manipolazione</td><td>${s1}/8</td></tr><tr><td>2 · Vero o falso (${esc(tfP.title)})</td><td>${s2}/${n2}</td></tr><tr><td>3 · Produzione scritta</td><td>${s3}/6</td></tr><tr><td>4 · Completamento</td><td>${s4}/14</td></tr></table></div>
+    <p>${pct>=85?"Excellent – you're ready! 🏆":pct>=65?"Good. Practise the parts with lower scores, then try again. 💪":"Study the Learn page, practise each mode, then try again. You can do it! 🌱"}</p>
+    <div class="row" style="justify-content:center"><button class="btn" id="again">New exam</button><button class="btn sec" id="hm">Home</button></div></section>`;
+    document.getElementById("again").onclick=startExam; document.getElementById("hm").onclick=()=>go("home");
+  }
+}
+
+/* ---- learn ---- */
+function learn(){
+  app.innerHTML=`<section class="card"><h2>📖 Learn</h2><p>Everything for the test, short and clear. Read it, then practise!</p></section>
+<details open><summary>1 · Present simple – habits & routines</summary><div class="body">
+<p><b>Use it for</b> things you do always / usually / often / never, and facts. <span class="it">(azioni abituali, routine, fatti)</span></p>
+<p><b>Signal words:</b> <span class="pill">always</span><span class="pill">usually</span><span class="pill">often</span><span class="pill">sometimes</span><span class="pill">rarely</span><span class="pill">never</span><span class="pill">every day</span><span class="pill">on Saturdays</span><span class="pill">once a week</span><span class="pill">in winter</span></p>
+<div class="tbl"><table><tr><th></th><th>I / you / we / they</th><th>he / she / it</th></tr><tr><td>+</td><td>I <b>play</b></td><td>she <b>plays</b></td></tr><tr><td>−</td><td>I <b>don't play</b></td><td>she <b>doesn't play</b></td></tr><tr><td>?</td><td><b>Do</b> you <b>play</b>?</td><td><b>Does</b> she <b>play</b>?</td></tr><tr><td>short answers</td><td>Yes, I do. / No, I don't.</td><td>Yes, she does. / No, she doesn't.</td></tr></table></div>
+<p><b>Spelling for he/she/it:</b> goes, watches, finishes (-es) · studies, flies (-y → -ies) · plays, buys (vowel + y → -s)</p>
+<div class="ex">It always rains at the weekend. <i>· She often comes here on Saturdays. · How often does Steve write letters?</i></div>
+<p class="small">⚠️ In the negative and in questions the verb has <b>no -s</b>: She doesn't play. / Does she play?</p>
+</div></details>
+<details><summary>2 · Present continuous – now</summary><div class="body">
+<p><b>Use it for</b> actions happening now, at this moment. <span class="it">(azioni in corso nel momento in cui si parla)</span></p>
+<p><b>Signal words:</b> <span class="pill">now</span><span class="pill">right now</span><span class="pill">at the moment</span><span class="pill">today</span><span class="pill">this morning</span><span class="pill">Look!</span><span class="pill">Listen!</span></p>
+<div class="tbl"><table><tr><th>+</th><td>I<b>'m playing</b> · he/she/it<b>'s playing</b> · we/you/they<b>'re playing</b></td></tr><tr><th>−</th><td>I<b>'m not</b> playing · she <b>isn't</b> playing · they <b>aren't</b> playing</td></tr><tr><th>?</th><td><b>Am</b> I playing? · <b>Is</b> she playing? · <b>Are</b> they playing?</td></tr><tr><th>short answers</th><td>Yes, I am. / No, I'm not. · Yes, she is. / No, she isn't. · Yes, they are. / No, they aren't.</td></tr></table></div>
+<p><b>-ing spelling:</b> make → mak<b>ing</b> · run → run<b>ning</b> · swim → swim<b>ming</b> · sit → sit<b>ting</b> · get → get<b>ting</b> · study → study<b>ing</b> · lie → l<b>ying</b></p>
+<div class="ex">It's raining again! <i>· Look who's coming! · Dad's cooking at the moment. · I'm not wearing boots today.</i></div>
+<p class="small">⚠️ Compare: <b>It rains</b> a lot in London (habit) vs <b>It's raining</b> now (right now).</p>
+</div></details>
+<details><summary>3 · Present continuous for the future – plans</summary><div class="body">
+<p><b>Use it for</b> plans and arrangements you've already fixed: with a day, a time or a place. <span class="it">(programmi già stabiliti)</span></p>
+<p><b>Signal words:</b> <span class="pill">tomorrow</span><span class="pill">tonight</span><span class="pill">this evening</span><span class="pill">next week</span><span class="pill">on Saturday</span><span class="pill">at 3 o'clock</span><span class="pill">in June</span></p>
+<div class="ex">What are you doing this afternoon? <i>– I'm going to football practice. We're playing in the final on Saturday.</i></div>
+<h3>Future time expressions</h3>
+<div class="tbl"><table><tr><th>on</th><td>Sunday · 5th April · Monday morning</td></tr><tr><th>at</th><td>3 o'clock · the weekend · Christmas · half past six</td></tr><tr><th>in</th><td>June · the summer · 2026</td></tr><tr><th>this</th><td>morning · afternoon · evening · week</td></tr><tr><th>tomorrow</th><td>morning · afternoon · evening · night</td></tr><tr><th>next</th><td>Monday · weekend · week · month · year</td></tr></table></div>
+<p class="small">No preposition with this / tomorrow / next: "next week" ✔ "on next week" ✘</p>
+<h3>Questions</h3>
+<div class="ex">Where are they meeting? · What time are they having dinner? · Are you coming to the airport?</div>
+<h3>How to tell them apart</h3>
+<div class="tbl"><table><tr><th>Sentence</th><th>Which tense?</th><th>Why</th></tr><tr><td>Listen! Lucy is singing.</td><td>continuous – now</td><td>Listen! = it's happening</td></tr><tr><td>Lucy's singing in the concert next week.</td><td>continuous – future</td><td>next week = a fixed plan</td></tr><tr><td>Lucy sings every Sunday.</td><td>simple – habit</td><td>every Sunday</td></tr></table></div>
+</div></details>
+<details><summary>4 · The weather</summary><div class="body">
+<p><b>What's the weather like?</b> → It's <b>sunny</b> ☀️ / <b>cloudy</b> ☁️ / <b>windy</b> 💨 / <b>foggy</b> 🌫️ (adjectives) · It's <b>raining</b> 🌧️ / It's <b>snowing</b> ❄️ (verbs, -ing!) · There's a <b>storm</b> ⛈️</p>
+<p><b>What temperature is it?</b> → It's 24 <b>degrees</b> (Celsius). · It's <b>minus</b> two degrees. · "It's twenty-four degrees."</p>
+<div class="tempscale"><span>freezing</span><span>cold</span><span>cool</span><span>mild</span><span>warm</span><span>hot</span></div>
+<p class="small">freezing = 0°C or below · cold = 1–7°C · cool = 8–12°C · mild = 13–19°C · warm = 20–29°C · hot = 30°C +</p>
+<div class="ex">It's raining and cold in New York. <i>· It's snowing and freezing in Reykjavik. · It's sunny and hot in Sydney. · It's foggy and cool in Milan.</i></div>
+<p><b>More words:</b> <span class="pill">thunderstorm</span><span class="pill">drizzle</span><span class="pill">flood</span><span class="pill">frost</span><span class="pill">hail</span><span class="pill">humid</span><span class="pill">ice</span><span class="pill">storm</span><span class="pill">tornado</span><span class="pill">bright</span><span class="pill">fine</span><span class="pill">lovely</span><span class="pill">nice</span><span class="pill">terrible</span></p>
+<p class="small">⚠️ "It's cloudy, but it <b>isn't raining</b>." (now) · "It never <b>rains</b> in August." (habit) · "It always <b>rains</b> at the weekend." (habit)</p>
+</div></details>
+<details><summary>5 · Inviting and making arrangements</summary><div class="body">
+<div class="tbl"><table><tr><th>You say</th><th>You respond</th></tr>
+<tr><td>Are you doing anything on Saturday?</td><td>No, I'm not. / Yes, I am. I'm…</td></tr>
+<tr><td>What are you doing on Friday?</td><td>I'm playing tennis. / I'm not doing anything special.</td></tr>
+<tr><td>Would you like to go swimming?</td><td>Yes, I'd love to! / Good idea! · I'd love to, but I can't. I'm…</td></tr>
+<tr><td>What time are you going?</td><td>I'm / We're going at 7 o'clock.</td></tr>
+<tr><td>OK, let's meet there / at the park. Is 11 o'clock OK?</td><td>Yes, that's fine. See you there! / Thanks.</td></tr></table></div>
+<h3>A model message</h3>
+<div class="model">Hi Lucy! Would you like to go cycling this morning?
+Sorry, I can't. I'm going shopping with my mum.
+Oh, OK. What are you doing this afternoon?
+I'm not doing anything special.
+Would you like to play tennis with me?
+Yes, I'd love to!
+Great. Let's meet in the park. Is 2 o'clock OK?
+Yes, that's fine. See you there!</div>
+<p class="small">Useful: sounds interesting / sounds stupid · Be more positive! · That reminds me. · I've got football practice.</p>
+</div></details>
+<details><summary>6 · Activities & places</summary><div class="body">
+<p><b>Activities:</b> <span class="pill">go swimming</span><span class="pill">go bowling</span><span class="pill">go cycling</span><span class="pill">go running</span><span class="pill">go shopping</span><span class="pill">play tennis</span><span class="pill">play football</span><span class="pill">watch TV / a film</span><span class="pill">have a picnic</span><span class="pill">have a pizza</span><span class="pill">meet my friends</span><span class="pill">study for a test</span><span class="pill">visit my grandparents</span></p>
+<p><b>Places & events:</b> <span class="pill">the cinema</span><span class="pill">the theatre</span><span class="pill">the park</span><span class="pill">the shopping centre</span><span class="pill">the restaurant</span><span class="pill">a concert</span><span class="pill">a party</span><span class="pill">the library</span><span class="pill">the swimming pool</span></p>
+</div></details>`;
+}
+
+renderTop(); go("home");
+</script>
+</body>
+</html>

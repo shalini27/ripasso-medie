@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Il Medioevo in musica – allenamento per la verifica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5EEDF; --page:#FFFDF8; --ink:#1F2342; --muted:#5B5F7A;
+  --lapis:#2B3F8C; --lapis-soft:#E3E8F8; --gold:#C8961E; --gold-soft:#F6E7BF;
+  --rubric:#B23A2E; --rubric-soft:#F8DED9; --leaf:#2E7D5B; --leaf-soft:#D9EFE3;
+  --line:#E2D8C0; --shadow:0 2px 0 var(--line);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#131833; --page:#1D2347; --ink:#F2EBDC; --muted:#AEB3CC;
+    --lapis:#9DB0F5; --lapis-soft:#27305E; --gold:#E4B64E; --gold-soft:#4A3C16;
+    --rubric:#EE7A6B; --rubric-soft:#4D2521; --leaf:#6FCF9A; --leaf-soft:#1E3F32;
+    --line:#2E3663; --shadow:0 2px 0 var(--line);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#131833; --page:#1D2347; --ink:#F2EBDC; --muted:#AEB3CC;
+  --lapis:#9DB0F5; --lapis-soft:#27305E; --gold:#E4B64E; --gold-soft:#4A3C16;
+  --rubric:#EE7A6B; --rubric-soft:#4D2521; --leaf:#6FCF9A; --leaf-soft:#1E3F32;
+  --line:#2E3663; --shadow:0 2px 0 var(--line);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{
+  margin:0;min-height:100%;background:var(--bg);color:var(--ink);
+  font-family:"Nunito",ui-rounded,"Segoe UI",system-ui,sans-serif;
+  font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.numeral{font-family:"Fraunces",Georgia,"Times New Roman",serif;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:560px;margin:0 auto;padding:20px 18px 48px}
+
+/* ---------- Home ---------- */
+.hero{padding:18px 0 22px;border-bottom:3px double var(--gold)}
+.hero h1{font-size:2.1rem;line-height:1.08;font-weight:900;letter-spacing:-.01em}
+.hero p{margin:10px 0 0;color:var(--muted);font-size:1rem}
+.stars-total{margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:var(--gold-soft);color:var(--ink);border-radius:999px;padding:6px 14px;font-weight:800;font-size:.95rem}
+.levels{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.level{
+  display:flex;gap:14px;align-items:center;width:100%;text-align:left;
+  background:var(--page);border:1.5px solid var(--line);border-radius:14px;
+  padding:12px 14px 12px 12px;box-shadow:var(--shadow);
+}
+.level[disabled]{opacity:.55;cursor:not-allowed}
+.level:not([disabled]):active{transform:translateY(1px);box-shadow:none}
+.numeral{
+  flex:0 0 58px;height:58px;display:grid;place-items:center;border-radius:10px;
+  background:var(--lapis);color:#F7E6B3;font-size:2rem;font-weight:900;
+  box-shadow:inset 0 0 0 3px var(--page),inset 0 0 0 5px var(--gold);
+}
+.level.final .numeral{background:var(--gold);color:var(--ink);font-size:1.6rem}
+.level-body{flex:1;min-width:0}
+.level-body h2{font-size:1.1rem;font-weight:700;line-height:1.2}
+.level-body .kind{display:block;margin-top:2px;color:var(--muted);font-size:.85rem}
+.level-stars{font-size:1rem;letter-spacing:1px;white-space:nowrap;color:var(--gold)}
+.level-stars .off{opacity:.3}
+.lock{color:var(--muted);font-size:.9rem}
+.foot{margin-top:28px;display:flex;gap:18px;justify-content:center}
+.foot button{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.9rem;padding:6px 0}
+
+/* ---------- Level screen ---------- */
+.topbar{display:flex;align-items:center;gap:12px;padding:6px 0 14px}
+.topbar .back{background:none;border:0;font-weight:800;color:var(--lapis);padding:8px 4px 8px 0;font-size:1rem}
+.topbar .title{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.progress{height:8px;border-radius:999px;background:var(--line);overflow:hidden}
+.progress > div{height:100%;background:var(--gold);width:0;transition:width .35s ease}
+.counter{margin:6px 0 18px;color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between}
+
+.card{background:var(--page);border:1.5px solid var(--line);border-radius:16px;padding:22px 20px;box-shadow:var(--shadow)}
+.card.learn{border-left:6px solid var(--gold)}
+.card.learn h2{font-size:1.45rem;font-weight:700;line-height:1.2;margin-bottom:10px}
+.card.learn h2 em{font-style:italic;font-weight:500;color:var(--muted);font-size:1rem;display:block;margin-bottom:4px}
+.card.learn p{margin:0 0 12px}
+.card.learn p:last-of-type{margin-bottom:0}
+.card.learn strong{color:var(--lapis)}
+.card.learn ul{margin:0 0 12px;padding-left:20px}
+.card.learn li{margin:4px 0}
+
+.card.q h2{font-size:1.3rem;font-weight:700;line-height:1.25;margin-bottom:18px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{
+  display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
+  background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:12px 14px;
+  font-weight:700;line-height:1.35;transition:border-color .15s,background .15s;
+}
+.opt .key{flex:0 0 26px;height:26px;border-radius:50%;background:var(--page);border:1.5px solid var(--line);display:grid;place-items:center;font-size:.8rem;color:var(--muted);margin-top:1px}
+.opt:not([disabled]):hover{border-color:var(--lapis)}
+.opt.right{background:var(--leaf-soft);border-color:var(--leaf)}
+.opt.right .key{background:var(--leaf);color:#fff;border-color:var(--leaf)}
+.opt.wrong{background:var(--rubric-soft);border-color:var(--rubric)}
+.opt.wrong .key{background:var(--rubric);color:#fff;border-color:var(--rubric)}
+.opt[disabled]{cursor:default}
+.feedback{margin-top:16px;padding:14px 16px;border-radius:12px;font-weight:600;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:var(--leaf-soft);color:var(--ink)}
+.feedback.ko{background:var(--rubric-soft);color:var(--ink)}
+.feedback b{display:block;font-family:"Fraunces",Georgia,serif;font-size:1.1rem;margin-bottom:4px}
+
+.btn{
+  display:block;width:100%;margin-top:18px;padding:15px 18px;border-radius:12px;border:0;
+  background:var(--lapis);color:#fff;font-weight:800;font-size:1.05rem;
+  box-shadow:0 3px 0 rgba(0,0,0,.25);
+}
+:root[data-theme="dark"] .btn,
+.btn.dark{color:#131833}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn{color:#131833}}
+.btn:active{transform:translateY(2px);box-shadow:none}
+.btn.secondary{background:transparent;color:var(--lapis);border:2px solid var(--lapis);box-shadow:none}
+.btn.hidden{display:none}
+
+/* ---------- Results ---------- */
+.result{text-align:center}
+.result .big{font-family:"Fraunces",Georgia,serif;font-size:3.6rem;font-weight:900;line-height:1;margin:6px 0}
+.result .stars{font-size:2.2rem;letter-spacing:6px;color:var(--gold);margin:6px 0 2px}
+.result .stars .off{opacity:.25}
+.result h2{font-size:1.5rem;font-weight:700}
+.result p{color:var(--muted);margin:8px 0 0}
+.review{margin-top:22px;text-align:left}
+.review h3{font-size:1.1rem;margin-bottom:10px}
+.review ol{margin:0;padding-left:20px}
+.review li{margin-bottom:12px;font-size:.95rem}
+.review li span{display:block;color:var(--leaf);font-weight:800}
+
+@media (prefers-reduced-motion: reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+// ===================== CONTENT =====================
+// For each question the FIRST option is the correct one; options are shuffled on screen.
+// tf:true keeps Vero/Falso order fixed.
+const LEVELS = [
+{ id:"tempo", title:"Il tempo del Medioevo", kind:"Impara e metti alla prova", steps:[
+  {t:"learn", h:"Quando inizia e quando finisce", p:[
+    "Il Medioevo inizia nel <strong>476 d.C.</strong> con la <strong>caduta dell’Impero romano d’Occidente</strong> e finisce nel <strong>1492</strong> con la <strong>scoperta dell’America</strong>.",
+    "L’anno <strong>1000</strong> divide il periodo in due: <strong>alto Medioevo</strong> (476–1000) e <strong>basso Medioevo</strong> (1000–1492)."]},
+  {t:"q", q:"In quale anno inizia il Medioevo?", a:["476 d.C.","313 d.C.","800 d.C.","1000 d.C."], why:"Nel 476 cade l’Impero romano d’Occidente."},
+  {t:"q", q:"Quale evento segna la fine del Medioevo?", a:["La scoperta dell’America (1492)","La prima crociata","L’incoronazione di Carlo Magno","L’invasione dei Longobardi"]},
+  {t:"q", q:"Quale anno separa l’alto Medioevo dal basso Medioevo?", a:["1000","800","1096","568"]},
+  {t:"learn", h:"Alto e basso Medioevo", p:[
+    "<strong>Alto Medioevo:</strong> invasioni barbariche, potere politico della Chiesa, feudalesimo. La cultura è legata ai <strong>monasteri</strong>: <strong>solo i religiosi</strong> avevano diritto all’istruzione.",
+    "<strong>Basso Medioevo:</strong> nascono le <strong>università laiche</strong>, la cultura arriva anche nelle <strong>corti</strong>, si diffondono le <strong>lingue volgari</strong>. Cresce l’agricoltura, la popolazione, il commercio e <strong>rinascono le città</strong>."]},
+  {t:"q", q:"Nell’alto Medioevo chi aveva diritto all’istruzione?", a:["Solo i religiosi","Solo i nobili","Tutti i cittadini","Solo i mercanti"]},
+  {t:"q", q:"Quale di queste è una caratteristica del basso Medioevo?", a:["La nascita delle università laiche","Le invasioni barbariche","Il feudalesimo","La cultura solo nei monasteri"]},
+  {t:"q", q:"Nell’alto Medioevo le lingue volgari si diffondono ampiamente.", a:["Falso","Vero"], tf:true, why:"Le lingue volgari si diffondono nel basso Medioevo."},
+  {t:"q", q:"Dove si trovava la cultura nell’alto Medioevo?", a:["Nei monasteri","Nelle università","Nelle corti","Nelle piazze"]},
+  {t:"learn", h:"Le date da ricordare", p:[
+    "<ul><li><strong>568</strong>: i <strong>Longobardi</strong> invadono l’Italia</li><li><strong>800</strong>: <strong>Carlo Magno</strong> è incoronato imperatore del <strong>Sacro Romano Impero</strong></li><li><strong>1096</strong>: <strong>prima crociata</strong></li></ul>",
+    "Il Sacro Romano Impero nasce dall’<strong>alleanza del papato con i Carolingi</strong>."]},
+  {t:"q", q:"Cosa succede nel 568?", a:["I Longobardi invadono l’Italia","Carlo Magno diventa imperatore","Inizia la prima crociata","Viene scoperta l’America"]},
+  {t:"q", q:"Nell’anno 800…", a:["Carlo Magno è incoronato imperatore","Cade l’Impero romano","Nasce la polifonia","Parte la prima crociata"]},
+  {t:"q", q:"La prima crociata è nel…", a:["1096","1000","1492","800"]},
+  {t:"q", q:"Il Sacro Romano Impero nasce dall’alleanza del papato con i Carolingi.", a:["Vero","Falso"], tf:true},
+]},
+
+{ id:"sacra", title:"La musica sacra e il canto gregoriano", kind:"Impara e metti alla prova", steps:[
+  {t:"learn", h:"La Chiesa al centro", p:[
+    "Nel Medioevo la <strong>Chiesa</strong> era il punto di riferimento spirituale, politico, sociale e culturale. Lo scopo principale della musica era <strong>glorificare Dio</strong>.",
+    "<strong>Solo i religiosi sapevano leggere e scrivere</strong>: per questo ci sono arrivati <strong>molti</strong> documenti di musica sacra e <strong>pochissimi</strong> di musica popolare."]},
+  {t:"q", q:"Qual era lo scopo principale della musica nel Medioevo?", a:["Glorificare Dio","Far ballare la gente","Raccontare le battaglie","Accompagnare i banchetti"]},
+  {t:"q", q:"Perché ci sono arrivati pochissimi documenti di musica popolare?", a:["Solo i religiosi sapevano leggere e scrivere","La musica popolare era vietata","La musica popolare non esisteva","I documenti furono bruciati"]},
+  {t:"learn", h:"Monodia e neumi", p:[
+    "I canti sacri erano <strong>monodici</strong>: <strong>monodia = una sola linea melodica</strong>. Le melodie erano <strong>semplici</strong> per far capire bene le <strong>parole</strong>.",
+    "Per molto tempo questa musica fu tramandata <strong>oralmente</strong>. Nel <strong>IX secolo</strong> nei monasteri si iniziò a scriverla: gli <strong>amanuensi</strong> realizzarono codici decorati usando i <strong>neumi</strong>."]},
+  {t:"q", q:"Cosa significa “monodia”?", a:["Una sola linea melodica","Più voci insieme","Canto con strumenti","Canto molto veloce"]},
+  {t:"q", q:"Perché le melodie sacre erano semplici?", a:["Per far capire bene le parole","Perché nessuno sapeva cantare","Per finire prima la messa","Perché mancavano gli strumenti"]},
+  {t:"q", q:"In quale secolo si iniziò a scrivere le melodie sacre?", a:["IX secolo","V secolo","XIV secolo","XII secolo"]},
+  {t:"q", q:"Chi realizzava i codici musicali decorati?", a:["Gli amanuensi","I trovatori","I cavalieri","I mercanti"]},
+  {t:"q", q:"Come si chiamano i segni della scrittura musicale medievale?", a:["Neumi","Note","Pentagrammi","Melismi"]},
+  {t:"learn", h:"Il canto gregoriano", p:[
+    "<strong>Canto gregoriano</strong> = l’insieme dei canti religiosi medievali. Il nome viene da papa <strong>Gregorio Magno</strong>: secondo la leggenda scriveva i canti dettati dallo Spirito Santo sotto forma di <strong>colomba</strong>.",
+    "Tre caratteristiche: <strong>monodico</strong>, <strong>a cappella</strong> (senza strumenti), <strong>in latino</strong>."]},
+  {t:"q", q:"Da chi prende il nome il canto gregoriano?", a:["Da papa Gregorio Magno","Da Guido d’Arezzo","Da Carlo Magno","Da san Gallo"]},
+  {t:"q", q:"Cosa vuol dire “a cappella”?", a:["Senza strumenti musicali","Cantato in chiesa","Cantato a voce bassa","Con l’organo"]},
+  {t:"q", q:"Quale NON è una caratteristica del canto gregoriano?", a:["È polifonico","È monodico","È in latino","È a cappella"]},
+  {t:"q", q:"Secondo la leggenda, lo Spirito Santo dettava i canti a Gregorio Magno sotto forma di…", a:["Colomba","Fiamma","Angelo","Nuvola"]},
+  {t:"learn", h:"I riti e la nascita del gregoriano", p:[
+    "Nel <strong>313 d.C.</strong>, con l’<strong>Editto di Costantino</strong>, i cristiani possono professare liberamente la loro religione. In Europa nascono tradizioni diverse:",
+    "<ul><li>rito <strong>romano</strong> → Roma</li><li>rito <strong>ambrosiano</strong> → Milano</li><li>rito <strong>beneventano</strong> → Sud Italia</li><li>rito <strong>gallicano</strong> → Gallia dei Franchi</li><li>rito <strong>ispanico</strong> → Spagna</li></ul>",
+    "Nell’<strong>VIII–IX secolo</strong>, con il Sacro Romano Impero, si vuole <strong>unificare</strong> il repertorio: nasce il canto gregoriano, che impone il rito romano su tutti… tranne il rito <strong>ambrosiano</strong>."]},
+  {t:"q", q:"In che anno viene emanato l’Editto di Costantino?", a:["313 d.C.","476 d.C.","800 d.C.","568 d.C."]},
+  {t:"q", q:"Il rito ambrosiano è legato a…", a:["Milano","Roma","Spagna","Sud Italia"]},
+  {t:"q", q:"Il rito beneventano si sviluppa…", a:["Nel Sud Italia","A Milano","In Spagna","In Francia"]},
+  {t:"q", q:"Il rito gallicano è quello…", a:["Della Gallia dei Franchi","Della Spagna","Di Roma","Di Milano"]},
+  {t:"q", q:"Quale rito sopravvive all’imposizione del rito romano?", a:["Il rito ambrosiano","Il rito ispanico","Il rito gallicano","Il rito beneventano"]},
+  {t:"q", q:"Perché nasce il canto gregoriano nell’VIII–IX secolo?", a:["Per unificare il repertorio sotto un’unica tradizione","Per inventare la polifonia","Per far cantare i cavalieri","Per sostituire il latino con il volgare"]},
+]},
+
+{ id:"messa", title:"La Messa e la scrittura musicale", kind:"Impara e metti alla prova", steps:[
+  {t:"learn", h:"Dove si canta e come", p:[
+    "I canti religiosi si dividono in <strong>Messa</strong> (nelle <strong>chiese</strong>) e <strong>Ufficio divino</strong> (nei <strong>monasteri</strong>).",
+    "Due stili di canto: <strong>sillabico</strong> (una nota per ogni sillaba) e <strong>melismatico</strong> (tante note su una sola sillaba)."]},
+  {t:"q", q:"Dove si celebra l’Ufficio divino?", a:["Nei monasteri","Nelle chiese","Nei castelli","Nelle piazze"]},
+  {t:"q", q:"Lo stile con molte note su una sola sillaba si chiama…", a:["Melismatico","Sillabico","Monodico","Mensurale"]},
+  {t:"learn", h:"I canti della Messa", p:[
+    "<strong>Ordinarium missae</strong> → uguali per tutto l’anno: <strong>Kyrie, Gloria, Credo, Sanctus, Agnus Dei</strong>.",
+    "<strong>Proprium missae</strong> → cambiano in base al periodo dell’anno liturgico: <strong>Introito, Graduale, Alleluia, Offertorio, Communio</strong>."]},
+  {t:"q", q:"I canti dell’Ordinarium missae…", a:["Sono uguali per tutto l’anno","Cambiano ogni settimana","Si cantano solo a Natale","Sono in volgare"]},
+  {t:"q", q:"Quale canto fa parte del Proprium missae?", a:["Graduale","Kyrie","Credo","Sanctus"]},
+  {t:"q", q:"Quale canto fa parte dell’Ordinarium missae?", a:["Agnus Dei","Introito","Alleluia","Communio"]},
+  {t:"q", q:"Quanti canti ha l’Ordinarium missae?", a:["5","3","7","10"]},
+  {t:"q", q:"Il Gloria appartiene a…", a:["L’Ordinarium missae","Il Proprium missae","L’Ufficio divino","La musica profana"]},
+  {t:"q", q:"L’Offertorio è un canto del Proprium missae.", a:["Vero","Falso"], tf:true},
+  {t:"learn", h:"Come nasce la scrittura musicale", p:[
+    "<ul><li>All’inizio i canti si tramandano <strong>oralmente</strong>.</li><li><strong>IX secolo</strong>: <strong>neumi</strong> sopra il testo, senza righe = <strong>notazione adiastematica</strong> (neumi “in campo aperto”), nata nell’<strong>abbazia di San Gallo</strong> (Svizzera).</li><li>In <strong>Francia</strong> si aggiunge una linea = <strong>notazione diastematica</strong>.</li><li>Si aggiungono più linee.</li><li><strong>Tetragramma</strong> (4 linee) di <strong>Guido d’Arezzo</strong>.</li></ul>"]},
+  {t:"q", q:"La notazione senza righe si chiama…", a:["Adiastematica","Diastematica","Mensurale","Tetragramma"]},
+  {t:"q", q:"In quale paese si trova l’abbazia di San Gallo?", a:["Svizzera","Francia","Italia","Spagna"]},
+  {t:"q", q:"Dove viene aggiunta la prima linea alla notazione?", a:["In Francia","In Svizzera","In Germania","A Roma"]},
+  {t:"q", q:"Quante linee ha il tetragramma?", a:["4","5","3","2"]},
+  {t:"q", q:"Chi inventa il tetragramma?", a:["Guido d’Arezzo","Gregorio Magno","Leonino","Philippe de Vitry"]},
+  {t:"q", q:"La notazione diastematica è senza righe.", a:["Falso","Vero"], tf:true, why:"La diastematica ha le righe; quella senza righe è l’adiastematica."},
+  {t:"learn", h:"La notazione mensurale", p:[
+    "Fino alla fine del <strong>XIII secolo</strong> la notazione indicava solo le <strong>altezze</strong> dei suoni, non le <strong>durate</strong>. Nella monodia non serviva: tutti seguivano l’<strong>accentuazione del testo</strong>.",
+    "Quando la polifonia diventa sempre più complessa, a <strong>Parigi</strong> nasce la <strong>notazione mensurale</strong>, che scrive anche le durate."]},
+  {t:"q", q:"Cosa permette di scrivere la notazione mensurale?", a:["Le durate dei suoni","Le parole","Gli strumenti","I nomi dei compositori"]},
+  {t:"q", q:"Dove nasce la notazione mensurale?", a:["A Parigi","A Roma","A San Gallo","A Firenze"]},
+  {t:"q", q:"Perché nella monodia non serviva scrivere le durate?", a:["Tutti seguivano l’accentuazione del testo","I canti erano senza ritmo","Si usava già il tetragramma","C’era solo un cantore"]},
+]},
+
+{ id:"profana", title:"La musica profana", kind:"Quiz", steps:[
+  {t:"q", q:"Dove si sviluppò la musica profana?", a:["Nelle piazze dei villaggi e nei castelli","Nei monasteri","Nelle cattedrali","Nelle università"]},
+  {t:"q", q:"Chi improvvisava melodie semplici e orecchiabili?", a:["I musicisti girovaghi","I monaci","Gli amanuensi","I vescovi"]},
+  {t:"q", q:"Dal XII secolo il repertorio profano si ispira a…", a:["Gli ideali cavallereschi","La vita dei santi","Le storie bibliche","I viaggi dei mercanti"]},
+  {t:"q", q:"I trovatori cantavano nel…", a:["Sud della Francia","Nord della Francia","Sud della Germania","Nord Italia"]},
+  {t:"q", q:"In che lingua cantavano i trovatori?", a:["Langue d’oc","Langue d’oïl","Latino","Tedesco"]},
+  {t:"q", q:"I trovieri cantavano nel…", a:["Nord della Francia","Sud della Francia","Sud della Spagna","Centro Italia"]},
+  {t:"q", q:"In che lingua cantavano i trovieri?", a:["Langue d’oïl","Langue d’oc","Latino","Volgare italiano"]},
+  {t:"q", q:"Quando vissero i trovatori?", a:["XII–XIII secolo","IX–X secolo","XIV–XV secolo","V–VI secolo"]},
+  {t:"q", q:"I trovieri compaiono…", a:["Dalla metà del XIII secolo","Nel IX secolo","Nel XV secolo","Nel 476"]},
+  {t:"q", q:"Di cosa parlavano i canti di trovatori e trovieri?", a:["Dell’amor cortese","Delle crociate","Della vita dei monaci","Della scoperta dell’America"]},
+  {t:"q", q:"L’amor cortese è…", a:["Un sentimento nobile e spirituale verso la donna","Un canto per i matrimoni","Una danza di corte","L’amore per il re"]},
+  {t:"q", q:"Con quale strumento si accompagnavano trovatori e trovieri?", a:["La viella","L’organo","La zampogna","Il tamburello"]},
+  {t:"q", q:"Eleonora d’Aquitania era…", a:["Una trovatrice","Una badessa","Una Minnesänger","Una cantante di Notre-Dame"]},
+  {t:"q", q:"Riccardo Cuor di Leone e Thibaud de Champagne erano…", a:["Trovieri","Trovatori","Minnesänger","Chierici vaganti"]},
+  {t:"q", q:"Com’erano i canti dei trovatori?", a:["Monodici, per solista, in stile sillabico","Polifonici a quattro voci","A cappella e in latino","Melismatici con l’organo"]},
+  {t:"q", q:"I Minnesänger cantavano in…", a:["Germania","Francia","Italia","Spagna"]},
+  {t:"q", q:"Cosa significa “Minne”?", a:["Amore","Canto","Cavaliere","Castello"]},
+  {t:"q", q:"Chi erano i chierici vaganti?", a:["Studenti che si spostavano tra le università","Monaci in pellegrinaggio","Cavalieri erranti","Musicisti di corte"]},
+  {t:"q", q:"Dove furono ritrovati i Carmina Burana?", a:["Nell’abbazia di Benediktbeuern","A Montserrat","A Notre-Dame","A San Gallo"]},
+  {t:"q", q:"In che lingua sono i Carmina Burana?", a:["In parte latino, in parte volgare","Solo latino","Langue d’oc","Solo tedesco"]},
+  {t:"q", q:"Quali sono i temi dei Carmina Burana?", a:["Esaltazione dei piaceri e satira politica","Amor cortese","Preghiere","Racconti di battaglie"]},
+  {t:"q", q:"Chi riprese i testi dei Carmina Burana nel Novecento?", a:["Carl Orff","Guillaume de Machaut","Francesco Landini","Philippe de Vitry"]},
+  {t:"q", q:"I trovatori componevano loro stessi le melodie.", a:["Vero","Falso"], tf:true},
+]},
+
+{ id:"strumenti", title:"Pellegrini, strumenti e iconografia", kind:"Quiz", steps:[
+  {t:"q", q:"Una meta di pellegrinaggio molto importante era…", a:["Il monastero di Montserrat","La cattedrale di Notre-Dame","L’abbazia di San Gallo","Benediktbeuern"]},
+  {t:"q", q:"Montserrat si trova in…", a:["Spagna","Francia","Italia","Germania"]},
+  {t:"q", q:"Cosa facevano i pellegrini arrivati al monastero?", a:["Canti e danze di ringraziamento","Un digiuno di tre giorni","Copiavano i codici","Imparavano il latino"]},
+  {t:"q", q:"Cos’è il contrafactum?", a:["Tenere la melodia e sostituire il testo profano con uno sacro","Cambiare la melodia e tenere il testo","Cantare a due voci","Scrivere i neumi senza righe"]},
+  {t:"q", q:"In quale codice sono raccolti i canti dei pellegrini?", a:["Llibre Vermell","Carmina Burana","Ars nova","Codice di San Gallo"]},
+  {t:"q", q:"Cos’è l’iconografia musicale?", a:["Lo studio delle raffigurazioni di contenuto musicale","Lo studio dei neumi","La costruzione di strumenti","La scrittura delle durate"]},
+  {t:"q", q:"Perché studiamo gli strumenti medievali nelle opere d’arte?", a:["Pochissimi strumenti si sono conservati","Era vietato suonarli","Non venivano mai suonati","Gli artisti erano anche musicisti"]},
+  {t:"q", q:"Come si suonano le corde della viella?", a:["Sfregate con un archetto","Pizzicate con le dita","Percosse con bacchette","Con una tastiera"]},
+  {t:"q", q:"La viella ha una cassa armonica…", a:["Ovale","Quadrata","Triangolare","Rotonda"]},
+  {t:"q", q:"La viella si suona…", a:["Appoggiata su una spalla","Appoggiata a terra","Tenuta tra le ginocchia","Appesa al collo"]},
+  {t:"q", q:"Il salterio è originario…", a:["Della Persia","Della Francia","Della Spagna","Della Germania"]},
+  {t:"q", q:"Aggiungendo una tastiera al salterio nasce…", a:["Il clavisimbalum","Il liuto","L’organo portativo","La ciaramella"]},
+  {t:"q", q:"Il clavisimbalum è l’antenato…", a:["Del clavicembalo","Del violino","Della chitarra","Del flauto"]},
+  {t:"q", q:"Nell’organo portativo la mano sinistra…", a:["Aziona il mantice","Suona la tastiera","Tiene la partitura","Batte il tempo"]},
+  {t:"q", q:"Il liuto è uno strumento a corda…", a:["Pizzicata","Sfregata","Percossa","Con tastiera"]},
+  {t:"q", q:"La ciaramella è uno strumento…", a:["Ad ancia doppia","A corda pizzicata","A percussione","A tastiera"]},
+  {t:"q", q:"Quale di questi è uno strumento a percussione?", a:["Il tamburello","La viella","Il liuto","La zampogna"]},
+  {t:"q", q:"Le corde del salterio potevano essere pizzicate, sfregate o percosse.", a:["Vero","Falso"], tf:true},
+  {t:"q", q:"Le trombe medievali citate nel libro sono…", a:["Diritte","Curve","A spirale","Doppie"]},
+]},
+
+{ id:"polifonia", title:"La polifonia e l’Ars nova", kind:"Quiz", steps:[
+  {t:"q", q:"Cos’è la polifonia?", a:["La sovrapposizione di più linee melodiche","Una sola linea melodica","Un canto senza strumenti","Un canto in volgare"]},
+  {t:"q", q:"Dal greco, “polifonia” significa…", a:["Molti suoni","Un solo suono","Bel canto","Voce alta"]},
+  {t:"q", q:"In quale periodo nasce la polifonia?", a:["Nel basso Medioevo","Nell’alto Medioevo","Nel Rinascimento","Nell’antica Roma"]},
+  {t:"q", q:"A cosa serviva la polifonia?", a:["Ad accrescere la solennità delle celebrazioni","A far capire meglio le parole","A far ballare i cavalieri","A sostituire gli strumenti"]},
+  {t:"q", q:"Nell’organum la melodia gregoriana si chiama…", a:["Vox principalis","Vox organalis","Cantus novus","Melisma"]},
+  {t:"q", q:"La seconda linea melodica aggiunta si chiama…", a:["Vox organalis","Vox principalis","Cantus firmus","Ballata"]},
+  {t:"q", q:"Cosa significa “contrappunto”?", a:["Nota contro nota","Canto senza note","Punto fermo","Voce sola"]},
+  {t:"q", q:"Cos’è il cantus firmus?", a:["La melodia gregoriana posta al grave","La voce più acuta","Un canto dei trovatori","Un canto dei pellegrini"]},
+  {t:"q", q:"In quale città nasce la scuola di Notre-Dame?", a:["Parigi","Roma","Firenze","Milano"]},
+  {t:"q", q:"Quando nasce la scuola di Notre-Dame?", a:["Fine XII secolo","IX secolo","XIV secolo","476"]},
+  {t:"q", q:"Chi sono i due maestri della scuola di Notre-Dame?", a:["Leonino e Perotino","Machaut e Landini","Vitry e Orff","Gregorio e Guido"]},
+  {t:"q", q:"Perché Leonino e Perotino sono importanti?", a:["Sono i primi compositori di cui conosciamo il nome","Hanno inventato i neumi","Hanno scritto i Carmina Burana","Erano trovatori famosi"]},
+  {t:"q", q:"Perotino scrisse polifonie fino a…", a:["4 parti","2 parti","8 parti","12 parti"]},
+  {t:"q", q:"Cos’è l’Ars nova?", a:["La polifonia del Trecento","Il canto gregoriano","La musica dei trovatori","La scrittura dei neumi"]},
+  {t:"q", q:"L’Ars antiqua è…", a:["La musica del periodo precedente all’Ars nova","La musica dell’antica Grecia","La musica dei pellegrini","La musica dei Minnesänger"]},
+  {t:"q", q:"Chi scrisse il trattato “Ars nova”?", a:["Philippe de Vitry","Guillaume de Machaut","Francesco Landini","Guido d’Arezzo"]},
+  {t:"q", q:"Il musicista più importante dell’Ars nova francese è…", a:["Guillaume de Machaut","Philippe de Vitry","Perotino","Carl Orff"]},
+  {t:"q", q:"In Italia l’Ars nova si diffonde soprattutto a…", a:["Firenze","Roma","Milano","Venezia"]},
+  {t:"q", q:"Nella caccia…", a:["Le voci si rincorrono","Si canta e si balla","Si canta a cappella","Si usa solo l’organo"]},
+  {t:"q", q:"La ballata è…", a:["Cantata e danzata","Solo strumentale","Un canto sacro","Un canto in latino"]},
+  {t:"q", q:"Chi scrisse più di 100 ballate?", a:["Francesco Landini","Guillaume de Machaut","Leonino","Philippe de Vitry"]},
+  {t:"q", q:"Nel XIV secolo in Italia prevalgono le composizioni sacre.", a:["Falso","Vero"], tf:true, why:"A Firenze prevalgono le composizioni profane (caccia e ballata)."},
+]},
+
+{ id:"finale", title:"La verifica finale", kind:"20 domande da tutto il programma", final:true, steps:[] },
+];
+
+const PASS = 60;           // % needed to unlock the next level
+const FINAL_COUNT = 20;
+
+// ===================== STATE =====================
+let progress = {};
+try{ progress = JSON.parse(localStorage.getItem("medioevo-progress") || "{}") || {}; }catch(e){ progress = {}; }
+function save(){ try{ localStorage.setItem("medioevo-progress", JSON.stringify(progress)); }catch(e){} }
+
+function starsFor(pct){ return pct>=90?3:pct>=70?2:pct>=50?1:0; }
+function isUnlocked(i){
+  if(progress.unlockAll) return true;
+  const lv = LEVELS[i];
+  if(lv.final) return LEVELS.slice(0,-1).every(l => (progress[l.id]?.best||0) >= PASS);
+  if(i===0) return true;
+  return (progress[LEVELS[i-1].id]?.best||0) >= PASS;
+}
+function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function starStr(n){ let s=""; for(let i=0;i<3;i++) s += i<n ? "★" : "<span class=\"off\">★</span>"; return s; }
+
+const app = document.getElementById("app");
+
+// ===================== HOME =====================
+function renderHome(){
+  window.scrollTo(0,0);
+  const total = LEVELS.reduce((s,l)=> s + (progress[l.id]?.stars||0), 0);
+  let html = `
+    <header class="hero">
+      <h1>Il Medioevo in musica</h1>
+      <p>Allenati per la verifica, un livello alla volta. Supera un livello con almeno ${PASS}% per sbloccare il successivo.</p>
+      <div class="stars-total"><span>★</span> ${total} su ${LEVELS.length*3} stelle</div>
+    </header>
+    <ul class="levels">`;
+  LEVELS.forEach((lv,i)=>{
+    const open = isUnlocked(i);
+    const p = progress[lv.id];
+    html += `<li><button class="level ${lv.final?"final":""}" ${open?"":"disabled"} data-i="${i}">
+      <span class="numeral">${lv.final?"✦":i+1}</span>
+      <span class="level-body"><h2>${lv.title}</h2><span class="kind">${lv.kind}</span></span>
+      ${open ? `<span class="level-stars">${starStr(p?.stars||0)}</span>` : `<span class="lock">🔒</span>`}
+    </button></li>`;
+  });
+  html += `</ul>
+    <div class="foot">
+      <button id="unlock">Sblocca tutti i livelli</button>
+      <button id="reset">Ricomincia da capo</button>
+    </div>`;
+  app.innerHTML = html;
+  app.querySelectorAll(".level:not([disabled])").forEach(b => b.addEventListener("click", ()=> startLevel(+b.dataset.i)));
+  document.getElementById("unlock").addEventListener("click", ()=>{ progress.unlockAll = true; save(); renderHome(); });
+  document.getElementById("reset").addEventListener("click", ()=>{ if(confirm("Vuoi cancellare tutti i progressi?")){ progress = {}; save(); renderHome(); } });
+}
+
+// ===================== LEVEL =====================
+let run = null;
+function startLevel(i){
+  const lv = LEVELS[i];
+  let steps;
+  if(lv.final){
+    const pool = LEVELS.filter(l=>!l.final).flatMap(l => l.steps.filter(s=>s.t==="q"));
+    steps = shuffle(pool).slice(0, FINAL_COUNT);
+  } else if(lv.kind==="Quiz"){
+    steps = shuffle(lv.steps);
+  } else {
+    steps = lv.steps.slice();
+  }
+  run = { i, lv, steps, idx:0, right:0, wrong:[], total: steps.filter(s=>s.t==="q").length, answered:0 };
+  renderStep();
+}
+
+function renderStep(){
+  window.scrollTo(0,0);
+  const {lv, steps, idx} = run;
+  if(idx >= steps.length){ return renderResult(); }
+  const step = steps[idx];
+  const pct = Math.round(idx/steps.length*100);
+  let html = `
+    <div class="topbar"><button class="back" id="back">‹ Livelli</button><span class="title">${lv.title}</span></div>
+    <div class="progress"><div style="width:${pct}%"></div></div>
+    <div class="counter"><span>${step.t==="learn" ? "Da imparare" : "Domanda " + (run.answered+1) + " di " + run.total}</span><span>${run.right} ✓</span></div>`;
+
+  if(step.t==="learn"){
+    html += `<section class="card learn"><h2><em>Leggi con attenzione</em>${step.h}</h2>${step.p.map(x=> x.startsWith("<ul") ? x : `<p>${x}</p>`).join("")}</section>
+      <button class="btn" id="next">Ho capito, mettimi alla prova</button>`;
+    app.innerHTML = html;
+    document.getElementById("next").addEventListener("click", ()=>{ run.idx++; renderStep(); });
+  } else {
+    const opts = step.tf ? ["Vero","Falso"] : shuffle(step.a);
+    html += `<section class="card q"><h2>${step.q}</h2><div class="opts">`;
+    opts.forEach((o,k)=>{ html += `<button class="opt" data-a="${o===step.a[0]?1:0}"><span class="key">${"ABCD"[k]}</span><span>${o}</span></button>`; });
+    html += `</div><div class="feedback" id="fb"></div></section>
+      <button class="btn hidden" id="next">Avanti</button>`;
+    app.innerHTML = html;
+    app.querySelectorAll(".opt").forEach(b => b.addEventListener("click", ()=> answer(b, step)));
+    document.getElementById("next").addEventListener("click", ()=>{ run.idx++; renderStep(); });
+  }
+  document.getElementById("back").addEventListener("click", ()=>{ if(run.answered===0 || confirm("Vuoi uscire dal livello? I progressi di questo tentativo andranno persi.")) renderHome(); });
+}
+
+function answer(btn, step){
+  const ok = btn.dataset.a==="1";
+  app.querySelectorAll(".opt").forEach(b=>{ b.disabled = true; if(b.dataset.a==="1") b.classList.add("right"); });
+  if(!ok) btn.classList.add("wrong");
+  run.answered++;
+  if(ok) run.right++; else run.wrong.push({q:step.q, a:step.a[0]});
+  const fb = document.getElementById("fb");
+  const good = ["Esatto!","Bravissimo!","Giusto!","Perfetto!","Ottimo!"];
+  fb.className = "feedback show " + (ok?"ok":"ko");
+  fb.innerHTML = ok
+    ? `<b>${good[Math.floor(Math.random()*good.length)]}</b>${step.why||""}`
+    : `<b>Non proprio.</b>La risposta giusta è: <strong>${step.a[0]}</strong>. ${step.why||""}`;
+  const next = document.getElementById("next");
+  next.classList.remove("hidden");
+  next.textContent = run.idx === run.steps.length-1 ? "Vedi il risultato" : "Avanti";
+  next.focus({preventScroll:true});
+}
+
+function renderResult(){
+  window.scrollTo(0,0);
+  const {lv, i, right, total, wrong} = run;
+  const pct = Math.round(right/total*100);
+  const stars = starsFor(pct);
+  const prev = progress[lv.id] || {best:0, stars:0};
+  const improved = pct > prev.best;
+  progress[lv.id] = { best: Math.max(prev.best, pct), stars: Math.max(prev.stars, stars) };
+  save();
+  const passed = pct >= PASS;
+  const hasNext = i < LEVELS.length-1 && isUnlocked(i+1);
+  let msg = passed ? (stars===3 ? "Livello superato alla grande." : "Livello superato!") : `Ti serve almeno ${PASS}% per sbloccare il prossimo livello. Riprova!`;
+  if(improved && prev.best>0) msg += " Hai battuto il tuo record.";
+  let html = `
+    <div class="topbar"><button class="back" id="back">‹ Livelli</button><span class="title">${lv.title}</span></div>
+    <section class="card result">
+      <div class="stars">${starStr(stars)}</div>
+      <div class="big">${pct}%</div>
+      <h2>${right} risposte giuste su ${total}</h2>
+      <p>${msg}</p>`;
+  if(wrong.length){
+    html += `<div class="review"><h3>Da ripassare</h3><ol>${wrong.map(w=>`<li>${w.q}<span>${w.a}</span></li>`).join("")}</ol></div>`;
+  }
+  html += `</section>
+    ${hasNext ? `<button class="btn" id="next">Prossimo livello</button>` : ""}
+    <button class="btn ${hasNext?"secondary":""}" id="retry">Riprova questo livello</button>
+    <button class="btn secondary" id="home">Torna ai livelli</button>`;
+  app.innerHTML = html;
+  document.getElementById("back").addEventListener("click", renderHome);
+  document.getElementById("home").addEventListener("click", renderHome);
+  document.getElementById("retry").addEventListener("click", ()=> startLevel(i));
+  if(hasNext) document.getElementById("next").addEventListener("click", ()=> startLevel(i+1));
+}
+
+renderHome();
+</script>
+</body>
+</html>

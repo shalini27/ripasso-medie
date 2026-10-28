@@ -9,5 +9,7 @@ window.MATERIE = [
   ["scienze","Scienze"],["arte","Storia dell'arte"],["inglese","Inglese"],["musica","Musica"],["tecnologia","Tecnologia"]
 ];
 window.RIPASSO = [
+  {file:"inglese-episode-1-what-are-you-doing.html", titolo:"Episode 1 – What are you doing this afternoon?", materia:"inglese", classe:"2ª", tipo:"quiz"},
+  {file:"musica-medioevo-in-musica.html", titolo:"Il Medioevo in musica", materia:"musica", classe:"2ª", tipo:"quiz+guida", domande:109},
   {file:"storia-comuni-papi-imperatori-peste.html", titolo:"Comuni, papi, imperatori e la peste", materia:"storia", classe:"2ª", argomento:"capitoli 12–13", tipo:"quiz+guida", domande:100}
 ];

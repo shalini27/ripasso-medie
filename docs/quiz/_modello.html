@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TITOLO – Ripasso Medie</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main>
+<header>
+  <div class="materia">MATERIA · CLASSE</div>
+  <h1>TITOLO</h1>
+</header>
+
+<section class="card ripasso">
+  <h2>Ripasso</h2>
+  <ul>
+    <li>Punto chiave 1.</li>
+    <li>Punto chiave 2.</li>
+    <li>Punto chiave 3.</li>
+  </ul>
+</section>
+
+<h2>Quiz</h2>
+<div id="app" class="quiz"></div>
+
+<footer><a href="../index.html">← Tutti i quiz</a></footer>
+</main>
+
+<!-- Scrivi "risposta" in chiaro, poi esegui:  python3 tools/sigilla.py docs/quiz/QUESTO-FILE.html
+     Le opzioni vengono mescolate automaticamente (tranne Vero/Falso). -->
+<script type="application/json" id="quiz">
+{
+  "domande": [
+    {
+      "testo": "Domanda a scelta multipla?",
+      "opzioni": ["Opzione giusta", "Opzione sbagliata", "Altra sbagliata", "Ancora sbagliata"],
+      "risposta": "Opzione giusta",
+      "spiegazione": "Una riga che spiega perché."
+    },
+    {
+      "testo": "Affermazione vera o falsa.",
+      "opzioni": ["Vero", "Falso"],
+      "risposta": "Vero",
+      "spiegazione": "Perché..."
+    }
+  ]
+}
+</script>
+<script src="../assets/quiz.js"></script>
+</body>
+</html>

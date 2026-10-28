@@ -1,0 +1,41 @@
+name: Richiedi un quiz
+description: Chiedi un quiz o una guida di ripasso su un argomento
+title: "[Quiz] "
+labels: ["richiesta"]
+body:
+  - type: dropdown
+    id: materia
+    attributes:
+      label: Materia
+      options:
+        - Italiano
+        - Storia
+        - Geografia
+        - Matematica
+        - Scienze
+        - Inglese
+        - Altro
+    validations:
+      required: true
+  - type: dropdown
+    id: classe
+    attributes:
+      label: Classe
+      options:
+        - 1ª media
+        - 2ª media
+        - 3ª media
+    validations:
+      required: true
+  - type: input
+    id: argomento
+    attributes:
+      label: Argomento
+      placeholder: "es. Roma repubblicana, le frazioni, il present simple"
+    validations:
+      required: true
+  - type: textarea
+    id: dettagli
+    attributes:
+      label: Dettagli
+      description: Cosa deve coprire? Quando serve? (niente nomi di bambini o scuole, per favore)

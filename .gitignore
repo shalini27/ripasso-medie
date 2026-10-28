@@ -1,0 +1,19 @@
+# --- PRIVACY: nothing in sources/ ever leaves this machine ---
+sources/*
+!sources/README.md
+
+# Belt and braces: no scans/screenshots/PDFs anywhere, except site images
+*.png
+*.jpg
+*.jpeg
+*.heic
+*.webp
+*.gif
+*.pdf
+!docs/assets/img/*
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/

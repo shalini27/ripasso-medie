@@ -1,0 +1,19 @@
+name: Segnala un errore
+description: Una domanda o una risposta è sbagliata o poco chiara
+title: "[Errore] "
+labels: ["errore"]
+body:
+  - type: input
+    id: quiz
+    attributes:
+      label: Quale quiz?
+      placeholder: "es. Matematica – Le frazioni"
+    validations:
+      required: true
+  - type: textarea
+    id: cosa
+    attributes:
+      label: Cosa c'è che non va?
+      description: Copia la domanda e spiega cosa dovrebbe dire.
+    validations:
+      required: true

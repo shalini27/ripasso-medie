@@ -56,7 +56,7 @@
           el('div', { class: 'sub' }, [q.classe && q.classe + ' media', q.argomento, q.domande && q.domande + ' domande'].filter(Boolean).join(' · '))),
         el('span', { class: 'kind' }, q.tipo || 'quiz')));
     });
-    if (!list.length) rows.append(el('div', { class: 'empty' }, el('b', {}, 'In arrivo'), 'Quando c’è una verifica, il quiz compare qui.'));
+    if (!list.length) rows.append(el('div', { class: 'empty' }, el('b', {}, 'In arrivo'), 'Appena è pronta un’esercitazione, compare qui.'));
     app.replaceChildren(head, rows);
     window.scrollTo(0, 0);
   }

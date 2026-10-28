@@ -9,13 +9,14 @@
 </head>
 <body>
 <nav class="topbar">
-  <a class="brand" href="#">Ripasso<small>scuola media</small></a>
+  <a class="brand" href="#">Ripasso<small>seconda media</small></a>
   <a class="back" href="#" id="back" hidden>← Tutte le materie</a>
 </nav>
 <main id="app"></main>
 <footer>Fatto in casa da genitori. Vuoi un quiz su un altro argomento? <a href="https://github.com/shalini27/ripasso-medie/issues/new/choose">Chiedilo qui</a>.</footer>
 
 <script src="assets/elenco.js"></script>
+<script src="assets/icone.js"></script>
 <script>
 (function () {
   const app = document.getElementById('app'), back = document.getElementById('back');
@@ -30,9 +31,11 @@
     for (const [id, label] of MATERIE) {
       const list = RIPASSO.filter(q => q.materia === id);
       const n = list.length;
+      const ic = el('span', { class: 'icona' }); ic.innerHTML = icona(id);
       const t = el('a', { class: 'tile' + (n ? '' : ' vuota'), href: '#' + id, 'data-materia': id },
-        el('h3', {}, label),
-        el('div', { class: 'n' }, el('b', {}, String(n)), n === 1 ? '1 quiz' : n ? n + ' quiz' : 'ancora niente'));
+        ic,
+        el('div', {}, el('h3', {}, label),
+          el('div', { class: 'n' }, n === 1 ? '1 esercitazione' : n ? n + ' esercitazioni' : 'ancora niente')));
       if (n) t.title = 'Ultimo: ' + list[0].titolo;
       tiles.append(t);
     }
@@ -46,8 +49,9 @@
   function materia(id) {
     back.hidden = false;
     const list = RIPASSO.filter(q => q.materia === id);
+    const ic = el('span', { class: 'icona' }); ic.innerHTML = icona(id);
     const head = el('header', { class: 'subhead', 'data-materia': id },
-      el('span', { class: 'materia' }, nome[id]),
+      ic,
       el('h1', {}, nome[id]),
       el('p', {}, list.length ? `${list.length} ${list.length === 1 ? 'esercitazione' : 'esercitazioni'}, la più recente in alto.` : 'Nessun quiz ancora per questa materia.'));
     const rows = el('div', { class: 'rows', 'data-materia': id });

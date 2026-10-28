@@ -27,6 +27,14 @@ inglese, musica, tecnologia, altro. Put `data-materia="<id>"` on `<body>` of a
 quiz/guide page and the subject colour flows into the label, progress bar,
 score ring, list markers and definition rules.
 
+## Subject symbols
+
+`assets/icone.js` holds one line-drawn symbol per subject (book, column,
+globe, square root, atom, palette, speech bubble, notes, chip). Use
+`<span class="icona" data-icona="<id>"></span>`; the script fills it. Shown on
+the home tile, the subject header and the quiz page label, always in the
+subject colour on a 12% tint. These are the only icons on the site.
+
 ## Components
 
 - `.topbar` with `.brand` and `.back` link.

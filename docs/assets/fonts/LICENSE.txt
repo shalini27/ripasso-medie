@@ -1,0 +1,4 @@
+Bricolage Grotesque (c) 2022 The Bricolage Grotesque Project Authors
+Figtree (c) 2022 The Figtree Project Authors
+Both licensed under the SIL Open Font License, Version 1.1:
+https://openfontlicense.org/open-font-license-official-text/

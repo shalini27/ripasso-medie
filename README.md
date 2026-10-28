@@ -1,15 +1,18 @@
 # Ripasso Medie
 
-Guide di ripasso e quiz per la scuola media, fatti da genitori per i propri
-figli e condivisi liberamente.
+Guide di ripasso e quiz per la scuola media, fatti in casa da genitori per i
+propri figli, in vista delle verifiche. Una pagina per argomento, divisa per
+materia, dalla verifica più recente alla più vecchia.
 
-## Come funziona
+## Come nasce un quiz
 
-- Ogni quiz è una singola pagina HTML in `docs/quiz/`. Niente da installare:
-  si apre nel browser, funziona anche offline, si può stampare.
-- Il materiale di partenza (foto e screenshot dei libri) resta sul computer di
-  chi lo prepara, nella cartella `sources/`, che **non viene mai pubblicata**.
-- Sul sito finisce solo il quiz finale, scritto con parole nostre.
+Il materiale di partenza resta sul computer del genitore che prepara il quiz:
+è lui o lei a verificarlo e a dare il contesto. Niente di tutto questo viene
+pubblicato. Online finiscono solo il quiz o la guida finali, scritti con parole
+nostre.
+
+Le risposte giuste nelle pagine pubblicate sono "sigillate": chi apre il
+sorgente della pagina vede le domande, non le soluzioni.
 
 ## Vuoi un quiz su un argomento?
 
@@ -18,20 +21,24 @@ Non serve saper programmare: basta un account GitHub.
 
 Hai trovato un errore in una domanda? → [Segnala un errore](../../issues/new?template=errore.yml).
 
-## Vuoi contribuire con un quiz tuo?
+Hai un quiz tuo da condividere? Scrivilo in una *issue* (anche solo domande e
+risposte): lo impaginiamo noi.
 
-Scrivilo in una *issue* (anche solo le domande e le risposte in un messaggio):
-lo impaginiamo noi e lo pubblichiamo.
+## Regole della casa
 
-## Regole di buon senso
+- Uso personale e didattico. Niente nomi di ragazzi, classi, scuole o
+  insegnanti nelle pagine.
+- Contenuti riscritti con parole nostre, mai pagine copiate.
 
-- Niente nomi di bambini, classi, scuole o insegnanti nelle pagine pubblicate.
-- Niente pagine di libri copiate: le domande e i riassunti sono riscritti con parole nostre.
-- Niente screenshot nel repo: vanno in `sources/`, che è ignorata da git.
+## Licenza
+
+- Quiz e guide: [CC BY-NC-SA 4.0](LICENSE-CONTENT.md) — condividi e modifica
+  liberamente, cita la fonte, niente usi commerciali, stessa licenza.
+- Codice del sito: [MIT](LICENSE).
 
 ---
 
-*English:* a tiny, privacy-first collaborative site of revision guides and
-quizzes for Italian middle school (scuola media). Source material stays local
-in `sources/` (git-ignored); only the finished HTML quizzes in `docs/` are
-published via GitHub Pages. No build step, no dependencies.
+*English:* home-made revision guides and quizzes for Italian middle school,
+organised by subject and test date. Source material stays on the parent's
+computer and is never published; only the finished page is. Content is
+CC BY-NC-SA 4.0, code is MIT.

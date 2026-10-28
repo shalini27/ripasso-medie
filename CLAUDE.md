@@ -24,15 +24,20 @@ written in Italian, published as a static site on GitHub Pages.
 ## Layout
 
 - `docs/` the published site. Plain HTML/CSS/JS, no build step, no Node.
-- `docs/index.html` does not exist yet: create it with the first real quiz,
-  listing every page grouped by subject, and add a row for each new page.
+- `docs/index.html` is the home: subject tiles, then (via `#<materia>`) that
+  subject's pages newest-first. It renders `docs/assets/elenco.js`; **add one
+  entry there for every new page** (file, titolo, materia, classe, data of the
+  verifica as AAAA-MM-GG, verifica label, tipo, domande).
+- Subject ids: italiano, storia, geografia, matematica, scienze, arte (storia
+  dell'arte), inglese, musica, tecnologia, altro. Set `data-materia` on `<body>`.
 - `docs/quiz/<materia>-<argomento>.html` one page per topic.
   - Quiz: start from `_modello.html`. "Ripasso" section + JSON question block
     rendered by `assets/quiz.js` (one question at a time, shuffled, instant
     feedback, score). Correct answers are **sealed** as SHA-256 hashes so kids
     can't read the key in the page source.
   - Study guide only: start from `_modello-guida.html`.
-- `docs/assets/` shared `style.css` and `quiz.js`.
+- `docs/assets/` the design system (`style.css`, documented in `DESIGN.md`),
+  `quiz.js`, `elenco.js`, self-hosted fonts. Pages never add their own CSS.
 - `tools/sigilla.py` seals answers: replaces `"risposta"` with `"hash"`.
 
 ## Workflow A — Shalini asks for a quiz or guide
@@ -45,7 +50,8 @@ written in Italian, published as a static site on GitHub Pages.
    5–10 key points first.
 4. Seal: `python3 tools/sigilla.py docs/quiz/<file>.html`
    (exits with an error if a `risposta` isn't among the `opzioni`).
-5. Add the page to `docs/index.html`.
+5. Add the entry to `docs/assets/elenco.js`; fill `<title>`, `data-materia`,
+   `.materia`, `.back` link and `.meta` line in the page.
 6. Quick check: open the file in a browser or at least `python3 -c "import json,re;json.loads(re.search(r'id=\"quiz\">(.*?)</script>',open('docs/quiz/<file>.html').read(),re.S).group(1))"`.
 7. `git add docs && git commit -m "Aggiunge <materia>: <argomento>"` then
    `git push`.
@@ -68,7 +74,19 @@ Sealed questions have no plain `risposta`. To change a question or its correct
 answer, rewrite that entry with a plain `"risposta"` and run `sigilla.py`
 again; other entries are left untouched (the script is idempotent).
 
-Language of pages, commit messages and issue replies: Italian.
+Language of pages, commit messages and issue replies: Italian. Copy on pages
+speaks to the kid, not the parent.
+
+## Licences
+
+Code: MIT (`LICENSE`). Quizzes and guides: CC BY-NC-SA 4.0
+(`LICENSE-CONTENT.md`). Fonts: OFL 1.1. Keep new files consistent with this.
+
+## Wording rule
+
+In public-facing text (README, issue replies) do not describe the source
+material as photos or screenshots of textbooks. Say: the source material stays
+on the parent's computer, is checked by a parent, and is not published.
 
 ## Safety net
 

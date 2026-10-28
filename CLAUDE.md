@@ -96,9 +96,12 @@ where source material lives, what tools are used, or how answers are sealed.
 
 `tools/hooks/pre-commit` (enabled via `git config core.hooksPath tools/hooks`)
 refuses any commit that contains a file from `sources/` or any image/PDF, even
-after `git add -f`. It also stamps `index.html`'s `elenco.js?v=` whenever
-`elenco.js` is staged, so browsers fetch the new list (Pages caches 10 min).
-If a fresh clone is made, run that config command once.
+after `git add -f`. If a fresh clone is made, run that config command once.
+
+`index.html` loads `elenco.js` with a per-visit timestamp, so a new quiz shows
+up on the home page as soon as Pages has redeployed, regardless of browser
+cache. Changes to `index.html` or `style.css` themselves can take up to 10
+minutes to reach a browser that already has them cached.
 
 ## Issues and spam
 

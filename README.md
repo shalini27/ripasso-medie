@@ -1,9 +1,7 @@
 # Ripasso Medie
 
 Guide di ripasso e quiz per la scuola media, fatti da genitori per i propri
-figli e condivisi liberamente. Il sito è qui:
-
-**https://shalini27.github.io/ripasso-medie/**
+figli e condivisi liberamente.
 
 ## Come funziona
 

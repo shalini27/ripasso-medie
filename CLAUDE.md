@@ -4,7 +4,8 @@ Revision guides and quizzes for Italian middle school (scuola media, 1ª–3ª),
 written in Italian, published as a static site on GitHub Pages.
 
 - Repo: https://github.com/shalini27/ripasso-medie (public)
-- Site: https://shalini27.github.io/ripasso-medie/ (serves the `docs/` folder of `main`)
+- Site: NOT deployed. GitHub Pages is disabled on purpose. Enable it only when
+  Shalini explicitly asks (settings: branch `main`, folder `/docs`).
 - Owner: Shalini (shalini27). Other parents open issues; they do not push.
 
 ## Privacy rules (non-negotiable)
@@ -23,8 +24,8 @@ written in Italian, published as a static site on GitHub Pages.
 ## Layout
 
 - `docs/` the published site. Plain HTML/CSS/JS, no build step, no Node.
-- `docs/index.html` lists every page, grouped by subject. Add a row for each
-  new page (and remove the "Ancora nessun quiz" placeholder the first time).
+- `docs/index.html` does not exist yet: create it with the first real quiz,
+  listing every page grouped by subject, and add a row for each new page.
 - `docs/quiz/<materia>-<argomento>.html` one page per topic.
   - Quiz: start from `_modello.html`. "Ripasso" section + JSON question block
     rendered by `assets/quiz.js` (one question at a time, shuffled, instant
@@ -47,9 +48,9 @@ written in Italian, published as a static site on GitHub Pages.
 5. Add the page to `docs/index.html`.
 6. Quick check: open the file in a browser or at least `python3 -c "import json,re;json.loads(re.search(r'id=\"quiz\">(.*?)</script>',open('docs/quiz/<file>.html').read(),re.S).group(1))"`.
 7. `git add docs && git commit -m "Aggiunge <materia>: <argomento>"` then
-   `git push`. Pages redeploys automatically in ~1 minute.
-8. Reply with the public URL of the new page:
-   `https://shalini27.github.io/ripasso-medie/quiz/<file>.html`
+   `git push`.
+8. Reply with the path of the new page. (Once Pages is enabled the URL will be
+   `https://shalini27.github.io/ripasso-medie/quiz/<file>.html`.)
 
 ## Workflow B — an issue from another parent
 

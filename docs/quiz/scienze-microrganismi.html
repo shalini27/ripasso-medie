@@ -95,8 +95,7 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 .ex .fb{margin-top:10px;font-weight:700}
 .ex .fb.ok{color:var(--ok)} .ex .fb.no{color:var(--no)}
 .ex .btn-row{justify-content:flex-start;margin-top:12px}
-.wide2{display:grid;gap:16px}
-@media (min-width:1000px){.wide2{grid-template-columns:1fr 1fr;align-items:start}}
+
 .ghost{position:fixed;z-index:50;pointer-events:none;transform:translate(-50%,-50%) rotate(-2deg);box-shadow:var(--shadow);opacity:.95}
 .lift{opacity:.4}
 .bin.over{background:color-mix(in srgb,var(--mc) 14%,transparent);border-style:solid}
@@ -256,7 +255,7 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 </section>
 
 <p class="sect" id="mappa">La mappa</p>
-<div class="wide2">
+<div class="stack">
 <section class="panel">
   <h2>Tutto in uno sguardo</h2>
   <p class="hint" style="color:var(--ink-2)">Segui le domande: è una cellula? ha il nucleo?</p>

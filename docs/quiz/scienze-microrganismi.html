@@ -43,14 +43,15 @@
 .loop>div{background:var(--surface);border:1.5px solid var(--mc);border-radius:10px;padding:8px 6px}
 .loop b{display:block;color:var(--mc)}
 @media (max-width:600px){.loop{grid-template-columns:1fr 1fr}}
-.tree{display:grid;gap:10px;justify-items:center}
-.tree .n{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:8px 14px;font-weight:700;font-size:15px;text-align:center}
-.tree .root{background:var(--mc);color:#fff;border-color:var(--mc);font-size:17px}
-.tree .row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
-.tree .col{display:grid;gap:6px;justify-items:center;align-content:start}
-.tree .leaf{font-weight:500;font-size:14px;color:var(--ink-2);border-style:dashed}
-.tree .arrow{color:var(--mc);font-size:22px;line-height:1}
-@media (max-width:600px){.tree .row{grid-template-columns:1fr}}
+.ctree,.ctree ul{list-style:none;margin:0;padding:0}
+.ctree ul{margin-left:14px;padding-left:16px;border-left:2px solid color-mix(in srgb,var(--mc) 45%,transparent)}
+.ctree li{position:relative;padding:6px 0 6px 6px;font-size:16px;line-height:1.4}
+.ctree ul li::before{content:"";position:absolute;left:-16px;top:19px;width:14px;height:2px;background:color-mix(in srgb,var(--mc) 45%,transparent)}
+.ctree .k{display:inline-block;font-family:var(--display);font-weight:800;letter-spacing:.02em;padding:3px 10px;border-radius:8px;background:color-mix(in srgb,var(--mc) 14%,transparent);color:var(--mc)}
+.ctree .k.root{background:var(--mc);color:#fff;font-size:17px}
+.ctree .q{color:var(--ink-2);font-style:italic;font-size:15px}
+.ctree small{display:block;color:var(--ink-2);font-size:14px}
+.ctree b{font-weight:700}
 .gloss{display:grid;gap:6px}
 .gloss details{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:8px 14px}
 .gloss summary{cursor:pointer;font-weight:700;list-style:none}
@@ -251,17 +252,30 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 <p class="sect" id="mappa">La mappa</p>
 <section class="panel">
   <h2>Tutto in uno sguardo</h2>
-  <div class="tree">
-    <div class="n root">I MICRORGANISMI</div>
-    <div class="arrow">↓</div>
-    <div class="n">viventi piccolissimi, invisibili a occhio nudo &nbsp;·&nbsp; + i <b>virus</b>, entità più piccole delle cellule</div>
-    <div class="arrow">↓</div>
-    <div class="row">
-      <div class="col"><div class="n">i procarioti</div><div class="arrow">↓</div><div class="n leaf">batteri: cocchi, bacilli, spirilli, vibrioni</div><div class="n leaf">archei: ambienti estremi</div></div>
-      <div class="col"><div class="n">i protisti</div><div class="arrow">↓</div><div class="n leaf">protofiti (alghe)</div><div class="n leaf">protozoi</div><div class="n leaf">simili ai funghi</div></div>
-      <div class="col"><div class="n">i funghi</div><div class="arrow">↓</div><div class="n leaf">unicellulari: i lieviti</div><div class="n leaf">pluricellulari: ife, micelio, corpo fruttifero</div></div>
-    </div>
-  </div>
+  <p class="hint" style="color:var(--ink-2);font-size:14px">Segui le domande: è una cellula? ha il nucleo?</p>
+  <ul class="ctree">
+    <li><span class="k root">I MICRORGANISMI</span>
+      <ul>
+        <li><span class="q">non sono cellule →</span> <span class="k">VIRUS</span> <small>DNA o RNA dentro un capside</small></li>
+        <li><span class="q">sono cellule →</span>
+          <ul>
+            <li><span class="q">senza nucleo →</span> <span class="k">PROCARIOTI</span>
+              <ul>
+                <li><b>batteri</b> <small>cocchi · bacilli · spirilli · vibrioni</small></li>
+                <li><b>archei</b> <small>ambienti estremi</small></li>
+              </ul>
+            </li>
+            <li><span class="q">con il nucleo →</span> <span class="k">EUCARIOTI</span>
+              <ul>
+                <li><b>protisti</b> <small>protofiti (alghe) · protozoi · simili ai funghi</small></li>
+                <li><b>funghi</b> <small>lieviti (una cellula) · pluricellulari (ife, micelio, corpo fruttifero)</small></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </section>
 
 <section class="panel">

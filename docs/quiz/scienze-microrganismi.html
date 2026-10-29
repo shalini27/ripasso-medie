@@ -95,6 +95,8 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 .ex .fb{margin-top:10px;font-weight:700}
 .ex .fb.ok{color:var(--ok)} .ex .fb.no{color:var(--no)}
 .ex .btn-row{justify-content:flex-start;margin-top:12px}
+.wide2{display:grid;gap:16px}
+@media (min-width:1000px){.wide2{grid-template-columns:1fr 1fr;align-items:start}.exgrid #ex6{grid-column:1/-1}}
 .ghost{position:fixed;z-index:50;pointer-events:none;transform:translate(-50%,-50%) rotate(-2deg);box-shadow:var(--shadow);opacity:.95}
 .lift{opacity:.4}
 .bin.over{background:color-mix(in srgb,var(--mc) 14%,transparent);border-style:solid}
@@ -250,6 +252,7 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 </section>
 
 <p class="sect" id="mappa">La mappa</p>
+<div class="wide2">
 <section class="panel">
   <h2>Tutto in uno sguardo</h2>
   <p class="hint" style="color:var(--ink-2);font-size:14px">Segui le domande: è una cellula? ha il nucleo?</p>
@@ -293,8 +296,10 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
     <details><summary>zoonosi</summary><p>Malattia infettiva che passa dagli animali agli esseri umani, come il COVID-19.</p></details>
   </div>
 </section>
+</div>
 
 <p class="sect" id="allenati">Allenati</p>
+<div class="wide2 exgrid">
 
 <section class="panel ex" id="ex1">
   <h2><span class="n">1</span>Dai il nome alle parti del virus</h2>
@@ -350,6 +355,7 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
   </div>
 </section>
 
+</div>
 <p class="sect" id="quizsect">Quiz</p>
 <section class="panel" style="text-align:center;gap:14px">
   <h2>Pronto per la verifica?</h2>

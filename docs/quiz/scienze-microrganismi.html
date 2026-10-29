@@ -9,37 +9,37 @@
 <style>
 /* Page-specific layout; colours and type come from the shared tokens. */
 .nav{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 8px}
-.nav a{text-decoration:none;font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
+.nav a{text-decoration:none;font-weight:700;font-size:15px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface)}
 .nav a:hover{border-color:var(--mc)}
 .sect{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mc);margin:36px 0 -6px}
 .lead{font-size:18px;color:var(--ink-2);max-width:60ch}
 .fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
 .fam>div,.fam>button{font:inherit;color:inherit;text-align:left;cursor:default;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:8px;align-content:start}
 .fam svg{width:64px;height:64px;color:var(--mc)}
-.fam h3{font-size:18px}
+.fam h3{font-size:19px}
 .fam>button{cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
 .fam>button:hover{border-color:var(--mc);transform:translateY(-2px)}
 .fam>button.on{border-color:var(--mc);background:color-mix(in srgb,var(--mc) 10%,var(--surface));box-shadow:var(--shadow)}
 .famd{border-color:var(--mc);animation:in .25s ease-out}
-.sub{font-size:16px;color:var(--mc);margin:4px 0 0}
+.sub{font-size:17px;color:var(--mc);margin:4px 0 0}
 .fam .tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:6px;background:color-mix(in srgb,var(--mc) 12%,transparent);color:var(--mc);justify-self:start}
-.fam p{font-size:14px;color:var(--ink-2)}
+.fam p{font-size:16px;color:var(--ink-2);line-height:1.45}
 .fig{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}
 .fig svg{width:100%;height:auto;max-width:360px;justify-self:center}
-.fig .lab{font-size:13px;font-weight:700}
+
 @media (max-width:600px){.fig{grid-template-columns:1fr}}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;counter-reset:s}
-.steps>div{background:color-mix(in srgb,var(--mc) 8%,transparent);border-radius:var(--r-sm);padding:12px 12px 12px 14px;font-size:15px;position:relative;counter-increment:s}
+.steps>div{background:color-mix(in srgb,var(--mc) 8%,transparent);border-radius:var(--r-sm);padding:12px 12px 12px 14px;font-size:16px;position:relative;counter-increment:s}
 .steps>div::before{content:counter(s);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--mc);color:#fff;font-weight:800;font-size:13px;margin-right:8px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:600px){.two{grid-template-columns:1fr}}
-.two h4{font-size:15px;margin:0 0 6px;color:var(--mc)}
-.two ul{padding-left:18px;margin:0;font-size:15px}
+.two h4{font-size:16px;margin:0 0 6px;color:var(--mc)}
+.two ul{padding-left:18px;margin:0;font-size:16px}
 .ok-list h4{color:var(--ok)} .no-list h4{color:var(--no)}
 .chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--display);font-weight:700;font-size:20px}
 .chain span{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:4px 12px}
 .chain i{color:var(--mc);font-style:normal}
-.loop{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;font-size:13px;text-align:center}
+.loop{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;font-size:14px;line-height:1.35;text-align:center}
 .loop>div{background:var(--surface);border:1.5px solid var(--mc);border-radius:10px;padding:8px 6px}
 .loop b{display:block;color:var(--mc)}
 @media (max-width:600px){.loop{grid-template-columns:1fr 1fr}}
@@ -49,7 +49,7 @@
 .ctree ul li::before{content:"";position:absolute;left:-16px;top:19px;width:14px;height:2px;background:color-mix(in srgb,var(--mc) 45%,transparent)}
 .ctree .k{display:inline-block;font-family:var(--display);font-weight:800;letter-spacing:.02em;padding:3px 10px;border-radius:8px;background:color-mix(in srgb,var(--mc) 14%,transparent);color:var(--mc)}
 .ctree .k.root{background:var(--mc);color:#fff;font-size:17px}
-.ctree .q{color:var(--ink-2);font-style:italic;font-size:15px}
+.ctree .q{color:var(--ink-2);font-style:italic;font-size:16px}
 .ctree small{display:block;color:var(--ink-2);font-size:14px}
 .ctree b{font-weight:700}
 .gloss{display:grid;gap:6px}
@@ -57,17 +57,17 @@
 .gloss summary{cursor:pointer;font-weight:700;list-style:none}
 .gloss summary::after{content:" +";color:var(--mc)}
 .gloss details[open] summary::after{content:" –"}
-.gloss p{font-size:15px;color:var(--ink-2);margin-top:4px}
+.gloss p{font-size:16px;color:var(--ink-2);margin-top:4px}
 /* exercises */
 .ex{border-color:var(--mc)}
 .ex h2 .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--mc);color:#fff;font-size:15px;margin-right:8px}
-.ex .hint{color:var(--ink-2);font-size:15px}
+.ex .hint{color:var(--ink-2);font-size:14px}
 .hot{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center}
 @media (max-width:600px){.hot{grid-template-columns:1fr}}
 .hot svg{width:100%;height:auto;max-width:320px;justify-self:center}
 .hot .pins{display:grid;gap:8px}
 .pin{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:center}
-.pin b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--mc);color:#fff;font-size:13px}
+.pin b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--mc);color:#fff;font-size:14px}
 select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:inherit;width:100%}
 .pin.ok select{border-color:var(--ok);background:var(--ok-bg)} .pin.no select{border-color:var(--no);background:var(--no-bg)}
 .shapes{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
@@ -82,14 +82,14 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 .bins{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 @media (max-width:600px){.bins{gap:6px}.bin{padding:8px 6px;min-height:120px}.bin h4{font-size:12px}.bin .chipx{font-size:13px;padding:6px 9px}}
 .bin{border:1.5px dashed var(--mc);border-radius:var(--r-sm);padding:10px;min-height:90px;cursor:pointer}
-.bin h4{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--mc)}
+.bin h4{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mc)}
 .bin .pool{min-height:30px}
 .order{display:grid;gap:8px}
 .order button{text-align:left;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:10px 12px;cursor:pointer}
 .order button b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--line);font-size:13px}
 .order button.picked b{background:var(--mc);color:#fff}
 .order button.ok{border-color:var(--ok);background:var(--ok-bg)} .order button.no{border-color:var(--no);background:var(--no-bg)}
-.fill{line-height:2.2;font-size:16px}
+.fill{line-height:2.2;font-size:17px}
 .slot{display:inline-block;min-width:110px;border-bottom:2px solid var(--mc);padding:0 6px;text-align:center;cursor:pointer;font-weight:700;color:var(--mc)}
 .slot.ok{color:var(--ok);border-color:var(--ok)} .slot.no{color:var(--no);border-color:var(--no)}
 .ex .fb{margin-top:10px;font-weight:700}
@@ -102,6 +102,10 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 .bin.over{background:color-mix(in srgb,var(--mc) 14%,transparent);border-style:solid}
 .slot.over{background:color-mix(in srgb,var(--mc) 18%,transparent);border-radius:6px}
 .chipx{user-select:none;-webkit-user-select:none}
+.panel>p,.panel ul,.panel .def{font-size:16px}
+.panel .lead{font-size:18px}
+.fig ul{font-size:16px}
+.hint{font-size:14px!important}
 </style>
 </head>
 <body data-materia="scienze">
@@ -121,7 +125,7 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 <section class="panel">
   <h2>Tre famiglie di viventi, più i virus</h2>
   <p class="lead">I microrganismi sono viventi così piccoli che non si vedono a occhio nudo: batteri e archei, protisti, funghi. A loro si aggiungono i <b>virus</b>, che non sono cellule e stanno al confine tra vivente e non vivente. Per non confonderli chiediti: <b>è fatto di cellule? Le cellule hanno il nucleo?</b></p>
-  <p class="hint" style="color:var(--ink-2);font-size:14px">Tocca una famiglia per scoprirla.</p>
+  <p class="hint" style="color:var(--ink-2)">Tocca una famiglia per scoprirla.</p>
   <div class="fam" id="famcards">
     <button type="button" data-fam="virus"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="32" cy="32" r="14"/><path d="M32 18V8M32 46v10M18 32H8M46 32h10M22 22l-7-7M42 42l7 7M42 22l7-7M22 42l-7 7"/><path d="M26 32c2-4 4 4 6 0s4-4 6 0"/></svg><h3>Virus</h3><span class="tag">non è una cellula</span><p>Un guscio di proteine con dentro il DNA o l'RNA. Non è un vero vivente.</p></button>
     <button type="button" data-fam="batteri"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="10" y="22" width="44" height="20" rx="10"/><path d="M22 32c3-3 6 3 9 0s6-3 9 0"/><path d="M54 32c4-2 6 1 8 0"/></svg><h3>Batteri e archei</h3><span class="tag">procarioti</span><p>Una cellula sola, senza nucleo.</p></button>
@@ -255,7 +259,7 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 <div class="wide2">
 <section class="panel">
   <h2>Tutto in uno sguardo</h2>
-  <p class="hint" style="color:var(--ink-2);font-size:14px">Segui le domande: è una cellula? ha il nucleo?</p>
+  <p class="hint" style="color:var(--ink-2)">Segui le domande: è una cellula? ha il nucleo?</p>
   <ul class="ctree">
     <li><span class="k root">I MICRORGANISMI</span>
       <ul>

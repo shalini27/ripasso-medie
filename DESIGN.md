@@ -53,6 +53,13 @@ are the only pictures on the site.
   `.result` with score ring and "Da rivedere" list).
 - Buttons: `.btn-primary` (accent, one per view), `.btn-ink`, `.btn-ghost`.
 
+## Type scale on content pages
+
+h1 clamp 32–48px · h2 22px · h3/sub 17px · reading text 16px (lists,
+paragraphs, cards, glossary, map) · lead 18px · hints and captions 14px ·
+uppercase tags 12px. Don't introduce other sizes; mixed 13/14/15px blocks
+next to each other look wrong.
+
 ## Rules
 
 1. One column, max 760px, 20px side gutter. Works at 400px (phone), 800px

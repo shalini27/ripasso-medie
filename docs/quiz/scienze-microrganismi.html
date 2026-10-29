@@ -96,7 +96,7 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 .ex .fb.ok{color:var(--ok)} .ex .fb.no{color:var(--no)}
 .ex .btn-row{justify-content:flex-start;margin-top:12px}
 .wide2{display:grid;gap:16px}
-@media (min-width:1000px){.wide2{grid-template-columns:1fr 1fr;align-items:start}.exgrid #ex6{grid-column:1/-1}}
+@media (min-width:1000px){.wide2{grid-template-columns:1fr 1fr;align-items:start}}
 .ghost{position:fixed;z-index:50;pointer-events:none;transform:translate(-50%,-50%) rotate(-2deg);box-shadow:var(--shadow);opacity:.95}
 .lift{opacity:.4}
 .bin.over{background:color-mix(in srgb,var(--mc) 14%,transparent);border-style:solid}
@@ -303,7 +303,7 @@ select.ans{font:inherit;padding:8px 10px;border-radius:8px;border:1.5px solid va
 </div>
 
 <p class="sect" id="allenati">Allenati</p>
-<div class="wide2 exgrid">
+<div class="stack">
 
 <section class="panel ex" id="ex1">
   <h2><span class="n">1</span>Dai il nome alle parti del virus</h2>

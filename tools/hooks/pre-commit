@@ -7,3 +7,12 @@ if [ -n "$bad" ]; then
   exit 1
 fi
 
+
+# Se cambia qualcosa in docs/assets/, aggiorna il numero di versione (?v=) su
+# tutti i link a style.css / quiz.js / icone.js nelle pagine, così i browser
+# scaricano i file nuovi appena ricaricano la pagina (Pages li tiene 10 minuti).
+if git diff --cached --name-only | grep -q '^docs/assets/'; then
+  v=$(date +%Y%m%d%H%M)
+  find docs -name '*.html' -print0 | xargs -0 sed -i -E "s#(assets/(style\.css|quiz\.js|icone\.js))(\?v=[0-9]+)?#\1?v=$v#g"
+  git add docs
+fi

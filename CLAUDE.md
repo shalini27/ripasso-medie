@@ -117,10 +117,18 @@ where source material lives, what tools are used, or how answers are sealed.
 refuses any commit that contains a file from `sources/` or any image/PDF, even
 after `git add -f`. If a fresh clone is made, run that config command once.
 
-`index.html` loads `elenco.js` with a per-visit timestamp, so a new quiz shows
-up on the home page as soon as Pages has redeployed, regardless of browser
-cache. Changes to `index.html` or `style.css` themselves can take up to 10
-minutes to reach a browser that already has them cached.
+## Cache rule (every push)
+
+GitHub Pages serves everything with a 10-minute browser cache and that header
+cannot be changed. Two mechanisms keep the site fresh:
+- `index.html` loads `elenco.js` with a per-visit timestamp, so a new quiz
+  appears on the home page as soon as Pages has redeployed.
+- The pre-commit hook stamps `?v=<timestamp>` on every `style.css`, `quiz.js`
+  and `icone.js` link in all pages whenever `docs/assets/` changes, so a page
+  never loads new HTML with stale CSS/JS. Never remove these stamps; new pages
+  get them automatically at the next assets change (or copy the current one).
+A page already open in a browser can still lag up to 10 minutes after a push;
+tell Shalini that when she reports not seeing a change.
 
 ## Issues and spam
 

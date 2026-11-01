@@ -99,6 +99,38 @@ table.cit td:last-child{font-weight:700}
 .brand ul{font-size:15px;padding-left:18px;margin:0;display:grid;gap:4px;font-weight:400}
 .brand li{font-weight:400}
 .brand .shoe{width:120px;height:60px}
+
+/* percorso */
+.strip{position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 0 8px;margin:6px 0 0;border-bottom:1px solid var(--line)}
+.dots{display:flex;gap:5px;flex-wrap:wrap}
+.dots i{display:block;height:8px;flex:1;min-width:14px;border-radius:4px;background:var(--line)}
+.dots i.done{background:var(--mc)} .dots i.cur{background:color-mix(in srgb,var(--mc) 55%,var(--line));outline:2px solid var(--mc);outline-offset:-1px}
+.striptxt{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:14px;color:var(--ink-2)}
+.striptxt b{color:var(--ink)}
+.reset{font:inherit;font-size:13px;color:var(--ink-2);background:none;border:0;text-decoration:underline;cursor:pointer}
+.step{display:grid;gap:12px}
+.stephead{display:flex;align-items:center;gap:12px;padding:6px 0}
+.stephead .num{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--mc);color:#fff;font-family:var(--display);font-weight:800;font-size:16px;flex:none}
+.stephead .steptitle{font-size:22px;flex:1}
+.stephead .state{font-size:13px;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.step.locked .stephead .num{background:var(--line);color:var(--ink-2)}
+.step.locked .stephead .steptitle{color:var(--ink-2)}
+.step.locked .stepbody{display:none}
+.step.done .stephead .num{background:var(--ok)}
+.step.done .stepbody{display:none}
+.step.done.open .stepbody{display:grid;gap:16px}
+.step.done .stephead{cursor:pointer}
+.stepbody{display:grid;gap:16px}
+.gate{background:var(--surface);border:2px solid var(--mc);border-radius:var(--r);padding:18px 20px;display:grid;gap:14px}
+.gate h3{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--mc)}
+.gate .gq{display:grid;gap:8px}
+.gate .gq p{font-weight:600;font-size:17px}
+.gate .gopts{display:grid;gap:6px}
+.gate .gopts button{text-align:left;font:inherit;color:inherit;background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;cursor:pointer}
+.gate .gopts button:hover:not(:disabled){border-color:var(--mc)}
+.gate .gopts button.ok{border-color:var(--ok);background:var(--ok-bg)} .gate .gopts button.no{border-color:var(--no);background:var(--no-bg)}
+.gate .gfb{font-weight:700} .gate .gfb.ok{color:var(--ok)} .gate .gfb.no{color:var(--no)}
+.unlocked{background:var(--ok-bg);color:var(--ok);border-radius:var(--r-sm);padding:12px 16px;font-weight:700;text-align:center}
 </style>
 </head>
 <body data-materia="geografia">
@@ -110,11 +142,12 @@ table.cit td:last-child{font-weight:700}
 <header class="pagehead">
   <span class="materia"><span class="icona" data-icona="geografia"></span>Geografia</span>
   <h1>La Germania</h1>
-  <p class="meta">2ª media · Esercitazione · il paese, le fiabe dei fratelli Grimm, Adidas e Puma</p>
-  <nav class="nav"><a href="#germania">Il paese</a><a href="#fiabe">Le fiabe</a><a href="#marchi">I marchi</a><a href="#quiz-start">Quiz</a></nav>
+  <p class="meta">2ª media · Esercitazione · un percorso in 16 passi: il paese, le fiabe dei Grimm, i marchi tedeschi. Il quiz si sblocca alla fine.</p>
+  <div class="strip" id="strip"><div class="dots" id="dots"></div><div class="striptxt"><b id="striptxt"></b> <button type="button" class="reset" id="reset">ricomincia</button></div></div>
 </header>
-
-<p class="sect" id="germania">Il paese</p>
+<section class="step" data-step="1">
+<div class="stephead"><span class="num">1</span><h2 class="steptitle">La Germania in uno sguardo</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel">
   <h2>La Germania in uno sguardo</h2>
   <div class="hero">
@@ -141,17 +174,14 @@ table.cit td:last-child{font-weight:700}
   </div>
   <p class="def">Dal Mare del Nord e dal Baltico fino alle Alpi Bavaresi, nel cuore dell'Europa. Prende il nome dagli antichi <b>Germani</b>. È tra i fondatori dell'UE ed è lo stato più popoloso dell'Unione. <i>Bund</i> vuol dire «patto»: per questo il campionato di calcio si chiama <b>Bundesliga</b>.</p>
   <p class="def"><b>I 16 stati federati</b>: Baden-Württemberg (Stoccarda), Baviera (Monaco), Berlino, Brandeburgo (Potsdam), Brema, Amburgo, Assia (Wiesbaden), Meclemburgo-Pomerania Anteriore (Schwerin), Bassa Sassonia (Hannover), Renania Settentrionale-Vestfalia (Düsseldorf), Renania-Palatinato (Magonza), Saarland (Saarbrücken), Sassonia (Dresda), Sassonia-Anhalt (Magdeburgo), Schleswig-Holstein (Kiel), Turingia (Erfurt). Berlino, Brema e Amburgo sono <b>città-stato</b>.</p>
-<div class="tabs" id="gtabs">
-    <button type="button" data-tab="terr" class="on">Territorio e clima</button>
-    <button type="button" data-tab="econ">Economia</button>
-    <button type="button" data-tab="citta">Popolazione e città</button>
-    <button type="button" data-tab="berlino">Berlino</button>
-    <button type="button" data-tab="storia">Storia</button>
-    <button type="button" data-tab="album">Album</button>
-  </div>
 </section>
-
-<section class="panel tabd" data-tab="terr">
+<div class="gate" data-gate="1"></div>
+</div>
+</section>
+<section class="step" data-step="2">
+<div class="stephead"><span class="num">2</span><h2 class="steptitle">Territorio e clima</h2><span class="state"></span></div>
+<div class="stepbody">
+<section class="panel" data-tab="terr">
   <h2>Territorio: tre fasce da nord a sud</h2>
   <div class="bands">
     <div class="band n"><b>Nord</b><span><b>Bassopiano Germanico</b>: pianura attraversata da grandi fiumi navigabili. Coste del Mare del Nord basse e sabbiose con le isole Frisone; coste del Baltico con baie profonde e grandi isole. La penisola dello <b>Jutland</b> porta al confine con la Danimarca.</span></div>
@@ -163,8 +193,13 @@ table.cit td:last-child{font-weight:700}
     <div><h4>Tre climi</h4><ul><li><b>Nord, atlantico</b>: inverni freddi e umidi, estati ventilate, piogge tutto l'anno. Pascoli, brughiere, latifoglie.</li><li><b>Centro, continentale</b>: inverni lunghi, estati calde, piogge scarse. Latifoglie, in gran parte sostituite dai campi.</li><li><b>Sud, alpino</b>: inverni lunghi e nevosi, estati brevi. Boschi di conifere.</li></ul></div>
   </div>
 </section>
-
-<section class="panel tabd" data-tab="econ" hidden>
+<div class="gate" data-gate="2"></div>
+</div>
+</section>
+<section class="step" data-step="3">
+<div class="stephead"><span class="num">3</span><h2 class="steptitle">Economia</h2><span class="state"></span></div>
+<div class="stepbody">
+<section class="panel" data-tab="econ">
   <h2>Economia: la prima industria d'Europa</h2>
   <div class="two">
     <div><h4>Occupati per settore</h4><div class="bars">
@@ -188,8 +223,13 @@ table.cit td:last-child{font-weight:700}
   </div>
   <p class="def">Est e Ovest sono ancora diversi: fino al 1989 l'Ovest era capitalista e l'Est comunista. Gli stranieri sono oltre il <b>12%</b> della popolazione (turchi, italiani, polacchi, serbi); dal 2015 la Germania ha accolto più di un milione e mezzo di <b>profughi</b> dalla Siria, con tensioni e crescita dell'estrema destra soprattutto a Est.</p>
 </section>
-
-<section class="panel tabd" data-tab="citta" hidden>
+<div class="gate" data-gate="3"></div>
+</div>
+</section>
+<section class="step" data-step="4">
+<div class="stephead"><span class="num">4</span><h2 class="steptitle">Popolazione e città</h2><span class="state"></span></div>
+<div class="stepbody">
+<section class="panel" data-tab="citta">
   <h2>Popolazione e città</h2>
   <p>Più di <b>80 milioni</b> di abitanti, lo stato più popoloso dell'UE. La maggior parte vive a Ovest, nella <b>valle del Reno</b>. Non c'è una sola metropoli ma tante città medio-grandi: un modello <b>policentrico</b>, figlio della storia (tanti piccoli stati fino all'Ottocento, poi la divisione Est/Ovest, oggi il federalismo).</p>
   <div class="two">
@@ -201,8 +241,13 @@ table.cit td:last-child{font-weight:700}
     <div><h4>Dopo il nazionalismo</h4><ul><li>Oggi i giovani guardano a lavoro, ambiente, diritti civili e cultura</li><li>Il vecchio aeroporto di Berlino <b>Tempelhof</b> è diventato un parco con orti urbani e concerti</li></ul></div>
   </div>
 </section>
-
-<section class="panel tabd" data-tab="berlino" hidden>
+<div class="gate" data-gate="4"></div>
+</div>
+</section>
+<section class="step" data-step="5">
+<div class="stephead"><span class="num">5</span><h2 class="steptitle">Berlino</h2><span class="state"></span></div>
+<div class="stepbody">
+<section class="panel" data-tab="berlino">
   <h2>Berlino</h2>
   <p>Grandi spazi, trasformazione continua e memoria ovunque, come il <b>Memoriale dell'Olocausto</b>. Prima capitale della <b>Prussia</b>, capitale della Germania dal <b>1871</b>. Bombardata nella Seconda guerra mondiale, poi divisa dal <b>Muro</b> dal 1961 al 1989: un tratto è conservato per ricordare.</p>
   <div class="two">
@@ -211,8 +256,13 @@ table.cit td:last-child{font-weight:700}
   </div>
   <p class="def">Oggi Berlino è un centro culturale e artistico d'avanguardia che attira giovani da tutta Europa.</p>
 </section>
-
-<section class="panel tabd" data-tab="storia" hidden>
+<div class="gate" data-gate="5"></div>
+</div>
+</section>
+<section class="step" data-step="6">
+<div class="stephead"><span class="num">6</span><h2 class="steptitle">La Germania ieri e oggi</h2><span class="state"></span></div>
+<div class="stepbody">
+<section class="panel" data-tab="storia">
   <h2>La Germania ieri e oggi</h2>
   <div class="timeline">
     <div class="tl"><b>X sec.</b><span>I principi tedeschi fondano il <b>Sacro Romano Impero Germanico</b></span></div>
@@ -228,8 +278,7 @@ table.cit td:last-child{font-weight:700}
     <div class="tl"><b>2005</b><span><b>Angela Merkel</b> (CDU) diventa cancelliera; la Germania supera bene la crisi del 2008 ed è il paese guida dell'UE</span></div>
   </div>
 </section>
-
-<section class="panel tabd" data-tab="album" hidden>
+<section class="panel" data-tab="album">
   <h2>Album</h2>
   <div class="two">
     <div><h4>Il castello di Neuschwanstein</h4><ul><li>In Baviera, vicino all'Austria, tra le fortezze più visitate d'Europa</li><li>Costruito a fine Ottocento da re <b>Ludovico II</b> in omaggio al compositore <b>Wagner</b></li></ul></div>
@@ -240,8 +289,12 @@ table.cit td:last-child{font-weight:700}
     <div><h4>Albert Einstein</h4><ul><li>Nato in Germania nel 1879, Nobel per la Fisica nel 1921</li><li>Teoria della relatività; negli anni Trenta si trasferì negli Stati Uniti</li></ul></div>
   </div>
 </section>
-
-<p class="sect" id="fiabe">Le fiabe dei fratelli Grimm</p>
+<div class="gate" data-gate="6"></div>
+</div>
+</section>
+<section class="step" data-step="7">
+<div class="stephead"><span class="num">7</span><h2 class="steptitle">I fratelli Grimm e la Strada delle fiabe</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel">
   <h2>Chi erano i fratelli Grimm</h2>
   <ul>
@@ -251,7 +304,6 @@ table.cit td:last-child{font-weight:700}
     <li>Non le inventarono: le <b>raccolsero</b> da chi le raccontava a voce, soprattutto donne dell'Assia come Dorothea Viehmann, le sorelle Hassenpflug e Dortchen Wild, che poi sposò Wilhelm. Poi le riscrissero per i bambini, edizione dopo edizione.</li>
   </ul>
 </section>
-
 <section class="panel">
   <h2>La Strada delle fiabe</h2>
   <p class="lead">La <b>Deutsche Märchenstraße</b> è un itinerario turistico di circa <b>600 km</b> che attraversa la Germania da sud a nord, da Hanau, dove i Grimm nacquero, fino a Brema, la città dei musicanti. Ogni tappa è un luogo della loro vita o di una fiaba.</p>
@@ -309,7 +361,12 @@ table.cit td:last-child{font-weight:700}
     </ol>
   </div>
 </section>
-
+<div class="gate" data-gate="7"></div>
+</div>
+</section>
+<section class="step" data-step="8">
+<div class="stephead"><span class="num">8</span><h2 class="steptitle">Hänsel e Gretel</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel fiaba">
   <div class="ill"><svg viewBox="0 0 300 300" aria-label="Hänsel e Gretel davanti alla casetta di dolci"><rect width="300" height="300" fill="#e6f2ea"/>
 <path d="M0 226 Q150 212 300 226 L300 300 L0 300z" fill="#c99a62"/><path d="M0 226 Q150 212 300 226 L300 240 Q150 226 0 240z" fill="#a9d18b"/>
@@ -328,7 +385,12 @@ table.cit td:last-child{font-weight:700}
     <p class="sapevi">Lo sapevi? Nell'italiano «Hänsel» e «Gretel» sono diminutivi di Johannes e Margarete: Giovannino e Margheritina.</p>
   </div>
 </section>
-
+<div class="gate" data-gate="8"></div>
+</div>
+</section>
+<section class="step" data-step="9">
+<div class="stephead"><span class="num">9</span><h2 class="steptitle">I musicanti di Brema</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel fiaba">
   <div class="ill"><svg viewBox="0 0 300 300" aria-label="I musicanti di Brema uno sull'altro davanti alla casa dei briganti"><rect width="300" height="300" fill="#1e2a47"/>
 <g fill="#fff"><circle cx="40" cy="40" r="2"/><circle cx="100" cy="24" r="1.6"/><circle cx="170" cy="46" r="1.8"/><circle cx="60" cy="100" r="1.5"/><circle cx="130" cy="78" r="1.4"/></g>
@@ -346,7 +408,12 @@ table.cit td:last-child{font-weight:700}
     <p class="sapevi">Lo sapevi? A Brema, accanto al municipio, c'è la statua di bronzo dei quattro musicanti (1951): toccare le zampe dell'asino porta fortuna. Brema è la tappa finale della Strada delle fiabe.</p>
   </div>
 </section>
-
+<div class="gate" data-gate="9"></div>
+</div>
+</section>
+<section class="step" data-step="10">
+<div class="stephead"><span class="num">10</span><h2 class="steptitle">Cappuccetto Rosso</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel fiaba">
   <div class="ill"><svg viewBox="0 0 300 300" aria-label="Cappuccetto Rosso nel bosco, il lupo dietro un albero"><rect width="300" height="300" fill="#e3efe0"/>
 <g transform="translate(-14 20) scale(3.556)"><path fill="#662113" d="M22 33c0 2.209-1.791 3-4 3s-4-.791-4-3l1-9c0-2.209.791-2 3-2s3-.209 3 2l1 9z"/><path fill="#5C913B" d="M31.406 27.297C24.443 21.332 21.623 12.791 18 12.791c-3.623 0-6.443 8.541-13.405 14.506-2.926 2.507-1.532 3.957 2.479 3.667 3.576-.258 6.919-1.069 10.926-1.069s7.352.812 10.926 1.069c4.012.29 5.405-1.16 2.48-3.667z"/><path fill="#3E721D" d="M29.145 24.934C23.794 20.027 20.787 13 18 13c-2.785 0-5.793 7.027-11.144 11.934-4.252 3.898 5.572 4.773 11.144 0 5.569 4.773 15.396 3.898 11.145 0z"/><path fill="#5C913B" d="M29.145 20.959C23.794 16.375 20.787 9.811 18 9.811c-2.785 0-5.793 6.564-11.144 11.148-4.252 3.642 5.572 4.459 11.144 0 5.569 4.459 15.396 3.642 11.145 0z"/><path fill="#3E721D" d="M26.7 17.703C22.523 14.125 20.176 9 18 9c-2.174 0-4.523 5.125-8.7 8.703-3.319 2.844 4.35 3.482 8.7 0 4.349 3.482 12.02 2.844 8.7 0z"/><path fill="#5C913B" d="M26.7 14.726c-4.177-3.579-6.524-8.703-8.7-8.703-2.174 0-4.523 5.125-8.7 8.703-3.319 2.844 4.35 3.481 8.7 0 4.349 3.481 12.02 2.843 8.7 0z"/><path fill="#3E721D" d="M25.021 12.081C21.65 9.193 19.756 5.057 18 5.057c-1.755 0-3.65 4.136-7.021 7.024-2.679 2.295 3.511 2.809 7.021 0 3.51 2.81 9.701 2.295 7.021 0z"/><path fill="#5C913B" d="M25.021 9.839C21.65 6.951 19.756 2.815 18 2.815c-1.755 0-3.65 4.136-7.021 7.024-2.679 2.295 3.511 2.809 7.021 0 3.51 2.81 9.701 2.295 7.021 0z"/><path fill="#3E721D" d="M23.343 6.54C20.778 4.342 19.336 1.195 18 1.195c-1.335 0-2.778 3.148-5.343 5.345-2.038 1.747 2.671 2.138 5.343 0 2.671 2.138 7.382 1.746 5.343 0z"/><path fill="#5C913B" d="M23.343 5.345C20.778 3.148 19.336 0 18 0c-1.335 0-2.778 3.148-5.343 5.345-2.038 1.747 2.671 2.138 5.343 0 2.671 2.138 7.382 1.746 5.343 0z"/></g><g transform="translate(186 6) scale(3.889)"><path fill="#662113" d="M22 33c0 2.209-1.791 3-4 3s-4-.791-4-3l1-9c0-2.209.791-2 3-2s3-.209 3 2l1 9z"/><path fill="#5C913B" d="M31.406 27.297C24.443 21.332 21.623 12.791 18 12.791c-3.623 0-6.443 8.541-13.405 14.506-2.926 2.507-1.532 3.957 2.479 3.667 3.576-.258 6.919-1.069 10.926-1.069s7.352.812 10.926 1.069c4.012.29 5.405-1.16 2.48-3.667z"/><path fill="#3E721D" d="M29.145 24.934C23.794 20.027 20.787 13 18 13c-2.785 0-5.793 7.027-11.144 11.934-4.252 3.898 5.572 4.773 11.144 0 5.569 4.773 15.396 3.898 11.145 0z"/><path fill="#5C913B" d="M29.145 20.959C23.794 16.375 20.787 9.811 18 9.811c-2.785 0-5.793 6.564-11.144 11.148-4.252 3.642 5.572 4.459 11.144 0 5.569 4.459 15.396 3.642 11.145 0z"/><path fill="#3E721D" d="M26.7 17.703C22.523 14.125 20.176 9 18 9c-2.174 0-4.523 5.125-8.7 8.703-3.319 2.844 4.35 3.482 8.7 0 4.349 3.482 12.02 2.844 8.7 0z"/><path fill="#5C913B" d="M26.7 14.726c-4.177-3.579-6.524-8.703-8.7-8.703-2.174 0-4.523 5.125-8.7 8.703-3.319 2.844 4.35 3.481 8.7 0 4.349 3.481 12.02 2.843 8.7 0z"/><path fill="#3E721D" d="M25.021 12.081C21.65 9.193 19.756 5.057 18 5.057c-1.755 0-3.65 4.136-7.021 7.024-2.679 2.295 3.511 2.809 7.021 0 3.51 2.81 9.701 2.295 7.021 0z"/><path fill="#5C913B" d="M25.021 9.839C21.65 6.951 19.756 2.815 18 2.815c-1.755 0-3.65 4.136-7.021 7.024-2.679 2.295 3.511 2.809 7.021 0 3.51 2.81 9.701 2.295 7.021 0z"/><path fill="#3E721D" d="M23.343 6.54C20.778 4.342 19.336 1.195 18 1.195c-1.335 0-2.778 3.148-5.343 5.345-2.038 1.747 2.671 2.138 5.343 0 2.671 2.138 7.382 1.746 5.343 0z"/><path fill="#5C913B" d="M23.343 5.345C20.778 3.148 19.336 0 18 0c-1.335 0-2.778 3.148-5.343 5.345-2.038 1.747 2.671 2.138 5.343 0 2.671 2.138 7.382 1.746 5.343 0z"/></g><g transform="translate(96 26) scale(2.556)"><path fill="#662113" d="M22 33c0 2.209-1.791 3-4 3s-4-.791-4-3l1-9c0-2.209.791-2 3-2s3-.209 3 2l1 9z"/><path fill="#5C913B" d="M31.406 27.297C24.443 21.332 21.623 12.791 18 12.791c-3.623 0-6.443 8.541-13.405 14.506-2.926 2.507-1.532 3.957 2.479 3.667 3.576-.258 6.919-1.069 10.926-1.069s7.352.812 10.926 1.069c4.012.29 5.405-1.16 2.48-3.667z"/><path fill="#3E721D" d="M29.145 24.934C23.794 20.027 20.787 13 18 13c-2.785 0-5.793 7.027-11.144 11.934-4.252 3.898 5.572 4.773 11.144 0 5.569 4.773 15.396 3.898 11.145 0z"/><path fill="#5C913B" d="M29.145 20.959C23.794 16.375 20.787 9.811 18 9.811c-2.785 0-5.793 6.564-11.144 11.148-4.252 3.642 5.572 4.459 11.144 0 5.569 4.459 15.396 3.642 11.145 0z"/><path fill="#3E721D" d="M26.7 17.703C22.523 14.125 20.176 9 18 9c-2.174 0-4.523 5.125-8.7 8.703-3.319 2.844 4.35 3.482 8.7 0 4.349 3.482 12.02 2.844 8.7 0z"/><path fill="#5C913B" d="M26.7 14.726c-4.177-3.579-6.524-8.703-8.7-8.703-2.174 0-4.523 5.125-8.7 8.703-3.319 2.844 4.35 3.481 8.7 0 4.349 3.481 12.02 2.843 8.7 0z"/><path fill="#3E721D" d="M25.021 12.081C21.65 9.193 19.756 5.057 18 5.057c-1.755 0-3.65 4.136-7.021 7.024-2.679 2.295 3.511 2.809 7.021 0 3.51 2.81 9.701 2.295 7.021 0z"/><path fill="#5C913B" d="M25.021 9.839C21.65 6.951 19.756 2.815 18 2.815c-1.755 0-3.65 4.136-7.021 7.024-2.679 2.295 3.511 2.809 7.021 0 3.51 2.81 9.701 2.295 7.021 0z"/><path fill="#3E721D" d="M23.343 6.54C20.778 4.342 19.336 1.195 18 1.195c-1.335 0-2.778 3.148-5.343 5.345-2.038 1.747 2.671 2.138 5.343 0 2.671 2.138 7.382 1.746 5.343 0z"/><path fill="#5C913B" d="M23.343 5.345C20.778 3.148 19.336 0 18 0c-1.335 0-2.778 3.148-5.343 5.345-2.038 1.747 2.671 2.138 5.343 0 2.671 2.138 7.382 1.746 5.343 0z"/></g>
@@ -368,7 +435,12 @@ table.cit td:last-child{font-weight:700}
     <p class="sapevi">Lo sapevi? Nella seconda parte della fiaba dei Grimm un altro lupo ci riprova, ma nonna e nipote lo fanno cadere nel trogolo pieno d'acqua: hanno imparato la lezione.</p>
   </div>
 </section>
-
+<div class="gate" data-gate="10"></div>
+</div>
+</section>
+<section class="step" data-step="11">
+<div class="stephead"><span class="num">11</span><h2 class="steptitle">Cenerentola</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel fiaba">
   <div class="ill"><svg viewBox="0 0 300 300" aria-label="Cenerentola: la scarpetta d'oro sulla scala, il nocciolo e le colombe"><rect width="300" height="300" fill="#2b2446"/>
 <g fill="#fff"><circle cx="40" cy="30" r="2"/><circle cx="110" cy="22" r="1.6"/><circle cx="180" cy="36" r="1.6"/><circle cx="270" cy="110" r="1.6"/></g>
@@ -388,7 +460,12 @@ table.cit td:last-child{font-weight:700}
     <p class="sapevi">Lo sapevi? La Disney ha seguito Perrault, non i Grimm: per questo nel film c'è la fata e la scarpetta è di vetro.</p>
   </div>
 </section>
-
+<div class="gate" data-gate="11"></div>
+</div>
+</section>
+<section class="step" data-step="12">
+<div class="stephead"><span class="num">12</span><h2 class="steptitle">Il lupo e i sette capretti</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel fiaba">
   <div class="ill"><svg viewBox="0 0 300 300" aria-label="Il lupo alla finestra e il capretto nascosto nell'orologio"><rect width="300" height="300" fill="#f6ead3"/>
 <rect x="0" y="246" width="300" height="54" fill="#c9a16b"/><rect x="0" y="246" width="300" height="6" fill="#b08752"/>
@@ -407,7 +484,12 @@ table.cit td:last-child{font-weight:700}
     <p class="sapevi">Lo sapevi? Nella fiaba il lupo compra il gesso dal droghiere: era una credenza popolare che il gesso addolcisse la voce.</p>
   </div>
 </section>
-
+<div class="gate" data-gate="12"></div>
+</div>
+</section>
+<section class="step" data-step="13">
+<div class="stephead"><span class="num">13</span><h2 class="steptitle">Altre fiabe dei Grimm</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel">
   <h2>Altre fiabe famose dei Grimm</h2>
   <p class="hint">Le conosci? Per ognuna una riga di trama e una curiosità.</p>
@@ -420,8 +502,12 @@ table.cit td:last-child{font-weight:700}
     <div><svg viewBox="0 0 36 36" class="galemoji"><g transform="translate(0 0) scale(1.000)"><path fill="#99AAB5" d="M33.958 2.042C32.6.684 30.072 1.01 28.312 2.771 26.4 4.683 1.099 34.901 1.099 34.901S31.317 9.6 33.229 7.688c1.761-1.76 2.087-4.288.729-5.646zm-5.679 5.679c-.543-.543-.185-1.782.871-2.838s2.353-1.472 2.896-.929c.543.543.127 1.84-.929 2.896s-2.295 1.414-2.838.871z"/><path fill="#CCD6DD" d="M33.736 2.191c-1.358-1.358-3.631-.869-5.391.891C26.432 4.995 5.079 30.921 5.079 30.921s3.904-3.731 9.337-8.297c2.532-2.128 8.814-8.792 11.287-10.99 1.069-.95 3.788-1.417 4.634-1.96.832-.535 1.928-1.733 2.33-2.135 1.76-1.761 2.427-3.99 1.069-5.348zm-5.907 5.98c-.767-.767-.401-2.378.907-3.686 1.308-1.308 2.991-1.747 3.758-.979.767.767.329 2.45-.979 3.758s-2.918 1.674-3.686.907z"/><path fill="#553788" d="M28.105 4.865c.936.919 1.509 1.873 1.817 2.85a4.372 4.372 0 0 0 1.195-.865 4.95 4.95 0 0 0 .44-.505c-.428-.985-1.088-1.961-2.051-2.906-1.768-1.736-5.303-2.596-9.217-2.25-4.511.401-8.244 2.245-10.24 5.058a.999.999 0 1 0 1.631 1.157c1.632-2.3 4.917-3.879 8.787-4.223 3.244-.29 6.317.388 7.638 1.684zm6.293 25.919a1 1 0 0 0-1.413-.06c-1.677 1.54-4.139 2.051-6.27 1.302-1.762-.62-2.923-1.965-3.185-3.688-.438-2.89 1.408-5.317 3.744-8.391l.665-.878c1.574-2.091 4.638-6.167 4.217-10.413-.522.458-1.208 1.053-2.02 1.751-.335 2.455-1.938 4.992-3.795 7.46l-.659.87c-2.519 3.313-4.694 6.175-4.129 9.901.37 2.441 2.051 4.413 4.497 5.274a8.025 8.025 0 0 0 2.672.452c2.043 0 4.079-.757 5.615-2.168a.997.997 0 0 0 .061-1.412z"/><path fill="#E1E8ED" d="M24.647 8.652c.979-1.03 1.693-2.183 1.827-1.158s.49 1.515 1.025 1.515.04.962-.802 1.203c-2.495.713-10.515 9.847-12.342 11.54s-2.851 2.45-1.069.178S23.8 9.543 24.647 8.652z"/></g></svg><h3>Il prode piccolo sarto</h3><p>Uccide «sette in un colpo» (erano mosche) e con l'astuzia batte giganti e cinghiali fino a sposare la principessa. La furbizia vince sulla forza.</p></div>
   </div>
 </section>
-
-<p class="sect" id="marchi">Marchi tedeschi famosi</p>
+<div class="gate" data-gate="13"></div>
+</div>
+</section>
+<section class="step" data-step="14">
+<div class="stephead"><span class="num">14</span><h2 class="steptitle">Adidas e Puma</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel">
   <h2>Due fratelli, due marchi, una città divisa</h2>
   <p class="lead">Nascono tutte e due a <b>Herzogenaurach</b>, una cittadina della <b>Baviera</b> vicino a Norimberga, dalla stessa famiglia e dalla stessa fabbrica.</p>
@@ -442,7 +528,12 @@ table.cit td:last-child{font-weight:700}
     <div><h4>Perché c'entra con la geografia</h4><ul><li>È il modello tedesco: aziende nate in <b>piccole città</b>, non solo nelle metropoli, come il sistema urbano policentrico</li><li>Industria che <b>esporta in tutto il mondo</b> beni di consumo di qualità, come le auto</li><li>La <b>Baviera</b> è una delle regioni più ricche: BMW a Monaco, Adidas e Puma a Herzogenaurach</li></ul></div>
   </div>
 </section>
-
+<div class="gate" data-gate="14"></div>
+</div>
+</section>
+<section class="step" data-step="15">
+<div class="stephead"><span class="num">15</span><h2 class="steptitle">Altri marchi tedeschi</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel">
   <h2>Altri marchi tedeschi che conosci già</h2>
   <p class="hint">Il libro ne cita otto nel capitolo sull'industria. Nota le città: quasi nessuno è a Berlino, tutti in città diverse. È il modello policentrico anche nell'economia.</p>
@@ -462,17 +553,270 @@ table.cit td:last-child{font-weight:700}
   </div>
   <p class="def"><b>Il filo comune</b>: industria meccanica, chimica ed elettronica di qualità, aziende sparse in tante città lungo il Reno e nel sud, esportazione in tutto il mondo. È quello che il libro chiama «la prima industria d'Europa».</p>
 </section>
-
-<p class="sect" id="quizsect">Quiz</p>
+<div class="gate" data-gate="15"></div>
+</div>
+</section>
+<section class="step quizstep" data-step="16">
+<div class="stephead"><span class="num">16</span><h2 class="steptitle">Il quiz finale</h2><span class="state"></span></div>
+<div class="stepbody">
 <section class="panel" style="text-align:center;gap:14px">
   <h2>Pronto per la verifica?</h2>
   <p class="lead" style="margin:0 auto">15 domande solo sul capitolo del libro: territorio, clima, economia, città, storia. Ordine sempre diverso.</p>
   <div class="btn-row"><button class="btn btn-primary" id="quiz-start" type="button">Inizia il quiz →</button></div>
 </section>
+</div>
+</section>
 <section class="quiz" id="quiz-app" hidden></section>
 </main>
 <footer><a href="../index.html">Tutte le materie</a> · Condizioni d'uso nel <a href="https://github.com/shalini27/ripasso-medie#readme">README</a><br>Illustrazioni composte con icone <a href="https://github.com/twitter/twemoji">Twemoji</a> (CC BY 4.0) · carta da <a href="https://www.geoboundaries.org">geoBoundaries</a> (BKG, dl-de/by-2-0) · marchi da <a href="https://simpleicons.org">Simple Icons</a></footer>
 
+<script type="application/json" id="gates">
+{
+  "domande": [
+    {
+      "passo": 1,
+      "testo": "Come si chiama il capo del governo tedesco?",
+      "opzioni": [
+        "Il cancelliere",
+        "Il presidente del consiglio",
+        "Il re",
+        "Il governatore"
+      ],
+      "hash": "581b1ccb86619a4cc0cfd40e103552e06a84d1b4caaef978f445ad61cfa5a30d"
+    },
+    {
+      "passo": 1,
+      "testo": "Quanti sono gli stati federati della Germania?",
+      "opzioni": [
+        "16",
+        "10",
+        "20",
+        "5"
+      ],
+      "hash": "94bb34aeadeab15f0d7a7a58d7249e446dce8db07206fc8b9d7be1e387f053a6"
+    },
+    {
+      "passo": 2,
+      "testo": "Dove si trovano le montagne più alte della Germania?",
+      "opzioni": [
+        "A sud, nelle Alpi Bavaresi",
+        "A nord, sul Mare del Nord",
+        "Al centro, nello Harz",
+        "A est, al confine polacco"
+      ],
+      "hash": "cff1dca90f2fddd69bf5455cb8a7d9a875096f3d9de067e954a6350ddbb35377"
+    },
+    {
+      "passo": 2,
+      "testo": "Quale fiume nasce nella Selva Nera e sfocia nel Mar Nero?",
+      "opzioni": [
+        "Il Danubio",
+        "Il Reno",
+        "L'Elba",
+        "Il Weser"
+      ],
+      "hash": "404acc6eb89219a937331be0ece463f4e5eeb5b854c8701908afbeb72a97da05"
+    },
+    {
+      "passo": 3,
+      "testo": "In quale settore lavora la maggior parte dei tedeschi?",
+      "opzioni": [
+        "Terziario",
+        "Secondario",
+        "Primario"
+      ],
+      "hash": "197a3400907aaf369aa1067361ed01866a116eb751bcba3d479ea52e2844cec2"
+    },
+    {
+      "passo": 3,
+      "testo": "In quale città ha sede la Banca Centrale Europea?",
+      "opzioni": [
+        "Francoforte",
+        "Berlino",
+        "Amburgo",
+        "Monaco"
+      ],
+      "hash": "b3a6095f4efee7da1046d9370ef218f59d804af942c6dbdeda34f6e8c45c5a3f"
+    },
+    {
+      "passo": 4,
+      "testo": "Qual è la città più popolosa della Germania?",
+      "opzioni": [
+        "Berlino",
+        "Amburgo",
+        "Monaco",
+        "Colonia"
+      ],
+      "hash": "ef36d76eee3933c98c7cdabf43ba37809b011fe49070e17edba26fd6531ac76b"
+    },
+    {
+      "passo": 4,
+      "testo": "Qual è il principale porto tedesco?",
+      "opzioni": [
+        "Amburgo",
+        "Brema",
+        "Kiel",
+        "Berlino"
+      ],
+      "hash": "c2dee3784597dd224d0583f7434ca91a5373cba685b317f8514c7b5a642ecf3c"
+    },
+    {
+      "passo": 5,
+      "testo": "In quali anni il Muro ha diviso Berlino?",
+      "opzioni": [
+        "1961–1989",
+        "1945–1990",
+        "1871–1918",
+        "1933–1945"
+      ],
+      "hash": "73be107c5cd111fbc2ad98d7b5bb9472f6c8cce21adcafa4e16c1047d5298e52"
+    },
+    {
+      "passo": 6,
+      "testo": "Chi unificò la Germania nel 1871?",
+      "opzioni": [
+        "Bismarck e la Prussia",
+        "Lutero",
+        "Hitler",
+        "Merkel"
+      ],
+      "hash": "06452418d43d74f3abe8413c583c5fcbafbce6ddb2b3f1823acea641b0ecfbd5"
+    },
+    {
+      "passo": 6,
+      "testo": "In che anno le due Germanie si sono riunificate?",
+      "opzioni": [
+        "1990",
+        "1989",
+        "1945",
+        "2005"
+      ],
+      "hash": "68df70781df076ab3b9c9c74d7c9a9631b7c23732738f1f515d67ab35a943ddb"
+    },
+    {
+      "passo": 7,
+      "testo": "Dove nacquero i fratelli Grimm?",
+      "opzioni": [
+        "A Hanau",
+        "A Berlino",
+        "A Brema",
+        "A Monaco"
+      ],
+      "hash": "9b2f92c3de578fb80110806712c59799ecc14c82c2051617419fbef2144fa5c2"
+    },
+    {
+      "passo": 7,
+      "testo": "In che anno uscì la prima edizione delle fiabe?",
+      "opzioni": [
+        "1812",
+        "1871",
+        "1757",
+        "1900"
+      ],
+      "hash": "4c07eaffa8aab50fe5bd00c78a52ed472159c18bdad2fef26e97fd9fd72202b3"
+    },
+    {
+      "passo": 8,
+      "testo": "Che cosa semina Hänsel la prima volta per ritrovare la strada?",
+      "opzioni": [
+        "Sassolini bianchi",
+        "Briciole di pane",
+        "Semi di zucca",
+        "Fiori"
+      ],
+      "hash": "d63de6faa50c74db16ca743c8d4264bfc169ead296629b37910c67c8730406cc"
+    },
+    {
+      "passo": 9,
+      "testo": "I quattro musicanti arrivano a Brema?",
+      "opzioni": [
+        "No, restano nella casa dei briganti",
+        "Sì, e suonano in piazza",
+        "Sì, ma vengono cacciati",
+        "No, tornano dai padroni"
+      ],
+      "hash": "e722a9786d37c9afc370304e262695e70e2a64a92e8bf2f93779b0118d3dfd51"
+    },
+    {
+      "passo": 10,
+      "testo": "Che cosa aggiungono i Grimm alla storia di Perrault?",
+      "opzioni": [
+        "Il cacciatore e il lieto fine",
+        "Il lupo",
+        "La nonna",
+        "Il cappuccio rosso"
+      ],
+      "hash": "c60f11d6fd56d3451617657519c1594298eab373cdf598b62632422f3eb0c4b7"
+    },
+    {
+      "passo": 11,
+      "testo": "Nei Grimm, di che materiale è la scarpetta di Cenerentola?",
+      "opzioni": [
+        "D'oro",
+        "Di cristallo",
+        "Di vetro",
+        "Di legno"
+      ],
+      "hash": "4d49206270835c94207d49c448da5d53f2df3c461d58404403dc4a8f64efcb34"
+    },
+    {
+      "passo": 12,
+      "testo": "Dove si nasconde il settimo capretto?",
+      "opzioni": [
+        "Nella cassa dell'orologio",
+        "Sotto il letto",
+        "Nel forno",
+        "Nel pozzo"
+      ],
+      "hash": "976ca2df0331bd6d7cb2699830039393996e22fb3194ab7580a80b2d1e3eea8b"
+    },
+    {
+      "passo": 13,
+      "testo": "Qual è la fiaba numero 1 della raccolta dei Grimm?",
+      "opzioni": [
+        "Il principe ranocchio",
+        "Biancaneve",
+        "Raperonzolo",
+        "Tremotino"
+      ],
+      "hash": "0ab86d71dcde6f243c578b4ef1e9fd3a48d4515f3d68fb54cbe6dac131e9509e"
+    },
+    {
+      "passo": 14,
+      "testo": "In quale città sono nate Adidas e Puma?",
+      "opzioni": [
+        "Herzogenaurach",
+        "Berlino",
+        "Amburgo",
+        "Stoccarda"
+      ],
+      "hash": "0812b96f2d13c3fe856c7b97ffeb1d7543c615673437438ab7f94cff51562213"
+    },
+    {
+      "passo": 14,
+      "testo": "Da dove viene il nome Adidas?",
+      "opzioni": [
+        "Da Adi Dassler",
+        "Da una parola greca",
+        "Dal fiume Aurach",
+        "Dalle tre strisce"
+      ],
+      "hash": "a5dc8b15e54e49699b33c4b442b3712a9307af5593b1e90c2a6014480c35fa0a"
+    },
+    {
+      "passo": 15,
+      "testo": "Che cosa significa «Volkswagen»?",
+      "opzioni": [
+        "Macchina del popolo",
+        "Macchina veloce",
+        "Macchina tedesca",
+        "Macchina di Wolfsburg"
+      ],
+      "hash": "10a9b5892a753609c5778b86edb8d79950f22b868d64d47a56291b439b0b66bb"
+    }
+  ]
+}
+</script>
 <script type="application/json" id="quiz">
 {
   "domande": [
@@ -648,12 +992,53 @@ table.cit td:last-child{font-weight:700}
 <script src="../assets/quiz.js?v=202611011120"></script>
 <script>
 (function () {
-  const tabs = document.querySelectorAll('#gtabs button'), panels = document.querySelectorAll('.tabd');
-  tabs.forEach(t => t.addEventListener('click', () => {
-    tabs.forEach(x => x.classList.toggle('on', x === t));
-    panels.forEach(p => { p.hidden = p.dataset.tab !== t.dataset.tab; });
-    const p = document.querySelector('.tabd:not([hidden])'); if (p) p.scrollIntoView({ block: 'start', behavior: 'smooth' });
-  }));
+  const KEY = 'ripasso:geografia-germania:passo';
+  const gates = JSON.parse(document.getElementById('gates').textContent).domande;
+  const steps = [...document.querySelectorAll('.step')], N = steps.length;
+  const enc = new TextEncoder();
+  const norm = s => String(s).trim().replace(/\s+/g, ' ');
+  async function sha256(s) { const b = await crypto.subtle.digest('SHA-256', enc.encode(s)); return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join(''); }
+  async function giusta(d, o) { if (d.risposta !== undefined) return norm(d.risposta) === norm(o); return (await sha256(norm(d.testo) + '\n' + norm(o))) === d.hash; }
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0;[a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const el = (t, a, ...k) => { const e = document.createElement(t); for (const n in a || {}) n === 'class' ? e.className = a[n] : e.setAttribute(n, a[n]); e.append(...k); return e; };
+  let done = 0; try { done = Math.min(N, parseInt(localStorage.getItem(KEY) || '0', 10) || 0); } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, String(done)); } catch (e) {} };
+
+  function render() {
+    steps.forEach((st, i) => {
+      const n = i + 1, state = st.querySelector('.state');
+      st.classList.remove('locked', 'done', 'cur');
+      if (n <= done) { st.classList.add('done'); state.textContent = 'fatto ✓'; }
+      else if (n === done + 1) { st.classList.add('cur'); state.textContent = n === N ? 'sbloccato!' : 'in corso'; }
+      else { st.classList.add('locked'); state.textContent = '🔒 completa il passo ' + (n - 1); }
+    });
+    const dots = document.getElementById('dots'); dots.replaceChildren();
+    steps.forEach((st, i) => { const d = el('i', { class: i < done ? 'done' : i === done ? 'cur' : '' }); d.title = 'Passo ' + (i + 1); d.onclick = () => { if (i <= done) st.scrollIntoView({ block: 'start', behavior: 'smooth' }); }; dots.append(d); });
+    document.getElementById('striptxt').textContent = done >= N ? 'Percorso completato: tutti i ' + N + ' passi' : 'Passo ' + (done + 1) + ' di ' + N + (done ? ' · ' + done + ' fatti' : '');
+  }
+
+  function buildGate(n) {
+    const box = document.querySelector('.gate[data-gate="' + n + '"]'); if (!box) return;
+    const qs = gates.filter(g => g.passo === n); if (!qs.length) { box.remove(); return; }
+    box.replaceChildren(el('h3', {}, 'Verifica veloce: ' + (qs.length === 1 ? 'una domanda' : qs.length + ' domande') + ' per sbloccare il passo ' + (n + 1)));
+    let ok = 0;
+    qs.forEach(q => {
+      const wrap = el('div', { class: 'gq' }, el('p', {}, q.testo)); const opts = el('div', { class: 'gopts' }); const fb = el('div', { class: 'gfb' });
+      const build = () => { opts.replaceChildren(); shuffle(q.opzioni).forEach(o => { const b = el('button', { type: 'button' }, o); b.onclick = async () => { [...opts.children].forEach(x => x.disabled = true); const g = await giusta(q, o); b.classList.add(g ? 'ok' : 'no'); if (g) { ok++; fb.className = 'gfb ok'; fb.textContent = 'Giusto!'; if (ok === qs.length) unlock(n); } else { fb.className = 'gfb no'; fb.textContent = 'Non proprio. Rileggi qui sopra e riprova.'; setTimeout(build, 1400); } }; opts.append(b); }); fb.textContent = ''; };
+      build(); wrap.append(opts, fb); box.append(wrap);
+    });
+  }
+  function unlock(n) {
+    if (done < n) { done = n; save(); }
+    render();
+    const box = document.querySelector('.gate[data-gate="' + n + '"]');
+    if (box) box.append(el('div', { class: 'unlocked' }, n + 1 === N ? 'Hai sbloccato il quiz finale!' : 'Passo ' + (n + 1) + ' sbloccato!'));
+    const next = steps[n]; if (next) { buildGate(n + 1); setTimeout(() => next.scrollIntoView({ block: 'start', behavior: 'smooth' }), 500); }
+  }
+  steps.forEach((st, i) => st.querySelector('.stephead').addEventListener('click', () => { if (st.classList.contains('done')) st.classList.toggle('open'); }));
+  document.getElementById('reset').addEventListener('click', () => { done = 0; save(); steps.forEach(st => st.classList.remove('open')); steps.forEach((st, i) => buildGate(i + 1)); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  render();
+  steps.forEach((st, i) => buildGate(i + 1));
 })();
 </script>
 </body>

@@ -81,6 +81,16 @@ tempo` 1 and 2; matematica `Conosco, risolvo, argomento` 1 and 2; arte
 8. Reply with the public URL:
    `https://shalini27.github.io/ripasso-medie/quiz/<file>.html`
 
+## Step-by-step pages (percorso a passi)
+
+`geografia-germania.html` is the model: the guide is split into numbered
+`.step` sections, each ending in a `.gate` with 1–2 quick questions from a
+`<script type="application/json" id="gates">` block (`passo`, `testo`,
+`opzioni`, `risposta`). The next step unlocks only when the gate is answered
+right; the quiz is the last step. Progress is in localStorage. Use this
+pattern when Shalini says the kid skips the guide; `sigilla.py` seals the
+gates block too.
+
 ## Workflow B — an issue from another parent
 
 1. `gh issue list` to see open ones; `gh issue view <n>` for details.

@@ -10,7 +10,7 @@ sources/*
 *.webp
 *.gif
 *.pdf
-!docs/assets/img/*
+!docs/assets/img/**
 
 # OS / editor noise
 .DS_Store

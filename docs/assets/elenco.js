@@ -9,6 +9,7 @@ window.MATERIE = [
   ["scienze","Scienze"],["arte","Storia dell'arte"],["inglese","Inglese"],["musica","Musica"],["tecnologia","Tecnologia"]
 ];
 window.RIPASSO = [
+  {file:"geografia-germania.html", titolo:"La Germania", materia:"geografia", classe:"2ª", argomento:"capitolo 16 · fiabe dei Grimm · marchi tedeschi", tipo:"quiz+guida", domande:15},
   {file:"scienze-microrganismi.html", titolo:"I microrganismi", materia:"scienze", classe:"2ª", argomento:"unità B2", tipo:"quiz+guida", domande:29},
   {file:"inglese-episode-1-what-are-you-doing.html", titolo:"Episode 1 – What are you doing this afternoon?", materia:"inglese", classe:"2ª", tipo:"quiz"},
   {file:"musica-medioevo-in-musica.html", titolo:"Il Medioevo in musica", materia:"musica", classe:"2ª", tipo:"quiz+guida", domande:109},

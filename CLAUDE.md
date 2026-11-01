@@ -100,8 +100,10 @@ page is built as a locked path**, with `geografia-germania.html` as the model:
    tick and reopen on tap, progress is kept in localStorage under
    `ripasso:<file>:passo`, with a "ricomincia" link.
 5. No navigation pills that let the reader jump to the quiz.
-6. Every step title carries a small flat icon (Twemoji SVG inlined, see the
-   Germany page) so the locked list still looks inviting.
+6. Every step has a wide illustrated banner (3:1) above its title, visible
+   in full colour even when locked, so the locked list previews what's
+   coming. Reuse the step's own artwork (map, scene, road) where it exists,
+   otherwise compose one from Twemoji icons as on the Germany page.
 
 Copy the CSS (`/* percorso */` block) and the step/gate script from the
 Germany page; don't reinvent them. Pages that are guide-only (no quiz) can

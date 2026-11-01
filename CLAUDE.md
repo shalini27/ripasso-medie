@@ -66,7 +66,8 @@ tempo` 1 and 2; matematica `Conosco, risolvo, argomento` 1 and 2; arte
 
 1. Ask which folder in `sources/` to use if not stated; read the images/notes.
 2. Decide the format she asked for (quiz, guide, or both on one page) and
-   pick a layout that suits the topic; pages need not look identical.
+   pick a layout that suits the topic; pages need not look identical, but
+   quiz+guide pages always use the step-by-step locked path (see below).
 3. Write the page in `docs/quiz/`. Quiz guidelines: 8–15 questions, mostly
    4-option multiple choice plus a few Vero/Falso, each with a one-line
    `spiegazione`; reading level appropriate to the class; "Ripasso" section of
@@ -81,15 +82,28 @@ tempo` 1 and 2; matematica `Conosco, risolvo, argomento` 1 and 2; arte
 8. Reply with the public URL:
    `https://shalini27.github.io/ripasso-medie/quiz/<file>.html`
 
-## Step-by-step pages (percorso a passi)
+## Default page design: a step-by-step path (percorso a passi)
 
-`geografia-germania.html` is the model: the guide is split into numbered
-`.step` sections, each ending in a `.gate` with 1–2 quick questions from a
-`<script type="application/json" id="gates">` block (`passo`, `testo`,
-`opzioni`, `risposta`). The next step unlocks only when the gate is answered
-right; the quiz is the last step. Progress is in localStorage. Use this
-pattern when Shalini says the kid skips the guide; `sigilla.py` seals the
-gates block too.
+Kids skip the guide and go straight to the quiz. So **every new quiz+guide
+page is built as a locked path**, with `geografia-germania.html` as the model:
+
+1. The guide is split into numbered `<section class="step" data-step="n">`
+   blocks, each one topic (a chapter section, one tale, one brand story).
+   Keep each step short enough to read in a couple of minutes.
+2. Each step ends with a `.gate`: 1–2 quick questions on that step only,
+   defined in `<script type="application/json" id="gates">` with fields
+   `passo`, `testo`, `opzioni`, `risposta`. Right answer unlocks the next
+   step and scrolls to it; wrong answer shows "rileggi e riprova" and
+   reshuffles. `tools/sigilla.py` seals this block too.
+3. The quiz is the **last step** and stays locked until all gates are passed.
+4. A sticky progress strip shows "Passo n di N", done steps collapse with a
+   tick and reopen on tap, progress is kept in localStorage under
+   `ripasso:<file>:passo`, with a "ricomincia" link.
+5. No navigation pills that let the reader jump to the quiz.
+
+Copy the CSS (`/* percorso */` block) and the step/gate script from the
+Germany page; don't reinvent them. Pages that are guide-only (no quiz) can
+still use steps, with the last gate unlocking a "Fatto!" screen.
 
 ## Workflow B — an issue from another parent
 

@@ -60,6 +60,13 @@ paragraphs, cards, glossary, map) · lead 18px · hints and captions 14px ·
 uppercase tags 12px. Don't introduce other sizes; mixed 13/14/15px blocks
 next to each other look wrong.
 
+## Step-by-step path (default for quiz+guide pages)
+
+Guide split into numbered steps; each step ends with a quick-check gate that
+unlocks the next; the quiz is the last step and locked until then; sticky
+progress strip; progress saved per device. Model: `docs/quiz/geografia-germania.html`.
+Rationale: without the lock, the kid jumps to the quiz and skips the guide.
+
 ## Rules
 
 1. One column, max 760px, 20px side gutter. Works at 400px (phone), 800px

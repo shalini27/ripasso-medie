@@ -48,6 +48,7 @@
 
 /* ---- base ---- */
 *,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body);
   padding-left:var(--gutter);padding-right:max(20px,env(safe-area-inset-right,0px));padding-block:0 64px}

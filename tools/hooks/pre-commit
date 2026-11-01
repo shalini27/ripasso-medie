@@ -13,6 +13,6 @@ fi
 # scaricano i file nuovi appena ricaricano la pagina (Pages li tiene 10 minuti).
 if git diff --cached --name-only | grep -q '^docs/assets/'; then
   v=$(date +%Y%m%d%H%M)
-  find docs -name '*.html' -print0 | xargs -0 sed -i -E "s#(assets/(style\.css|quiz\.js|icone\.js))(\?v=[0-9]+)?#\1?v=$v#g"
-  git add docs
+  git ls-files -z -- 'docs/*.html' 'docs/quiz/*.html' | xargs -0 sed -i -E "s#(assets/(style\.css|quiz\.js|icone\.js))(\?v=[0-9]+)?#\1?v=$v#g"
+  git ls-files -z -- 'docs/*.html' 'docs/quiz/*.html' | xargs -0 git add
 fi

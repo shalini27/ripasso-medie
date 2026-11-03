@@ -126,8 +126,14 @@ table.cit td:last-child{font-weight:700}
 .step.done .stephead .num{background:var(--ok)}
 .step.done .stepbody{display:none}
 .step.done.open .stepbody{display:grid;gap:16px}
+.step.appear{animation:stepin .7s ease-out}
+@keyframes stepin{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+html{scroll-behavior:smooth}
 .step.done .stephead{cursor:pointer}
 .stepbody{display:grid;gap:16px}
+.step.appear{animation:stepin .7s ease-out}
+@keyframes stepin{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+html{scroll-behavior:smooth}
 .gate{background:var(--surface);border:2px solid var(--mc);border-radius:var(--r);padding:18px 20px;display:grid;gap:14px}
 .gate h3{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--mc)}
 .gate .gq{display:grid;gap:8px}
@@ -1119,10 +1125,11 @@ table.cit td:last-child{font-weight:700}
   }
   function unlock(n) {
     if (done < n) { done = n; save(); }
+    steps[n - 1].classList.add('open');
     render();
     const box = document.querySelector('.gate[data-gate="' + n + '"]');
     if (box) box.append(el('div', { class: 'unlocked' }, n + 1 === N ? 'Hai sbloccato il quiz finale!' : 'Passo ' + (n + 1) + ' sbloccato!'));
-    const next = steps[n]; if (next) { buildGate(n + 1); setTimeout(() => next.scrollIntoView({ block: 'start', behavior: 'smooth' }), 500); }
+    const next = steps[n]; if (next) { buildGate(n + 1); next.classList.add('appear'); setTimeout(() => next.scrollIntoView({ block: 'start', behavior: 'smooth' }), 650); setTimeout(() => next.classList.remove('appear'), 1400); }
   }
   steps.forEach((st, i) => st.querySelector('.stephead').addEventListener('click', () => { if (st.classList.contains('done')) st.classList.toggle('open'); }));
   document.getElementById('reset').addEventListener('click', () => { done = 0; save(); steps.forEach(st => st.classList.remove('open')); steps.forEach((st, i) => buildGate(i + 1)); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });

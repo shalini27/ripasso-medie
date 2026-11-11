@@ -109,6 +109,18 @@ Copy the CSS (`/* percorso */` block) and the step/gate script from the
 Germany page; don't reinvent them. Pages that are guide-only (no quiz) can
 still use steps, with the last gate unlocking a "Fatto!" screen.
 
+## Audio inglese (clip registrati)
+
+Le voci del browser non vanno bene (Firefox su Linux legge l'inglese con una
+voce francese). Le pagine di inglese usano clip mp3 in
+`docs/assets/audio/<pagina>/` con `manifest.json` {frase: file}, inlined nel
+JSON `id="audio"` della pagina; `say()` suona il clip e usa la voce del browser
+solo se manca. Per (ri)generare: `node tools/audio/frasi-inglese.js > /tmp/frasi.json`
+poi `~/.local/venvs/tts/bin/python -I tools/audio/tts.py /tmp/frasi.json docs/assets/audio/<pagina> --model ~/.local/share/kokoro`
+(Kokoro, Apache 2.0; voci bf_emma per le domande, bm_george per le risposte;
+venv e modello fuori dal repo). Il manifest è idempotente: rigenera solo le
+frasi nuove. Dopo ogni modifica alle frasi, rigenera e ricostruisci la pagina.
+
 ## Workflow B — an issue from another parent
 
 1. `gh issue list` to see open ones; `gh issue view <n>` for details.

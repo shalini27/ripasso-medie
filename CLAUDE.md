@@ -121,6 +121,25 @@ poi `~/.local/venvs/tts/bin/python -I tools/audio/tts.py /tmp/frasi.json docs/as
 venv e modello fuori dal repo). Il manifest è idempotente: rigenera solo le
 frasi nuove. Dopo ogni modifica alle frasi, rigenera e ricostruisci la pagina.
 
+## Esercizi interattivi (niente scelta multipla)
+
+Per le pagine di grammatica (modello: `docs/quiz/italiano-pronomi.html`) i
+passi si sbloccano con esercizi veri, non con domande a scelta multipla: il
+blocco `<script type="application/json" id="esercizi">` definisce esercizi di
+tipo `smista` (trascina nei gruppi), `tocca` (tocca le parole, con etichette
+opzionali), `completa` (caselle da riempire con banco di parole o scrivendo),
+`collega` (coppie), `ordina` (riordina parole), `scrivi` (risposta scritta),
+`analisi` (costruisci l'analisi morfologica a righe), `caccia` (trova l'errore e
+correggilo). Ogni esercizio ha `soluzioni: [[chiave, valore], ...]`;
+`tools/sigilla.py` le trasforma in `hash`. I gate dei passi sono
+`<div class="gate" data-gate="n" data-ex="id1 id2">` e si aprono quando tutti
+gli esercizi elencati sono completati; `data-prova="1"` disattiva gli aiuti e
+mostra il riepilogo finale. Motore, CSS, contenuti e script di build della
+pagina dei pronomi stanno in `sources/italiano/pronomi/build/` (privato):
+`python3 sources/italiano/pronomi/build/build.py` rigenera e sigilla la pagina;
+`pagina-in-chiaro.html` nella stessa cartella è la copia non sigillata per i
+test. Per una nuova pagina copiare quella cartella e cambiare `content.py`.
+
 ## Workflow B — an issue from another parent
 
 1. `gh issue list` to see open ones; `gh issue view <n>` for details.

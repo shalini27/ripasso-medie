@@ -152,7 +152,7 @@ html{scroll-behavior:smooth}
 .slot.ok{border-style:solid;border-color:var(--ok);background:var(--ok-bg)}
 .slot .tok{padding:4px 12px;font-size:16px;border:0;background:transparent}
 .slotin,.sin{font:inherit;font-size:17px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:6px 10px;vertical-align:middle}
-.slotin{width:6em;text-align:center;margin:0 3px}
+.slotin{width:calc(var(--w,7) * 0.72em + 1.6em);max-width:100%;text-align:center;margin:0 3px}
 .slotin:focus,.sin:focus{outline:none;border-color:var(--mc);box-shadow:0 0 0 3px color-mix(in srgb,var(--mc) 20%,transparent)}
 .slotin.ok,.sin.ok{border-color:var(--ok);background:var(--ok-bg);color:var(--ok);font-weight:700}
 .slotin.no,.sin.no{border-color:var(--no);background:var(--no-bg)}
@@ -707,7 +707,7 @@ window.Esercizi = (function () {
       String(f).split(/(__+)/).forEach(part => {
         if (/^__+$/.test(part)) {
           const key = `${fi}|${bi++}`;
-          if (ex.input) { const inp = el('input', { class: 'slotin', type: 'text', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false', 'data-key': key, size: String(ex.larghezza || 7) }); line.append(inp); slots.push(inp); }
+          if (ex.input) { const inp = el('input', { class: 'slotin', type: 'text', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false', 'data-key': key, size: String(ex.larghezza || 7), style: '--w:' + (ex.larghezza || 7) }); line.append(inp); slots.push(inp); }
           else { const s = el('span', { class: 'slot', 'data-key': key }); line.append(s); slots.push(s); }
         } else line.append(el('span', { html: mark(part) }));
       });

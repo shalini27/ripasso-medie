@@ -1,0 +1,4 @@
+Fotografie da Wikimedia Commons, ridotte a 1200 px. Autori e licenze di ogni file sono elencati
+nel piè di pagina di docs/quiz/arte-alto-medioevo.html (sezione "elenco") e in immagini.json
+della cartella di build. Le opere riprodotte sono di pubblico dominio; le fotografie restano
+sotto la licenza indicata per ciascuna (CC0, pubblico dominio o CC BY).

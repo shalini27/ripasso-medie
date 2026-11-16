@@ -9,6 +9,7 @@ window.MATERIE = [
   ["scienze","Scienze"],["arte","Storia dell'arte"],["inglese","Inglese"],["musica","Musica"],["tecnologia","Tecnologia"]
 ];
 window.RIPASSO = [
+  {file:"arte-alto-medioevo.html", titolo:"L'arte dell'Alto Medioevo", materia:"arte", classe:"2ª", argomento:"paleocristiana · bizantina · longobarda · carolingia · 15 passi con esercizi sulle immagini", tipo:"guida"},
   {file:"italiano-pronomi.html", titolo:"I pronomi", materia:"italiano", classe:"2ª", argomento:"grammatica · 17 passi con esercizi interattivi e analisi morfologica", tipo:"guida"},
   {file:"inglese-describing-people.html", titolo:"Describing people", materia:"inglese", classe:"2ª", argomento:"orale · who's he, what's he like, what does he look like", tipo:"guida"},
   {file:"italiano-odissea.html", titolo:"L'Odissea", materia:"italiano", classe:"2ª", argomento:"epica · il poema, il viaggio, i personaggi, i temi", tipo:"quiz+guida", domande:31},

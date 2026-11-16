@@ -140,6 +140,15 @@ pagina dei pronomi stanno in `sources/italiano/pronomi/build/` (privato):
 `pagina-in-chiaro.html` nella stessa cartella è la copia non sigillata per i
 test. Per una nuova pagina copiare quella cartella e cambiare `content.py`.
 
+Le pagine con immagini (modello: `docs/quiz/arte-alto-medioevo.html`, build in
+`sources/arte/altomedioevo/build/`) usano in più gli esercizi `etichetta`
+(etichette numerate su una pianta o foto) e `analisi` come scheda dell'opera.
+Fotografie solo da Wikimedia Commons con licenza CC0, pubblico dominio o CC BY:
+mai CC BY-SA, mai NC. Ogni foto riproduce un'opera presente nel libro, viene
+ridotta a 1200 px in `docs/assets/img/<pagina>/` e ha autore + licenza in
+`immagini.json`; la pagina mostra l'attribuzione sotto la figura, nella vista
+ingrandita e nell'elenco in fondo (`<details class="crediti">`).
+
 ## Workflow B — an issue from another parent
 
 1. `gh issue list` to see open ones; `gh issue view <n>` for details.

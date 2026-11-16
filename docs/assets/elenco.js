@@ -9,6 +9,7 @@ window.MATERIE = [
   ["scienze","Scienze"],["arte","Storia dell'arte"],["inglese","Inglese"],["musica","Musica"],["tecnologia","Tecnologia"]
 ];
 window.RIPASSO = [
+  {file:"inglese-unit2-was-were.html", titolo:"Unit 2: was / were, had, describing people", materia:"inglese", classe:"2ª", argomento:"passato di be e have · espressioni di tempo · aspetto e carattere · 15 passi con scrittura e verifica simulata", tipo:"guida"},
   {file:"arte-alto-medioevo.html", titolo:"L'arte dell'Alto Medioevo", materia:"arte", classe:"2ª", argomento:"paleocristiana · bizantina · longobarda · carolingia · 15 passi con esercizi sulle immagini", tipo:"guida"},
   {file:"italiano-pronomi.html", titolo:"I pronomi", materia:"italiano", classe:"2ª", argomento:"grammatica · 17 passi con esercizi interattivi e analisi morfologica", tipo:"guida"},
   {file:"inglese-describing-people.html", titolo:"Describing people", materia:"inglese", classe:"2ª", argomento:"orale · who's he, what's he like, what does he look like", tipo:"guida"},

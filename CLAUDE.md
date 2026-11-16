@@ -149,6 +149,18 @@ ridotta a 1200 px in `docs/assets/img/<pagina>/` e ha autore + licenza in
 `immagini.json`; la pagina mostra l'attribuzione sotto la figura, nella vista
 ingrandita e nell'elenco in fondo (`<details class="crediti">`).
 
+Le pagine di inglese scritto (modello: `docs/quiz/inglese-unit2-was-were.html`, build
+in `sources/inglese/unit2/build/`) aggiungono i tipi `riscrivi` (riscrivi la frase:
+controllo parola per parola con verde/rosso/giallo), `leggi` (testo + domande aperte:
+si accetta ogni risposta che contiene le parole chiave e un verbo, risposta modello
+dopo tre tentativi) e `componi` (testo libero con lista di requisiti e correttore
+delle regole; sblocca quando i requisiti sono tutti verdi, mai per confronto esatto).
+Le caselle scritte a mano con `quasi: true` tollerano un errore di ortografia
+(casella gialla). `tools/sigilla.py` sigilla anche `canon` → `pezzi`, `chiavi` → `hk`
+e `quasi`. I testi liberi possono chiedere un «commento dell'insegnante» a un
+servizio locale sul computer di casa (127.0.0.1:5057, fuori dal repo); se non c'è,
+il pulsante non compare.
+
 ## Workflow B — an issue from another parent
 
 1. `gh issue list` to see open ones; `gh issue view <n>` for details.

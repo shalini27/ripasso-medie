@@ -147,7 +147,7 @@ html{scroll-behavior:smooth}
 
 /* completa */
 .cline{font-size:18px;line-height:2.2;padding:6px 10px;border-radius:var(--r-sm);background:color-mix(in srgb,var(--ink) 3%,transparent)}
-.slot{display:inline-flex;align-items:center;justify-content:center;min-width:64px;height:36px;vertical-align:middle;border:2px dashed color-mix(in srgb,var(--mc) 60%,var(--line));border-radius:999px;margin:0 3px;padding:0 4px;background:var(--bg);cursor:pointer;transition:border-color .15s,background .15s}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:calc(var(--w,5) * 0.6em + 28px);max-width:100%;height:36px;vertical-align:middle;border:2px dashed color-mix(in srgb,var(--mc) 60%,var(--line));border-radius:999px;margin:0 3px;padding:0 4px;background:var(--bg);cursor:pointer;transition:border-color .15s,background .15s}
 .slot.over{background:color-mix(in srgb,var(--mc) 12%,var(--bg));border-style:solid}
 .slot.ok{border-style:solid;border-color:var(--ok);background:var(--ok-bg)}
 .slot .tok{padding:4px 12px;font-size:16px;border:0;background:transparent}
@@ -714,7 +714,7 @@ window.Esercizi = (function () {
         if (/^__+$/.test(part)) {
           const key = `${fi}|${bi++}`;
           if (ex.input) { const inp = el('input', { class: 'slotin', type: 'text', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false', 'data-key': key, size: String(ex.larghezza || 7), style: '--w:' + (ex.larghezza || 7) }); line.append(inp); slots.push(inp); }
-          else { const s = el('span', { class: 'slot', 'data-key': key }); line.append(s); slots.push(s); }
+          else { const s = el('span', { class: 'slot', 'data-key': key, style: '--w:' + (ex.larghezza || Math.max(4, Math.min(24, Math.round((ex.banco || []).reduce((a, v) => a + String(v).length, 0) / Math.max(1, (ex.banco || []).length))))) }); line.append(s); slots.push(s); }
         } else line.append(el('span', { html: mark(part) }));
       });
       body.append(line);

@@ -9,6 +9,7 @@ window.MATERIE = [
   ["scienze","Scienze"],["arte","Storia dell'arte"],["inglese","Inglese"],["musica","Musica"],["tecnologia","Tecnologia"]
 ];
 window.RIPASSO = [
+  {file:"storia-europa-dei-re-stati-regionali.html", titolo:"L'Europa dei re e l'Italia degli Stati regionali", materia:"storia", classe:"2ª", argomento:"capitoli 14–15 · monarchie nazionali, guerra dei cent'anni, Spagna e Portogallo, imperi; signorie, Milano, Venezia, Firenze, Stato della Chiesa, Napoli, Carlo VIII · 12 passi con verifica simulata", tipo:"guida"},
   {file:"geografia-germania-svizzera-austria.html", titolo:"Germania, Svizzera e Austria", materia:"geografia", classe:"2ª", argomento:"territorio, clima, economia, città, storia e cultura dei tre paesi · 13 passi con verifica simulata", tipo:"guida"},
   {file:"inglese-unit2-was-were.html", titolo:"Unit 2: was / were, had, describing people", materia:"inglese", classe:"2ª", argomento:"passato di be e have · espressioni di tempo · aspetto e carattere · 15 passi con scrittura e verifica simulata", tipo:"guida"},
   {file:"arte-alto-medioevo.html", titolo:"L'arte dell'Alto Medioevo", materia:"arte", classe:"2ª", argomento:"paleocristiana · bizantina · longobarda · carolingia · 15 passi con esercizi sulle immagini", tipo:"guida"},

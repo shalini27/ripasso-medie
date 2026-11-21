@@ -161,6 +161,14 @@ e `quasi`. I testi liberi possono chiedere un «commento dell'insegnante» a un
 servizio locale sul computer di casa (127.0.0.1:5057, fuori dal repo); se non c'è,
 il pulsante non compare.
 
+Le pagine di geografia (modello: `docs/quiz/geografia-germania-svizzera-austria.html`, build in
+`sources/geografia/dach/build/`) aggiungono il tipo `mappa`: carta muta SVG generata da dati
+Natural Earth (pubblico dominio) da `mappe.py` (cache in `mappe.json`); il ragazzo tocca sulla
+carta la città, il fiume, il lago, il rilievo o lo stato richiesto e il nome compare solo quando
+indovina. Gli elementi della carta hanno id opachi; le coordinate si danno in `content.py`
+con `P(carta, lat, lon)`. Le risposte aperte (`rispondi_ex`) usano il tipo `leggi` senza testo e
+senza controllo del verbo.
+
 ## Workflow B — an issue from another parent
 
 1. `gh issue list` to see open ones; `gh issue view <n>` for details.

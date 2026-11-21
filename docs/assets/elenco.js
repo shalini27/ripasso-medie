@@ -1,14 +1,15 @@
 /* Elenco di tutte le pagine pubblicate. Una riga per quiz/guida.
-   materia: italiano | storia | geografia | matematica | scienze | arte | inglese | musica | tecnologia | altro
+   materia: italiano | storia | geografia | matematica | scienze | arte | inglese | francese | musica | tecnologia | altro
    ordine:  la prima riga è la più recente (aggiungi in cima). Niente date.
    argomento: breve etichetta opzionale (es. "capitolo 3")
    data:    opzionale, solo se fornita (AAAA-MM-GG): mostra "verifica 12 nov"
    tipo:    "quiz" | "guida" | "quiz+guida"      domande: numero (solo per i quiz) */
 window.MATERIE = [
   ["italiano","Italiano"],["storia","Storia"],["geografia","Geografia"],["matematica","Matematica"],
-  ["scienze","Scienze"],["arte","Storia dell'arte"],["inglese","Inglese"],["musica","Musica"],["tecnologia","Tecnologia"]
+  ["scienze","Scienze"],["arte","Storia dell'arte"],["inglese","Inglese"],["francese","Francese"],["musica","Musica"],["tecnologia","Tecnologia"]
 ];
 window.RIPASSO = [
+  {file:"francese-unite5-famille.html", titolo:"Unité 5: la famiglia, gli animali, il carattere e le professioni", materia:"francese", classe:"2ª", argomento:"albero genealogico · femminile (bavard → bavarde) · aggettivi possessivi · pas de · faire · 12 passi con verifica simulata", tipo:"guida"},
   {file:"storia-europa-dei-re-stati-regionali.html", titolo:"L'Europa dei re e l'Italia degli Stati regionali", materia:"storia", classe:"2ª", argomento:"capitoli 14–15 · monarchie nazionali, guerra dei cent'anni, Spagna e Portogallo, imperi; signorie, Milano, Venezia, Firenze, Stato della Chiesa, Napoli, Carlo VIII · 12 passi con verifica simulata", tipo:"guida"},
   {file:"geografia-germania-svizzera-austria.html", titolo:"Germania, Svizzera e Austria", materia:"geografia", classe:"2ª", argomento:"territorio, clima, economia, città, storia e cultura dei tre paesi · 13 passi con verifica simulata", tipo:"guida"},
   {file:"inglese-unit2-was-were.html", titolo:"Unit 2: was / were, had, describing people", materia:"inglese", classe:"2ª", argomento:"passato di be e have · espressioni di tempo · aspetto e carattere · 15 passi con scrittura e verifica simulata", tipo:"guida"},

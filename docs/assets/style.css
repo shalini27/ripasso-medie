@@ -21,7 +21,7 @@
   --no:#d4342c;  --no-bg:#fdeae8;
   /* subject colours (materie) */
   --m-italiano:#c2417a; --m-storia:#c97b12; --m-geografia:#2d8f5a;
-  --m-matematica:#2f63e6; --m-scienze:#0e8f94; --m-inglese:#7a4ddb;
+  --m-matematica:#2f63e6; --m-scienze:#0e8f94; --m-inglese:#7a4ddb; --m-francese:#1b6fb5;
   --m-arte:#b8452f; --m-musica:#8a6a12; --m-tecnologia:#4c6a8a; --m-altro:#5c6370;
   /* type */
   --display:"Bricolage Grotesque",system-ui,sans-serif;
@@ -38,7 +38,7 @@
     --accent:#ff7a47; --accent-ink:#1a0d06;
     --ok:#4fd48a; --ok-bg:#163a28; --no:#ff7b73; --no-bg:#43201d;
     --m-italiano:#ef6fa6; --m-storia:#f0a33a; --m-geografia:#4fc983;
-    --m-matematica:#6f94ff; --m-scienze:#3fc3c8; --m-inglese:#a98bff; --m-arte:#f2866f; --m-musica:#d9b24a; --m-tecnologia:#8fb0d4; --m-altro:#9aa1ac;
+    --m-matematica:#6f94ff; --m-scienze:#3fc3c8; --m-inglese:#a98bff; --m-francese:#5fb3ef; --m-arte:#f2866f; --m-musica:#d9b24a; --m-tecnologia:#8fb0d4; --m-altro:#9aa1ac;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
     color-scheme:dark;
   }
@@ -92,7 +92,7 @@ button{font:inherit;color:inherit}
 .materia::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
 [data-materia="italiano"]{--mc:var(--m-italiano)} [data-materia="storia"]{--mc:var(--m-storia)}
 [data-materia="geografia"]{--mc:var(--m-geografia)} [data-materia="matematica"]{--mc:var(--m-matematica)}
-[data-materia="scienze"]{--mc:var(--m-scienze)} [data-materia="inglese"]{--mc:var(--m-inglese)}
+[data-materia="scienze"]{--mc:var(--m-scienze)} [data-materia="inglese"]{--mc:var(--m-inglese)} [data-materia="francese"]{--mc:var(--m-francese)}
 [data-materia="arte"]{--mc:var(--m-arte)} [data-materia="musica"]{--mc:var(--m-musica)}
 [data-materia="tecnologia"]{--mc:var(--m-tecnologia)} [data-materia="altro"]{--mc:var(--m-altro)}
 
